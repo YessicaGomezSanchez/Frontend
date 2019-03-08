@@ -1,15 +1,36 @@
-<div class="container">
-  <h1>Iniciar sesión</h1>
-  <mat-form-field>
-    <label id="">Correo electrónico/Nombre de usuario</label>
-    <input type="email" id="">
-  </mat-form-field>
-  <mat-form-field>
-    <label>Contraseña</label>
-    <input type="password" id="">
-  </mat-form-field>
-  <div class="buttons">
-    <button mat-stroked-button color="primary" class="Iniciar Sesión">
-      Iniciar Sesión
-    </button>
+<form class="style">
+  <div class="labels">
+    <label class="titles">Iniciar sesión</label>
   </div>
+
+  <div class="form-group">
+    <label>Correo electrónico/Nombre de usuario</label>
+    <div class="icon-input">
+      <img src="../../../assets/imagenes/profile.png">
+      <input type="email" class="form-control" id="" aria-describedby="emailHelp">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Contraseña</label>
+    <div class="icon-input">
+      <img src="../../../assets/imagenes/lock.png">
+      <input type="password" class="form-control" id="">
+    </div>
+  </div>
+
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="">
+    <label class="form-check-label" for="exampleCheck1">Recordar usuario y contraseña</label>
+  </div>
+
+  <div class="button">
+    <button type="button" class="btn btn-primary btn-lg" [routerLink]="[ '/dashboard']"> Iniciar Sesión</button>
+  </div>
+  <br>
+
+  <a href="restablecer" class="">Recuperar contraseña</a>
+  <br>
+  <a href="usuarios" class="">¿Desea registrarse en el sistema?</a>
+
+</form>

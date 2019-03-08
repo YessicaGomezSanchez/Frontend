@@ -1,10 +1,33 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    background-color: aqua;
-    border-radius: 16px;
-    text-align: center;
-    margin: 25px;
-  }  
-
-  
+.style{
+  margin: 104px;
+  margin-left: 450px;
+  margin-right: 450px;
+  background-color:rgba(238, 238, 227, 0.62);
+  padding: 25px;
+  border-radius: 16px;
+}
+.labels{
+text-align: center;
+}
+.titles{
+  font-size: 2em;
+}
+.icon-input{
+  display: flex;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+}
+.button{
+  text-align: center;
+}
+.btn-primary{
+  color: #000;
+  background-color: #FFDB0069;
+  border-color: #000000;
+  border-radius: 16px;
+}

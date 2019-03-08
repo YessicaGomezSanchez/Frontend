@@ -14,6 +14,7 @@ import { ServiciosComponent } from './components/servicios/servicios.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule,MatButtonModule,MatInputModule,MatMenuModule,MatToolbarModule,MatIconModule,MatSelectModule,MatFormFieldModule} from '@angular/material';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 
@@ -26,7 +27,8 @@ import {MatCardModule,MatButtonModule,MatInputModule,MatMenuModule,MatToolbarMod
     UsuariosComponent,
     TaxisComponent,
     ServiciosComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardComponent
     
   ],
   imports: [
