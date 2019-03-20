@@ -1,3 +1,29 @@
-<p>
-  usuarios works!
-</p>
+<div class="container">
+  <img src="../../../assets/imagenes/profile.png">
+  <label>Registros de Usuarios</label>
+  <br>
+  <label class="labels">Datos personales</label>
+  <div class="modulos">  
+    <input class="form-control" type="text" placeholder="Nombre">
+    <input class="form-control" type="text" placeholder="Apellidos">    
+    <input class="form-control" type="text" placeholder="Apellidos">
+    <input class="form-control" type="number" placeholder="Cédula">
+    <input class="form-control" type="date" placeholder="Cédula">
+    <input class="form-control" type="text" placeholder="Dirección">
+    <input class="form-control" type="number" placeholder="Número de Celular">
+    <input class="form-control" type="number" placeholder="Número Fijo">
+  </div>
+  <label class="labels">Datos personales</label>
+  <br>
+  <div class="modulos">    
+    <input class="form-control" type="text" placeholder="Rol de usuarios">
+    <input class="form-control" type="email" placeholder="Correo electrónico">
+    <input class="form-control" type="text" placeholder="Nombre de usuario">
+    <input class="form-control" type="password" placeholder="Contraseña">
+    <input class="form-control" type="password" placeholder="confirmar Contraseña">
+  </div>
+  <div class="button">
+    <button type="button" class="btn "> Guardar</button>
+    <button type="button" class="btn " [routerLink]="[ '/dashboard']"> Cancelar</button>
+  </div>
+</div>
