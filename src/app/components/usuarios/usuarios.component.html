@@ -1,96 +1,78 @@
 <div class="container m-2">
-    <div class="well well-sm text-primary text-center" style="color:black;">
-        <h1>Datos Personales</h1>
-    </div>
-
     <div class="form-horizontal">
         <fieldset>
-            <div style="display: inline-block; width: 50%; vertical-align: top;">
-                <form #userForm="ngForm">
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="docIdentidad" placeholder="Documento Identidad" required ngModel>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" required ngModel>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required ngModel>
-                    </div>
-                    <div class="form-group">
-                        <input type="date" class="form-control" name="fechaNacimiento" placeholder="Fecha Nacimiento" required ngModel>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="direccion" placeholder="Direccion" required ngModel>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="telefonoFijo" placeholder="Telefono Fijo" required ngModel>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="celular" placeholder="Celular" required ngModel>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="Correo Electronico" required ngModel>
-                    </div>
-                </form>
+            <div style="display: inline-block; width: 20%; vertical-align: top;">
+                <div class="m-2">
+                    <app-navbar></app-navbar>
+                </div>
             </div>
+            <div style="display: inline-block; width: 2%; vertical-align: top;"></div>
+            <div style="display: inline-block; width: 78%; vertical-align: top;">
+                <div class="container m-1">
+                    <div class="well well-sm text-primary text-center m-2" style="color:black;">
+                        <h1>Datos Personales</h1>
+                    </div>
+                    <br>
+                    <div class="form-horizontal">
+                        <fieldset>
+                            <div style="display: inline-block; width: 49%; vertical-align: top;">
+                                <form #userForm="ngForm">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" name="tipoDocIdentidad" placeholder="Tipo de Documento" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" name="docIdentidad" placeholder="Documento Identidad" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" name="fechaNacimiento" placeholder="Fecha Nacimiento" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="direccion" placeholder="Direccion" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" name="telefonoFijo" placeholder="Telefono Fijo" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" name="celular" placeholder="Celular" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="email" placeholder="Correo Electronico" required ngModel>
+                                    </div>
+                                </form>
+                            </div>
+                            <div style="display: inline-block; width: 2%; vertical-align: top;"></div>
+                            <div style="display: inline-block; width: 49%; vertical-align: top;">
+                                <h4>Datos Usuario</h4>
+                                <form #dataUserForm="ngForm">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="rolUsuario" placeholder="Rol de Usuario" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="nickName" placeholder="Nombre Usuario" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" name="contraseña" placeholder="Contraseña" required ngModel>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" name="repContraseña" placeholder="Repetir Contraseña" required ngModel>
+                                    </div>
+                                </form>
+                            </div>
+                        </fieldset>
 
-            <div style="display: inline-block; width: 10%; vertical-align: top;"></div>
-            <div style="display: inline-block; width: 40%; vertical-align: top;">
-                <h4>Datos Usuario</h4>
-                <form #dataUserForm="ngForm">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="rolUsuario" placeholder="Rol de Usuario" required ngModel>
+                        <div class="form-actions col-md-offset-3 button">
+                            <button type="button" class="btn" (click)="saveUser(userForm, dataUserForm)">Guardar</button>
+                            <button type="button" class="btn" [routerLink]="['/dashboard']">Cancelar</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="nickName" placeholder="Nombre Usuario" required ngModel>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="contraseña" placeholder="Contraseña" required ngModel>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="repContraseña" placeholder="Repetir Contraseña" required ngModel>
-                    </div>
-                </form>
+                </div>
             </div>
         </fieldset>
-
-        <div class="form-actions col-md-offset-3 button">
-            <button type="button" class="btn" (click)="saveUser(userForm, dataUserForm)">Guardar</button>
-            <button type="button" class="btn" [routerLink]="['/dashboard']">Cancelar</button>
-        </div>
     </div>
 </div>
-
-
-
-
-<!-- <div class="container">
-    
-  <img src="../../../assets/imagenes/profile.png">
-  <label>Registros de Usuarios</label>
-  <br>
-  <label class="labels">Datos personales</label>
-  <div class="modulos">  
-    <input class="form-control" type="text" placeholder="Nombre">
-    <input class="form-control" type="text" placeholder="Apellidos">    
-    <input class="form-control" type="text" placeholder="Apellidos">
-    <input class="form-control" type="number" placeholder="Cédula">
-    <input class="form-control" type="date" placeholder="Cédula">
-    <input class="form-control" type="text" placeholder="Dirección">
-    <input class="form-control" type="number" placeholder="Número de Celular">
-    <input class="form-control" type="number" placeholder="Número Fijo">
-  </div>
-  <label class="labels">Datos personales</label>
-  <br>
-  <div class="modulos">    
-    <input class="form-control" type="text" placeholder="Rol de usuarios">
-    <input class="form-control" type="email" placeholder="Correo electrónico">
-    <input class="form-control" type="text" placeholder="Nombre de usuario">
-    <input class="form-control" type="password" placeholder="Contraseña">
-    <input class="form-control" type="password" placeholder="confirmar Contraseña">
-  </div>
-  <div class="button">
-    <button type="button" class="btn "> Guardar</button>
-    <button type="button" class="btn " [routerLink]="[ '/dashboard']"> Cancelar</button>
-  </div>
-</div> -->
