@@ -1,0 +1,22 @@
+.options {
+    flex-direction: column;
+}
+
+.btn {
+    color: black;
+    background-color: #FFDB00;
+    border-color: #8492A6;
+    margin: 4px;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+    width: 40px;
+    height: 40px;
+    padding: 1px;
+}
+
+.items {
+    align-items: flex-start;
+}

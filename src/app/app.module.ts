@@ -13,8 +13,9 @@ import { TaxisComponent } from './components/taxis/taxis.component';
 import { ServiciosComponent } from './components/servicios/servicios.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatCardModule,MatButtonModule,MatInputModule,MatMenuModule,MatToolbarModule,MatIconModule,MatSelectModule,MatFormFieldModule} from '@angular/material';
+import { MatCardModule, MatButtonModule, MatInputModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 
 
@@ -28,8 +29,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     TaxisComponent,
     ServiciosComponent,
     HomeComponent,
-    DashboardComponent
-    
+    DashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

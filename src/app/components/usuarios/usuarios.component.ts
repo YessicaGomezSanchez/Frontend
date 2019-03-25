@@ -30,6 +30,8 @@ export class UsuariosComponent implements OnInit {
   }
 
   saveUser(formUser: NgForm, formDataUser: NgForm) {
+    this.userArray = new Array();
+
     this.userArray.push(
       formUser.value.docIdentidad
       , formUser.value.nombre
@@ -40,6 +42,7 @@ export class UsuariosComponent implements OnInit {
       , formUser.value.celular
       , formUser.value.email
       );
+
     console.log(this.userArray);
   }
 

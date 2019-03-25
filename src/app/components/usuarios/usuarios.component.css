@@ -1,23 +1,26 @@
-.container{
+.container {
     background-color: #EEEEE3;
-    border-radius: 16px;    
+    border-radius: 16px;
     margin: 10px;
 }
 
-.modulos{
+.modulos {
     display: flex;
 }
-.form-control{
-    flex-wrap:  wrap ;
+
+.form-control {
+    flex-wrap: wrap;
 }
 
-label{
-text-align: center;
+label {
+    text-align: center;
 }
-.btn{
-    margin:10px;   
-    background-color: #ffdb00 ;
+
+.btn {
+    margin: 10px;
+    background-color: #ffdb00;
 }
-.button{
+
+.button {
     text-align: right;
 }
