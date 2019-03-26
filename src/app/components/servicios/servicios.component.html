@@ -1,3 +1,126 @@
-<p>
-  servicios works!
-</p>
+<div class="container">
+
+  <div class="titulo row">
+    <img src="../../../assets/imagenes/cliente.png">
+    <h3>Servicios</h3>
+  </div>
+
+  <form>
+    <div class="usuario">
+      <label>Usuario</label>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Nombre / Número de Teléfono">
+        </div>
+        <div class="col">
+          <button class="btn">
+            <img src="../../../assets/imagenes/lupa.png">
+            Buscar
+          </button>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Nombre">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Apellidos">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Número celular">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Dirección">
+        </div>
+      </div>
+    </div>
+    <div class="taxi">
+      <label>Taxi</label>
+      <div class="row">
+        <div class="col">
+          <button class="btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Número de taxis requeridos
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item">Action</a>
+            <a class="dropdown-item">Another action</a>
+            <a class="dropdown-item">Something else here</a>
+          </div>
+        </div>
+        <div class="col">
+        <button class="btn-secondary dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Taxi disponibles
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+          <a class="dropdown-item">Action</a>
+          <a class="dropdown-item">Another action</a>
+          <a class="dropdown-item">Something else here</a>
+        </div>
+      </div>
+      </div>
+    </div>
+    <label>Observaciones</label>
+    <div class="row">  
+      <div class="col">
+        <mat-checkbox>Maletero amplio</mat-checkbox>
+      </div>
+      <div class="col">
+        <mat-checkbox>Parrilla</mat-checkbox>
+      </div>
+      <div class="col">
+        <mat-checkbox>Transportar mascota</mat-checkbox>
+      </div>
+      <div class="col">
+          <textarea class="form" aria-label="With textarea" placeholder="Otras"></textarea>
+        </div>
+    </div>
+
+    <div class="col" style="text-align: right">
+        <button class="btn">
+          <img src="../../../assets/imagenes/anadir.png">
+          Agregar
+        </button>
+
+      </div>
+  </form>
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Taxi</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Observaciones</th>
+        <th scope="col">Cancelar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>
+          <span *ngIf="employee.new" class="badge badge-primary">new</span>
+          {{employee.name}}
+        </td>
+        <td>{{employee.position}}</td>
+        <td>{{employee.salary}}</td>
+        <td>{{employee.createdAt | date:'yyyy/MM/dd'}}</td>
+        <td>
+          <button (click)="delete(employee)" class="btn btn-danger btn-sm">
+            <span class="oi oi-trash"></span>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="loading">
+        <td colspan="5" text-align="center">Fetching Employees</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

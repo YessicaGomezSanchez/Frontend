@@ -11,13 +11,19 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 const routes: Routes = [
-    { path: 'sesion', component: IniciarSesionComponent },
-    { path: 'perfil', component: PerfilComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      { path: 'perfil', component: PerfilComponent },
+      { path: 'servicios', component: ServiciosComponent },
+      { path: 'taxis', component: TaxisComponent },
+      { path: 'usuarios', component: UsuariosComponent },
+    ]
+
+},
+    { path: 'sesion', component: IniciarSesionComponent },   
     { path: 'restablecer', component: RestablecerContrasenaComponent },
-    { path: 'servicios', component: ServiciosComponent },
-    { path: 'taxis', component: TaxisComponent },
-    { path: 'usuarios', component: UsuariosComponent },
-    { path: 'dashboard', component: DashboardComponent },
     { path: '**', component: HomeComponent },
     { path: '', component: HomeComponent }
   ];

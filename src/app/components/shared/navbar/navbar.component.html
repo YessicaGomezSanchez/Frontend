@@ -1,27 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <ul class="nav nav-tabs options">
-        <button type="button" class="btn" [routerLink]="['/dashboard']">
-            <div class="items">
-                <img src="../../../assets/imagenes/profile.png">
-                <label class="text-dark">Perfil</label> 
-            </div>
-        </button>
-        <button class="btn" type="button" data-toggle="collapse" data-target="#multiCollapseUsuario" aria-expanded="false" aria-controls="multiCollapseUsuario">Usuarios</button>
-        <div class="collapse items" id="multiCollapseUsuario">
-            <button type="button" class="btn" [routerLink]="[ '/usuarios']">Nuevo</button>
-            <button type="button" class="btn">Actualizar</button>
-        </div>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <button> Dashboard </button>
+      <button> Perfil </button>
+      <button> Servicios </button>
+      <button> Taxis </button>
+      <button> Informes </button>
 
-        <button class="btn" type="button" data-toggle="collapse" data-target="#multiCollapseTaxis" aria-expanded="false" aria-controls="multiCollapseTaxis">Taxi-Afiliaciones</button>
-        <div class="collapse items" id="multiCollapseTaxis">
-            <button type="button" class="btn" id="">Nuevo</button>
-            <button type="button" class="btn" id="">Taxis</button>
-        </div>
 
-        <button class="btn" type="button" data-toggle="collapse" data-target="#multiCollapseServicios" aria-expanded="false" aria-controls="multiCollapseServicios">Servicios</button>
-        <div class="collapse items" id="multiCollapseServicios">
-            <button type="button" class="btn" id="">Nuevo</button>
-            <button type="button" class="btn" id="">Actualizar</button>
-        </div>
-    </ul>
-</nav>
+    </nav>
+  </div>
