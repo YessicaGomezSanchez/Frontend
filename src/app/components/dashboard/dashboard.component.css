@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.menu {
+  margin-top: 15px;
+  text-align:left;
+  width: 15%;
+
+}
+
+.btnmenu{
+    background-color: #FFDB00;
+    border: none;
+    border-radius: 16px;
+    margin: 5px;
+    width: 100%;
+    text-align:left;
+    outline: none;
+}
+img{
+  width: 25%;
+  height: 25%;
+}
+
+
+
+.main-content {
+  border-radius: 16px;
+  width: 90%;
+  margin-left: 25px;
+  margin-top: 15px;
+}
+

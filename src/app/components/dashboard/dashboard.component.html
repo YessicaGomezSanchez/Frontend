@@ -1,19 +1,31 @@
-<div class="container m-2">
-    <div class="form-horizontal">
-        <fieldset>
-            <div style="display: inline-block; width: 20%; vertical-align: top;">
-                <app-navbar></app-navbar>
-            </div>
-            <div style="display: inline-block; width: 5%; vertical-align: top;"></div>
-            <div style="display: inline-block; width: 75%; vertical-align: top;">
-                <div class="main text-center">
-                    <div class="titulo">
-                        <h1>Servitaxi los colores</h1>
-                    </div>
-                    <br>
-                    <img mat-card-image style="width: 500px; height: 500px;" src="../assets/imagenes/taxi.png" alt="Photo of a Shiba Inu">
-                </div>
-            </div>
-        </fieldset>
+<div class="container">
+  <nav class="menu">
+    <button class="btnmenu btn-lg">
+        
+      <img src="../../../assets/imagenes/silueta-del-icono-de-hogar.png"> Inicio
+    </button>
+
+    <button class="btnmenu btn-lg" routerLink="perfil" routerLinkActive="active">
+      <img src="../../../assets/imagenes/usuario-hombre.png">Perfil
+    </button>
+
+    <button class="btnmenu btn-lg" (click)="onClickMe()" routerLink="servicios" routerLinkActive="active">
+      <img src="../../../assets/imagenes/cliente.png"> Servicios
+    </button>
+    <button (click)="toggleCollapse()" class="btnmenu btn-lg" routerLink="usuarios" routerLinkActive="active">
+      <img src="../../../assets/imagenes/usuarios-multiples-en-silueta.png"> Usuarios
+    </button>
+    <div *ngIf="!isCollapsed">
+      <button class="btnmenu btn-sm">Crear Usuarios</button>
+      <button class="btnmenu btn-sm">Listar usuarios</button>
     </div>
+    <button class="btnmenu btn-lg">
+      <img src="../../../assets/imagenes/taxi-frontal.png"> Taxis
+    </button>
+
+  </nav>
+
+  <div class="main-content">
+    <app-servicios></app-servicios>
+  </div>
 </div>
