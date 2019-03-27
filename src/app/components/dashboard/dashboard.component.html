@@ -2,7 +2,7 @@
   <nav class="menu">
     <button class="btnmenu btn-lg">
         
-      <img src="../../../assets/imagenes/silueta-del-icono-de-hogar.png"> Inicio
+      <img src="../../../assets/imagenes/silueta-del-icono-de-hogar.png"routerLink="dashboard" routerLinkActive="active" > Inicio
     </button>
 
     <button class="btnmenu btn-lg" routerLink="perfil" routerLinkActive="active">
@@ -12,20 +12,20 @@
     <button class="btnmenu btn-lg" (click)="onClickMe()" routerLink="servicios" routerLinkActive="active">
       <img src="../../../assets/imagenes/cliente.png"> Servicios
     </button>
-    <button (click)="toggleCollapse()" class="btnmenu btn-lg" routerLink="usuarios" routerLinkActive="active">
+    <button (click)="toggleCollapse()" class="btnmenu btn-lg">
       <img src="../../../assets/imagenes/usuarios-multiples-en-silueta.png"> Usuarios
     </button>
     <div *ngIf="!isCollapsed">
-      <button class="btnmenu btn-sm">Crear Usuarios</button>
-      <button class="btnmenu btn-sm">Listar usuarios</button>
+      <button class="btnmenu btn-sm" routerLink="crear-usuarios" routerLinkActive="active">Crear Usuarios</button>
+      <button class="btnmenu btn-sm" routerLink="usuarios" routerLinkActive="active">Listar usuarios</button>
     </div>
-    <button class="btnmenu btn-lg">
+    <button class="btnmenu btn-lg" routerLink="taxis" routerLinkActive="active">
       <img src="../../../assets/imagenes/taxi-frontal.png"> Taxis
     </button>
 
   </nav>
 
   <div class="main-content">
-    <app-servicios></app-servicios>
+    <router-outlet></router-outlet>
   </div>
 </div>

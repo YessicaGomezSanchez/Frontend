@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule, MatButtonModule, MatInputModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
 
 
 
@@ -30,7 +31,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     ServiciosComponent,
     HomeComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    CrearUsuariosComponent
   ],
   imports: [
     BrowserModule,
