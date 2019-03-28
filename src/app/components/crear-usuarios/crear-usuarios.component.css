@@ -23,9 +23,10 @@
   }
   
   .btn {
-    background-color: #FFDB00;
+    background-color: #ffdb008a;
     padding: 3px;
     border-radius: 16px;
+    margin: 5px;
   }
   
   .btn img {
@@ -37,3 +38,21 @@
     margin: 3px;
   }
   
+  .btnCancelar {
+    background-color: #0a08083b;
+    padding: 3px;
+    border-radius: 16px;
+    border: none;
+    margin: 5px;
+  }
+  .btnCancelar img {
+    width: 25%;
+    height: 25%;
+  }
+  .dropdown-toggle{
+    border-radius: 6px;
+      }
+  input{
+    border-radius: 6px;
+
+  }
