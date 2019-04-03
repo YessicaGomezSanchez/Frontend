@@ -1,3 +1,126 @@
-<p>
-  taxis works!
-</p>
+<div class="container">
+
+  <div class="titulo row">
+    <img src="../../../assets/imagenes/taxi-frontal.png">
+    <h3>Registrar Taxis</h3>
+  </div>
+
+  <form>
+    <div class="usuario">
+      <label>Datos del taxi</label>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Modelo">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Placa">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Número de SOAT">
+          <button class="btnArchivos">
+            <img src="../../../assets/imagenes/subir.png">
+          </button>
+        </div>
+        <div class="col">
+          <input type="date" class="form-control" placeholder="Fecha de vencimiento SOAT">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Número de control de tecnomecánica">
+          <button class="btnArchivos">
+            <img src="../../../assets/imagenes/subir.png">
+          </button>
+        </div>
+        <div class="col">
+          <input type="date" class="form-control" placeholder="Fecha de vencimiento de tecnomecánica">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Número de seguro contractual">
+          <button class="btnArchivos">
+            <img src="../../../assets/imagenes/subir.png">
+          </button>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Fecha de seguro contractual">
+        </div>
+      </div>
+    </div>
+    <label>Datos del propietario</label>
+    <div class="row">
+      <div class="col">
+          <input type="text" class="form-control" placeholder="Fecha de seguro contractual">
+      </div>
+      <div class="col">
+          <input type="text" class="form-control" placeholder="Fecha de seguro contractual">
+      </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Fecha de seguro contractual">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Fecha de seguro contractual">
+        </div>
+      </div>
+
+    <div class="col" style="text-align: right">
+      <button class="btn">
+        <img src="../../../assets/imagenes/anadir.png">
+        Agregar
+      </button>
+
+    </div>
+  </form>
+
+  <label>Conductores</label>
+  <div class="row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Número celular">
+    </div>
+    <div class="col">
+      <button class="btn">
+        <img src="../../../assets/imagenes/lupa.png">
+        Buscar
+      </button>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Taxi</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Observaciones</th>
+        <th scope="col">Cancelar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>
+          <span *ngIf="employee.new" class="badge badge-primary">new</span>
+          {{employee.name}}
+        </td>
+        <td>{{employee.position}}</td>
+        <td>{{employee.salary}}</td>
+        <td>{{employee.createdAt | date:'yyyy/MM/dd'}}</td>
+        <td>
+          <button (click)="delete(employee)" class="btn btn-danger btn-sm">
+            <span class="oi oi-trash"></span>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="loading">
+        <td colspan="5" text-align="center">Fetching Employees</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

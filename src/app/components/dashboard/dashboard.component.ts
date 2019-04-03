@@ -9,13 +9,18 @@ import{UsuariosComponent} from '../usuarios/usuarios.component';
 export class DashboardComponent implements OnInit {
  
 isCollapsed: boolean=true;
+isCollapsed2: boolean=true;
 
   constructor() { }
 
 toggleCollapse(){
   this.isCollapsed=!this.isCollapsed;
-}
 
+}
+toggleCollapse2(){
+
+  this.isCollapsed2=!this.isCollapsed2;
+}
   ngOnInit() {
   }
 
