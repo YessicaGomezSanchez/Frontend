@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="titulo row">
+        <h3>Lista de Usuarios</h3>
+    </div>
+
+    <div class="card-columns m-5 animated fadeIn">
+        <div *ngFor="let item of nuevoUsuario" class="card puntero">
+            <div class="card-body">
+                <h4 class="card-title">{{ item.nombre_usuario }}</h4>
+                <h5 class="card-title">{{ item.correo }}</h5>
+                <h5 class="card-title">{{ item.num_licencia }}</h5>
+                <h5 class="card-title">{{ item.numero_celular }}</h5>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,95 +1,92 @@
 <div class="container">
 
-  <div class="titulo row">
-    <img src="../../../assets/imagenes/usuarios-multiples-en-silueta.png">
-    <h3>Registro de usuarios</h3>
-  </div>
+    <div class="titulo row">
+        <img src="../../../assets/imagenes/usuarios-multiples-en-silueta.png">
+        <h3>Registro de usuarios</h3>
+    </div>
 
-  <form>
-    <div class="usuario">
-      <label>Datos personales</label>
-      <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Nombre">
+    <form #usersForm="ngForm">
+        <div class="usuario">
+            <label>Datos personales</label>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" required ngModel>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" id="apellidos" required ngModel>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input list="tipoDocumento" type="text" class="form-control" name="tipoDoc" id="tipoDocument" placeholder="Tipo de Documento" required ngModel>
+                    <datalist id="tipoDocumento">
+                        <option value="Cédula de ciudadanía"></option>
+                        <option value="Cédula de extranjería"></option>
+                        <option value="Otro"></option>
+                    </datalist>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Número de documento" name="numeroDocumento" id="numeroDocumento" required ngModel>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="fechaNacimiento" id="fechaNacimiento" required ngModel>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Dirección" name="direccion" id="direccion" required ngModel>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="tel" class="form-control" placeholder="Número fijo" name="numeroFijo" id="numeroFijo" required ngModel>
+                </div>
+                <div class="col">
+                    <input type="tel" class="form-control" placeholder="Número ceular" name="numeroCelular" id="numeroCelular" required ngModel>
+                </div>
+            </div>
         </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Apellidos">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button class="dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown">Tipo de documento
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-            <a class="dropdown-item">Cédula de ciudadanía</a>
-            <a class="dropdown-item">Cédula de extranjería</a>
-            <a class="dropdown-item">Otro</a>
-          </div>
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Número de documento">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <input type="date" class="form-control" placeholder="Fecha de nacimiento">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Dirección">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <input type="tel" class="form-control" placeholder="Número fijo">
-        </div>
-        <div class="col">
-          <input type="tel" class="form-control" placeholder="Número ceular">
-        </div>
-      </div>
-    </div>
-    <div class="taxi">
-      <label>Datos de inicio de sesión</label>
-      <div class="row">
-        <div class="col">
-          <button class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">Rol de usuario
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item">Administrador</a>
-            <a class="dropdown-item">Operario</a>
-            <a class="dropdown-item">Conductor</a>
-          </div>
-        </div>
-        <div class="col">
-          <input type="email" class="form-control" placeholder="Correo electrónico">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Nombre de usuario">
-        </div>
-        <div class="col">
-          <input type="password" class="form-control" placeholder="Contraseña">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-        
-        </div>
-        <div class="col">
-          <input type="password" class="form-control" placeholder="Confirmación contraseña">
-        </div>
-      </div>
-    </div>
-    <div class="col" style="text-align: right">
-      <button class="btn">
-        <img src="../../../assets/imagenes/guardar.png">
-        Agregar
-      </button>
-      <button class="btnCancelar">
-        <img src="../../../assets/imagenes/cancelar.png">
-        Cancelar
-      </button>
+        <div class="taxi">
+            <label>Datos de inicio de sesión</label>
+            <div class="row">
+                <div class="col">
+                    <input list="rolUsuarios" type="text" class="form-control" name="rolUsuario" id="rolUser" placeholder="Rol de usuario" required ngModel>
+                    <datalist id="rolUsuarios">
+                        <option value="Administrador"></option>
+                        <option value="Operario"></option>
+                        <option value="Conductor"></option>
+                    </datalist>
+                </div>
+                <div class="col">
+                    <input type="email" class="form-control" placeholder="Correo electrónico" name="email" id="email" required ngModel>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Nombre de usuario" name="nombreUsuario" id="nombreUsuario" required ngModel>
+                </div>
+                <div class="col">
+                    <input type="password" class="form-control" placeholder="Contraseña" name="contraseña" id="contraseña" required ngModel>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
 
-    </div>
-  </form>
+                </div>
+                <div class="col">
+                    <input type="password" class="form-control" placeholder="Confirmación contraseña" name="confContraseña" id="confContraseña" required ngModel>
+                </div>
+            </div>
+        </div>
+        <div class="col" style="text-align: right">
+            <button class="btn" (click)="saveUser(usersForm)">
+              <img src="../../../assets/imagenes/guardar.png">
+              Agregar
+            </button>
+            <button class="btnCancelar">
+              <img src="../../../assets/imagenes/cancelar.png">
+              Cancelar
+            </button>
+        </div>
+    </form>
 </div>
