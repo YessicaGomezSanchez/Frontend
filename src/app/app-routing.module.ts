@@ -24,7 +24,7 @@ const routes: Routes = [
     ]
 
 },
-    { path: 'sesion', component: IniciarSesionComponent },   
+    { path: 'sesion', component: IniciarSesionComponent },
     { path: 'restablecer', component: RestablecerContrasenaComponent },
     { path: '**', component: HomeComponent },
     { path: '', component: HomeComponent }

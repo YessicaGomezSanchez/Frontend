@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -8,42 +8,16 @@ import { NgForm } from '@angular/forms';
 })
 export class UsuariosComponent implements OnInit {
 
-  userArray: Array<{
-    Documento: number,
-    Nombres: string,
-    Apellidos: string,
-    FechaNacimiento: Date,
-    Direccion: string,
-    TelefonoFijo: number,
-    Celular: number,
-    CorreoElectronico: string,
-    DataUsuario: Array<{
-      RolUsuario: string,
-      NombreUsuario: string,
-      Contraseña: string
-    }>
-  }> = new Array();
+  nuevoUsuario: any[] = [];
 
-  constructor() { }
+  constructor( private usuariosService: UsuariosService ) {
+    this.usuariosService.obtenerUsuarios()
+      .subscribe((data: any) => {
+        this.nuevoUsuario = data;
+        console.log(this.nuevoUsuario);
+      });
+  }
 
   ngOnInit() {
   }
-
-  saveUser(formUser: NgForm, formDataUser: NgForm) {
-    this.userArray = new Array();
-
-    this.userArray.push(
-      formUser.value.docIdentidad
-      , formUser.value.nombre
-      , formUser.value.apellidos
-      , formUser.value.fechaNacimiento
-      , formUser.value.direccion
-      , formUser.value.telefonoFijo
-      , formUser.value.celular
-      , formUser.value.email
-      );
-
-    console.log(this.userArray);
-  }
-
 }
