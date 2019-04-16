@@ -1,16 +1,14 @@
 <div class="container">
-    <div class="titulo row">
-        <h3>Lista de Usuarios</h3>
-    </div>
-
-    <div class="card-columns m-5 animated fadeIn">
-        <div *ngFor="let item of nuevoUsuario" class="card puntero">
-            <div class="card-body">
-                <h4 class="card-title">{{ item.nombre_usuario }}</h4>
-                <h5 class="card-title">{{ item.correo }}</h5>
-                <h5 class="card-title">{{ item.num_licencia }}</h5>
-                <h5 class="card-title">{{ item.numero_celular }}</h5>
-            </div>
-        </div>
+  <div class="titulo row">
+    <img src="../../../assets/imagenes/usuarios-multiples-en-silueta.png">
+    <h3>Usuarios registrados</h3>
+  </div>
+    <div *ngFor="let item of nuevoUsuario" class="col-3-4">
+      <div class="module">
+        <h4 class="">{{ item.nombre_usuario }}</h4>
+        <h5 class="">{{ item.correo }}</h5>
+        <h5 class="">{{ item.numero_celular }}</h5>
+        <h5 class="">{{ item.rol }}</h5>
+      </div>
     </div>
 </div>
