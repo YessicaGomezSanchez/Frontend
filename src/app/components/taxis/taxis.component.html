@@ -5,89 +5,99 @@
     <h3>Registrar Taxis</h3>
   </div>
 
-  <form>
+  <form #taxiForm="ngForm">
     <div class="usuario">
       <label>Datos del taxi</label>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Modelo">
+          <input type="text" class="form-control" placeholder="Modelo" id="17201448-cb9c-49e7-849e-8d39e8c6973b" name="modelo" value="modelo" required ngModel>
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Placa">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Número de SOAT">
-          <button class="btnArchivos">
-            <img src="../../../assets/imagenes/subir.png">
-          </button>
-        </div>
-        <div class="col">
-          <input type="date" class="form-control" placeholder="Fecha de vencimiento SOAT">
+          <input type="text" class="form-control" placeholder="Placa"id="42a835de-8a87-4077-92fd-3d80b650531b" name="placa" value="placa" required ngModel>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Número de control de tecnomecánica">
-          <button class="btnArchivos">
+          <input type="text" class="form-control" placeholder="Número de SOAT" id="3cae0de1-7929-4bfc-9aa5-885f5fa1b9a9" name="num_soat" value="num_soat" required ngModel>
+          <!-- <button class="btnArchivos">
             <img src="../../../assets/imagenes/subir.png">
-          </button>
+          </button> -->
         </div>
         <div class="col">
-          <input type="date" class="form-control" placeholder="Fecha de vencimiento de tecnomecánica">
+          <input type="date" class="form-control" placeholder="Fecha de vencimiento SOAT" id="a5b1553b-c9ef-4076-8e6f-a0b2e708d980" name="fecha_venc_soat" value="fecha_venc_soat"required ngModel>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Número de seguro contractual">
-          <button class="btnArchivos">
+          <input type="text" class="form-control" placeholder="Número de control de tecnomecánica" id="fa1feb4f-536f-4968-bb1d-a19224ba76b4" name="num_tecnomecanica" value="num_tecnomecanica"required ngModel>
+          <!-- <button class="btnArchivos">
             <img src="../../../assets/imagenes/subir.png">
-          </button>
+          </button> -->
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Fecha de seguro contractual">
+          <input type="date" class="form-control" placeholder="Fecha de vencimiento de tecnomecánica" id="afb578f0-479b-4b5a-92d1-d3b69e949177" name="fecha_venc_tecnomecanica" value="fecha_venc_tecnomecanica"required ngModel>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Número de seguro contractual" id="7dfa2a28-a23e-434a-bef5-59cc88b434d4" name="num_seguro_contractual" value="num_seguro_contractual"required ngModel>
+          <!-- <button class="btnArchivos">
+            <img src="../../../assets/imagenes/subir.png">
+          </button> -->
+        </div>
+        <div class="col">
+          <input type="date" class="form-control" placeholder="Fecha de seguro contractual" id="33c9d8ec-b03b-4cc7-844d-51ed2c504337" name="fecha_venc_seguro_contractual" value="fecha_venc_seguro_contractual"  required ngModel>
         </div>
       </div>
     </div>
     <label>Datos del propietario</label>
     <div class="row">
       <div class="col">
-          <input type="text" class="form-control" placeholder="Fecha de seguro contractual">
+        <input type="text" class="form-control" placeholder="Nombre y Apellidos" id="fbae22d8-f697-4e32-847b-5720ec22aa97" name="nombre_apellidos" value="nombre_apellidos" required ngModel>
       </div>
       <div class="col">
-          <input type="text" class="form-control" placeholder="Fecha de seguro contractual">
+        <input list="tipoDocumento" type="text" class="form-control" name="tipo_documento" id="71bcc55b-2820-48b5-add0-dd02277d4bbf"
+          placeholder="Tipo de Documento" required ngModel>
+        <datalist id="tipoDocumento">
+          <option value="Cédula de ciudadanía"></option>
+          <option value="Cédula de extranjería"></option>
+          <option value="Otro"></option>
+        </datalist>
       </div>
     </div>
     <div class="row">
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Fecha de seguro contractual">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" placeholder="Fecha de seguro contractual">
-        </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Cédula" id="7973238d-de9a-4563-89c0-de197dcb9be3" name="cedula" value="cedula" required ngModel>
       </div>
-
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Correo" id="4f5a259a-dab0-40b8-8c1b-329e436edf38" name="correo" value="correo" required ngModel>
+      </div>
+    </div>
     <div class="col" style="text-align: right">
-      <button class="btn">
-        <img src="../../../assets/imagenes/anadir.png">
-        Agregar
+      <button class="btn" (click)="GuardarTaxi(taxiForm)">
+        <img src="../../../assets/imagenes/guardar.png">
+        Guardar
       </button>
-
     </div>
   </form>
 
   <label>Conductores</label>
   <div class="row">
     <div class="col">
-      <input type="text" class="form-control" placeholder="Número celular">
+      <input type="text" class="form-control" placeholder="Número de cédula">
     </div>
     <div class="col">
       <button class="btn">
         <img src="../../../assets/imagenes/lupa.png">
         Buscar
       </button>
+      <button class="btn">
+        <img src="../../../assets/imagenes/anadir.png">
+        Agregar
+      </button>
+
     </div>
+
   </div>
   <table class="table">
     <thead>
