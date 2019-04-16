@@ -1,3 +1,69 @@
-<p>
-  perfil works!
-</p>
+<div class="container">
+
+  <div class="titulo row">
+      <img src="../../../assets/imagenes/usuario.png">
+      <h3>Mi Perfil</h3>
+  </div>
+
+  <form #usersForm="ngForm">
+      <div class="usuario">
+          <label>Datos personales</label>
+          <div class="row">
+              <div class="col">
+                  <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" required ngModel>
+              </div>
+              <div class="col">
+                  <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" id="apellidos" required ngModel>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <input list="tipoDocumento" type="text" class="form-control" name="tipoDoc" id="tipoDocument" placeholder="Tipo de Documento" required ngModel>
+                  <datalist id="tipoDocumento">
+                      <option value="Cédula de ciudadanía"></option>
+                      <option value="Cédula de extranjería"></option>
+                      <option value="Otro"></option>
+                  </datalist>
+              </div>
+              <div class="col">
+                  <input type="text" class="form-control" placeholder="Número de documento" name="numeroDocumento" id="numeroDocumento" required ngModel>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="fechaNacimiento" id="fechaNacimiento" required ngModel>
+              </div>
+              <div class="col">
+                  <input type="text" class="form-control" placeholder="Dirección" name="direccion" id="direccion" required ngModel>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <input type="tel" class="form-control" placeholder="Número fijo" name="numeroFijo" id="numeroFijo" required ngModel>
+              </div>
+              <div class="col">
+                  <input type="tel" class="form-control" placeholder="Número ceular" name="numeroCelular" id="numeroCelular" required ngModel>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Nombre de usuario" name="nombreUsuario" id="nombreUsuario" required ngModel>
+          </div>
+          <div class="col">
+            <input type="email" class="form-control" placeholder="Correo electrónico" name="email" id="3fbcc973-51a0-4b88-b6c9-c13b5ff81d3f" required ngModel>
+        </div>
+        </div>
+      </div>
+     
+      <div class="col" style="text-align: right">
+          <button class="btn" (click)="updateUser(usersForm)">
+            <img src="../../../assets/imagenes/actualizando.png">
+            Actualizar
+          </button>
+          <button class="btnCancelar">
+            <img src="../../../assets/imagenes/cancelar.png">
+            Cancelar
+          </button>
+      </div>
+  </form>
+</div>

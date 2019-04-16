@@ -9,6 +9,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
+import {ListarTaxisComponent} from './components/listar-taxis/listar-taxis.component'
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'taxis', component: TaxisComponent },
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'crear-usuarios', component: CrearUsuariosComponent },
+      { path: 'listar-taxis', component: ListarTaxisComponent }
     ]
 
 },

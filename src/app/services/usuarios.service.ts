@@ -10,7 +10,7 @@ export class UsuariosService {
 
   constructor( private http: HttpClient ) { }
 
-  obtenerUsuarios(): any {
+   obtenerUsuarios(): any {
     return this.getQuery('usuarios').pipe(map( data => data ));
   }
 
@@ -20,14 +20,18 @@ export class UsuariosService {
     return this.http.get(URL);
   }
 
-  saveUser(form): any {
-    this.getQuerySave('usuarios', { form });
-  }
+  saveUser(form){
+    const  headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+    const URL = environment.URL + `usuarios`
+    return this.http.post(URL, form, {headers}).subscribe(
+      data => {
+        console.log("POST Request is successful ", data);
+        console.log(data);
+      },
+      error => {
+        console.log("Error", error);
+      }
 
-  getQuerySave(query: string, form: any): any {
-    const URL = environment.URL + `${ query }`;
-    console.log(URL);
-    console.log(form);
-    return this.http.post(URL, { form });
+    );
   }
 }

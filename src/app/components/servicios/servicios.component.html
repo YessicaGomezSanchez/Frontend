@@ -41,29 +41,22 @@
       <label>Taxi</label>
       <div class="row">
         <div class="col">
-          <button class="btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Número de taxis requeridos
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item">Action</a>
-            <a class="dropdown-item">Another action</a>
-            <a class="dropdown-item">Something else here</a>
-          </div>
+          <input list="numTaxi" type="text" class="form-control" name="numTaxis" id="numTaxis"
+            placeholder="Número de taxis" required ngModel>
+          <datalist id="numTaxi">
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+          </datalist>
         </div>
         <div class="col">
-        <button class="btn-secondary dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">Taxi disponibles
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-          <a class="dropdown-item">Action</a>
-          <a class="dropdown-item">Another action</a>
-          <a class="dropdown-item">Something else here</a>
+          <input list="taxiLibres" type="text" class="form-control" name="numTaxis" id="numTaxis"
+          placeholder="Taxis disponibles" required ngModel>
         </div>
       </div>
-      </div>
     </div>
-    <label>Observaciones</label>
-    <div class="row">  
+    <!-- <label>Observaciones</label>
+    <div class="row">
       <div class="col">
         <mat-checkbox>Maletero amplio</mat-checkbox>
       </div>
@@ -74,17 +67,17 @@
         <mat-checkbox>Transportar mascota</mat-checkbox>
       </div>
       <div class="col">
-          <textarea class="form" aria-label="With textarea" placeholder="Otras"></textarea>
-        </div>
-    </div>
+        <textarea class="form" aria-label="With textarea" placeholder="Otras"></textarea>
+      </div>
+    </div> -->
 
     <div class="col" style="text-align: right">
-        <button class="btn">
-          <img src="../../../assets/imagenes/anadir.png">
-          Agregar
-        </button>
+      <button class="btn">
+        <img src="../../../assets/imagenes/anadir.png">
+        Agregar
+      </button>
 
-      </div>
+    </div>
   </form>
 
 

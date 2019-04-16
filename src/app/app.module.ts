@@ -20,6 +20,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     DashboardComponent,
     NavbarComponent,
-    CrearUsuariosComponent
+    CrearUsuariosComponent,
+    ListarTaxisComponent
   ],
   imports: [
     BrowserModule,
