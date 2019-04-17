@@ -5,6 +5,7 @@ import { MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ng6-toastr-notifications';
 import { MatCardModule, MatButtonModule, MatInputModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
 
 // Componentes
@@ -53,7 +54,8 @@ import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.com
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
     ],
   providers: [],
   bootstrap: [AppComponent]
