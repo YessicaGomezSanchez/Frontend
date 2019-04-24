@@ -10,11 +10,11 @@
       <label>Usuario</label>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Nombre / Número de Teléfono"
+          <input type="text" class="form-control" placeholder="Número de Teléfono"
             id="7155fc3c-e775-4dd7-9e24-d49d6160e734" name="nomBusqueda" value="nomBusqueda" required ngModel>
         </div>
         <div class="col">
-          <button class="btn" id="cc04a459-a088-487b-8df7-e77b9c540e57" name="btnBuscar">
+          <button class="btn" id="cc04a459-a088-487b-8df7-e77b9c540e57" name="btnBuscar"(click)="buscarUsuario(formServicio)">
             <img src="../../../assets/imagenes/lupa.png">
             Buscar
           </button>
@@ -24,21 +24,21 @@
       <div class="row">
         <div class="col">
           <input type="text" class="form-control" placeholder="Nombre" name="nombre"
-            id="82863fa2-5a0f-44e7-823f-63a9a6639d62" value="nombre" required ngModel>
+            id="82863fa2-5a0f-44e7-823f-63a9a6639d62" value="nombre" required [(ngModel)]="nombre" >
         </div>
         <div class="col">
           <input type="text" class="form-control" placeholder="Apellidos" name="apellidos"
-            id="a22e6f63-2e01-40b9-bca2-bf2fb7191cc1" value="apellidos" required ngModel>
+            id="a22e6f63-2e01-40b9-bca2-bf2fb7191cc1" value="apellidos" required [(ngModel)]="apellidos">
         </div>
       </div>
       <div class="row">
         <div class="col">
           <input type="text" class="form-control" placeholder="Número celular" name="numeroCelular"
-            id="f38ac245-b271-45a9-b131-49e0eb1f5d77" value="numeroCelular" required ngModel>
+            id="f38ac245-b271-45a9-b131-49e0eb1f5d77" value="numeroCelular" required [(ngModel)]="numeroCelular">
         </div>
         <div class="col">
           <input type="text" class="form-control" placeholder="Dirección" name="direccion"
-            id="923f4a2d-57b9-4418-aece-8e6bb9826ee8" value="direccion" required ngModel>
+            id="923f4a2d-57b9-4418-aece-8e6bb9826ee8" value="direccion" required [(ngModel)]="direccion">
         </div>
       </div>
     </div>
@@ -89,39 +89,36 @@
       </button>
     </div>
   </form>
-
-
   <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
+        <th scope="col">Apellidos</th>
         <th scope="col">Dirección</th>
         <th scope="col">Teléfono</th>
         <th scope="col">Taxi</th>
+        <th scope="col">Operador</th>
         <th scope="col">Fecha</th>
         <th scope="col">Observaciones</th>
         <th scope="col">Cancelar</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let servicio of servicios">
-        <td>
-          <span *ngIf="servicio.new" class="badge badge-primary">new</span>
-          {{servicio.nombre}}
-        </td>
-        <td>{{servicio.apellido}}</td>
+      <tr *ngFor="let servicio of listServicio;index as i">
+          <td>{{i+1}}</td>
+        <td>{{servicio.nombres}}</td>
+        <td>{{servicio.apellidos}}</td>
         <td>{{servicio.direccion}}</td>
         <td>{{servicio.telefono}}</td>
-        <td>{{servicio.placa}}</td>
-        <td>{{servicio.fecha | date:'yyyy/MM/dd'}}</td>
-        <td>{{servicio.observacion}}</td>
+        <td>{{servicio.cod_taxi}}</td>
+        <td>{{servicio.cod_operador}}</td>
+        <td>{{servicio.fecha_servicio | date:'yyyy/MM/dd'}}</td>
+        <td>{{servicio.observaciones}}</td>
         <td>
           <button (click)="delete(servicio)" class="btn btn-danger btn-sm">
             <span class="oi oi-trash"></span>
-            <img src="../../../assets/imagenes/cancelar.png">
-            Cancelar
+            <img src="../../../assets/imagenes/cancelar.png">           
           </button>
         </td>
       </tr>

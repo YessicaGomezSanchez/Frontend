@@ -18,8 +18,8 @@ export class CrearUsuariosComponent implements OnInit {
 
     const dataUsuario =
     {
-      nombre: form.value.nombre,
-      apellido: form.value.apellidos,
+      nombres: form.value.nombre,
+      apellidos: form.value.apellidos,
       tipo_documento: form.value.tipoDocument,
       cedula: form.value.numeroDocumento,
       fecha_nacimiento: form.value.fechaNacimiento,
@@ -34,14 +34,12 @@ export class CrearUsuariosComponent implements OnInit {
       num_licencia: '',
       fecha_venc_licencia: '',
       img_licencia: ''
+     
     }
 
     console.log(dataUsuario);
-    this.userService.saveUser(dataUsuario);
-  }
-
-  Limpiardatos() {
-
-  }
+    this.userService.saveUser(dataUsuario); 
+    form.reset();
+  } 
 
 }

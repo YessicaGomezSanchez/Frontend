@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {TaxisService} from '../../services/taxis.service';
-import {enableProdMode} from '@angular/core';
+import { TaxisService } from '../../services/taxis.service';
+import { enableProdMode } from '@angular/core';
 
 
 enableProdMode();
@@ -17,22 +17,22 @@ export class TaxisComponent implements OnInit {
   ngOnInit() {
   }
 
-  GuardarTaxi(form:NgForm){
+  GuardarTaxi(form: NgForm) {
     const taxi = {
       modelo: form.value.modelo,
       placa: form.value.placa,
       num_soat: form.value.num_soat,
       fecha_venc_soat: form.value.fecha_venc_soat,
-      img_soat:'',
+      img_soat: '',
       num_tecnomecanica: form.value.num_tecnomecanica,
       fecha_venc_tecnomecanica: form.value.fecha_venc_tecnomecanica,
-      img_tecnomecanica:'',
+      img_tecnomecanica: '',
       num_seguro_contractual: form.value.num_seguro_contractual,
       fecha_venc_seguro_contractual: form.value.fecha_venc_seguro_contractual,
-      img_seguro_contractual:'',
-      maletero:true,
-      parrilla:true,
-      mascotas:true,
+      img_seguro_contractual: '',
+      maletero: true,
+      parrilla: true,
+      mascotas: true,
       habilitado: true,
       fecha_registro: form.value.fecha_registro,
       nombre_apellidos: form.value.nombre_apellidos,
@@ -52,7 +52,7 @@ export class TaxisComponent implements OnInit {
     const datataxi = JSON.stringify(taxi);
     console.log(datataxi);
     this.taxisService.postTaxis(datataxi);
-
+    form.reset();
   }
 
 }
