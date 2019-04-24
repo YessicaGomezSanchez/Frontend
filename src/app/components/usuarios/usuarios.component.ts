@@ -11,7 +11,7 @@ export class UsuariosComponent implements OnInit {
   nuevoUsuario:[];
 
   constructor( private usuariosService: UsuariosService ) {
-    this.usuariosService.obtenerUsuarios()
+    this.usuariosService.getAllUsuario()
       .subscribe((data: any) => {
         this.nuevoUsuario = data;
         console.log(this.nuevoUsuario);

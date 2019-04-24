@@ -12,7 +12,6 @@ enableProdMode();
   styleUrls: ['./taxis.component.css']
 })
 export class TaxisComponent implements OnInit {
-
   constructor(private taxisService: TaxisService) { }
 
   ngOnInit() {
@@ -49,6 +48,7 @@ export class TaxisComponent implements OnInit {
       //   habilitado: true,
       // }
     };
+
     const datataxi = JSON.stringify(taxi);
     console.log(datataxi);
     this.taxisService.postTaxis(datataxi);

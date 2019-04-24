@@ -5,15 +5,16 @@
     <h3>Servicios</h3>
   </div>
 
-  <form>
+  <form #formServicio="ngForm">
     <div class="usuario">
       <label>Usuario</label>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Nombre / Número de Teléfono">
+          <input type="text" class="form-control" placeholder="Nombre / Número de Teléfono"
+            id="7155fc3c-e775-4dd7-9e24-d49d6160e734" name="nomBusqueda" value="nomBusqueda" required ngModel>
         </div>
         <div class="col">
-          <button class="btn">
+          <button class="btn" id="cc04a459-a088-487b-8df7-e77b9c540e57" name="btnBuscar">
             <img src="../../../assets/imagenes/lupa.png">
             Buscar
           </button>
@@ -22,18 +23,22 @@
       </div>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Nombre">
+          <input type="text" class="form-control" placeholder="Nombre" name="nombre"
+            id="82863fa2-5a0f-44e7-823f-63a9a6639d62" value="nombre" required ngModel>
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Apellidos">
+          <input type="text" class="form-control" placeholder="Apellidos" name="apellidos"
+            id="a22e6f63-2e01-40b9-bca2-bf2fb7191cc1" value="apellidos" required ngModel>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Número celular">
+          <input type="text" class="form-control" placeholder="Número celular" name="numeroCelular"
+            id="f38ac245-b271-45a9-b131-49e0eb1f5d77" value="numeroCelular" required ngModel>
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Dirección">
+          <input type="text" class="form-control" placeholder="Dirección" name="direccion"
+            id="923f4a2d-57b9-4418-aece-8e6bb9826ee8" value="direccion" required ngModel>
         </div>
       </div>
     </div>
@@ -41,8 +46,8 @@
       <label>Taxi</label>
       <div class="row">
         <div class="col">
-          <input list="numTaxi" type="text" class="form-control" name="numTaxis" id="numTaxis"
-            placeholder="Número de taxis" required ngModel>
+          <input list="numTaxi" type="text" class="form-control" name="numTaxis"
+            id="d594bf3a-5a8a-449c-af31-a15422385af0" placeholder="Número de taxis" required ngModel>
           <datalist id="numTaxi">
             <option value="1"></option>
             <option value="2"></option>
@@ -50,10 +55,15 @@
           </datalist>
         </div>
         <div class="col">
-          <input list="taxiLibres" type="text" class="form-control" name="numTaxis" id="numTaxis"
-          placeholder="Taxis disponibles" required ngModel>
+          <input list="taxiLibres" type="text" class="form-control" name="codTaxi"
+            id="20339c4a-cd57-4d3a-b32d-e3638e35c31a" placeholder="Taxis disponibles" value="codTaxi" required ngModel>
         </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Observaciones" name="observaciones"
+              id="3bde7444-b0d0-44d5-a98a-a63f6e6d4c16" value="observaciones" required ngModel>
+          </div>
       </div>
+
     </div>
     <!-- <label>Observaciones</label>
     <div class="row">
@@ -72,11 +82,11 @@
     </div> -->
 
     <div class="col" style="text-align: right">
-      <button class="btn">
+      <button class="btn" (click)="guardarServicio(formServicio)" id="13ae4d9c-d34b-4ead-8bb5-176afc4e077f"
+        name="btnAgregar">
         <img src="../../../assets/imagenes/anadir.png">
         Agregar
       </button>
-
     </div>
   </form>
 
@@ -96,22 +106,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let employee of employees">
+      <tr *ngFor="let servicio of servicios">
         <td>
-          <span *ngIf="employee.new" class="badge badge-primary">new</span>
-          {{employee.name}}
+          <span *ngIf="servicio.new" class="badge badge-primary">new</span>
+          {{servicio.nombre}}
         </td>
-        <td>{{employee.position}}</td>
-        <td>{{employee.salary}}</td>
-        <td>{{employee.createdAt | date:'yyyy/MM/dd'}}</td>
+        <td>{{servicio.apellido}}</td>
+        <td>{{servicio.direccion}}</td>
+        <td>{{servicio.telefono}}</td>
+        <td>{{servicio.placa}}</td>
+        <td>{{servicio.fecha | date:'yyyy/MM/dd'}}</td>
+        <td>{{servicio.observacion}}</td>
         <td>
-          <button (click)="delete(employee)" class="btn btn-danger btn-sm">
+          <button (click)="delete(servicio)" class="btn btn-danger btn-sm">
             <span class="oi oi-trash"></span>
+            <img src="../../../assets/imagenes/cancelar.png">
+            Cancelar
           </button>
         </td>
       </tr>
       <tr *ngIf="loading">
-        <td colspan="5" text-align="center">Fetching Employees</td>
+        <td colspan="5" text-align="center">Cargando servicios</td>
       </tr>
     </tbody>
   </table>

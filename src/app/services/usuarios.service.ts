@@ -9,26 +9,14 @@ import { Observable } from 'rxjs';
 }) 
 
 export class UsuariosService {
- 
-  constructor( private http: HttpClient, public headers: HttpHeaders) {
-    headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+  URL = environment.URL + `usuarios`
+  headers = new HttpHeaders({'Content-Type': 'application/json'});
+  constructor( private http: HttpClient) {
    }
 
-   obtenerUsuarios(): any {
-    return this.getQuery('usuarios').pipe(map( data => data ));
-  }
-
-  getQuery(query: string) {
-    const URL = environment.URL + `${ query }`;
-
-    return this.http.get(URL);
-  }
-
+  
   saveUser(form){
-    const headers= this.headers;
-    const URL = environment.URL + `usuarios`
-
-    return this.http.post(URL, form, {headers}).subscribe(
+    return this.http.post(this.URL, form, {headers: this.headers}).subscribe(
       data => {
         console.log("POST Request is successful ", data);
         console.log(data);
@@ -41,9 +29,12 @@ export class UsuariosService {
   }
 
   getUsuario(id: any) :Observable <any> {
-    const  headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-    const URL = environment.URL + `usuarios` +`/${id}/`
-    return this.http.get(URL,{headers}).pipe(map((res:any)=>{      
+    return this.http.get(this.URL+`/${id}/`,{headers: this.headers}).pipe(map((res:any)=>{      
+      return res;
+    }))
+  }
+  getAllUsuario() :Observable <any> {
+    return this.http.get(this.URL).pipe(map((res: any) => {
       return res;
     }))
   }
