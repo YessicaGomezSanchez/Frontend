@@ -27,11 +27,13 @@ export class ListarTaxisComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.taxisService.getTaxis().subscribe((data: any) => {
-      this.taxisList = data;
-      console.log(this.taxisList);
-    });
+    this.listarTaxis();
   }
- 
+ listarTaxis(){
+  this.taxisService.getTaxis().subscribe((data: any) => {
+    this.taxisList = data;
+    console.log(this.taxisList);
+  });
+ }
 
 }
