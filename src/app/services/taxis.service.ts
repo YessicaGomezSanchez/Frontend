@@ -14,7 +14,7 @@ export class TaxisService {
   headers = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(private http: HttpClient) { }
 
-  getTaxis(): Observable<any> {    
+  getAllTaxis(): Observable<any> {    
     return this.http.get(this.URL).pipe(map((res: any) => {
       return res;
     }))
@@ -33,6 +33,11 @@ export class TaxisService {
       }
 
     );
+  }
+  getTaxi(placa:any): Observable<any> {    
+    return this.http.get(this.URL+`/${placa}/`,{headers: this.headers}).pipe(map((res:any)=>{      
+      return res;
+    }))
   }
 
 }

@@ -36,3 +36,11 @@ label {
 .col {
   margin: 3px;
 }
+.acciones{
+  background-color: transparent;
+  border: none;
+}
+.acciones img{
+  width: 50%;
+  height: 50%;
+}

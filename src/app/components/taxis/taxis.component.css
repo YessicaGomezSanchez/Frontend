@@ -44,3 +44,11 @@
       background-color: transparent;
       border: none;
   }
+  .acciones{
+    background-color: transparent;
+    border: none;
+  }
+  .acciones img{
+    width: 50%;
+    height: 50%;
+  }

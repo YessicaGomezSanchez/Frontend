@@ -18,19 +18,12 @@ export class ListarTaxisComponent implements OnInit {
   tipo_documento: String;
   cedula: String;
   correo: String;
-  constructor(private taxisService: TaxisService) { 
-    // this.taxisService.getTaxis()
-    // .subscribe((data: any) => {
-    //   this.taxisList = data;
-    //   console.log(this.taxisList);
-    // });
-  }
-
+  constructor(private taxisService: TaxisService) { }
   ngOnInit() {
     this.listarTaxis();
   }
  listarTaxis(){
-  this.taxisService.getTaxis().subscribe((data: any) => {
+  this.taxisService.getAllTaxis().subscribe((data: any) => {
     this.taxisList = data;
     console.log(this.taxisList);
   });
