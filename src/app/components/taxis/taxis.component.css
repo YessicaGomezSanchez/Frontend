@@ -52,3 +52,10 @@
     width: 50%;
     height: 50%;
   }
+  .scrollit {
+    overflow:scroll;
+    height:258px;
+  }
+ .buscarP{
+  flex-direction:column   
+ }
