@@ -1,16 +1,17 @@
 <div class="container">
   <div class="titulo row">
-      <h3>Lista de Taxis</h3>
+        <img src="../../../assets/imagenes/taxi-frontal.png">
+    <h3>Taxis Registrados</h3>
   </div>
 
-  <div class="card-columns m-5 animated fadeIn">
-      <div *ngFor="let taxi of taxisList" class="card puntero">
-          <div class="card-body">
-              <h4 class="card-title">{{ taxi.placa }}</h4>
-              <h5 class="card-title">{{ taxi.nombre_apellidos }}</h5>
-              <h5 class="card-title">{{ taxi.correo }}</h5>
-              <h5 class="card-title">{{ taxi.cedula }}</h5>
-          </div>
-      </div>
+
+  <div *ngFor="let taxi of taxisList" class="col-3-4">
+    <div class="module">
+      <h4>{{ taxi.placa }}</h4>
+      <h5>{{ taxi.nombre_apellidos }}</h5>
+      <h5>{{ taxi.correo }}</h5>
+      <h5>{{ taxi.cedula }}</h5>
+    </div>
   </div>
+
 </div>

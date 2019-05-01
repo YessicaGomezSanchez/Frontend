@@ -1,7 +1,7 @@
 .container {
   background-color: #EEEEE3;
   border-radius: 16px;
-}
+ }
 
 .titulo {
   padding: 15px;
@@ -43,4 +43,8 @@ label {
 .acciones img{
   width: 50%;
   height: 50%;
+}
+.scrollit {
+  overflow:scroll;
+  height:258px;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TaxisService } from '../../services/taxis.service';
-import {UsuariosService  } from '../../services/usuarios.service';
+import { UsuariosService } from '../../services/usuarios.service';
 import { enableProdMode } from '@angular/core';
 
 
@@ -13,21 +13,50 @@ enableProdMode();
   styleUrls: ['./taxis.component.css']
 })
 export class TaxisComponent implements OnInit {
-  public nombres: string;
-  public apellidos: string;
-  public numero_celular: string;
-  public num_licencia: string;
-  public categoria: string;
-  public fecha_venc_licencia: Date;
+  nombres: string;
+  apellidos: string;
+  numero_celular: string;
+  num_licencia: string;
+  categoria: string;
+  fecha_venc_licencia: String;
 
- 
+  placa: string;
+  modelo: string;
+  num_soat: string;
+  fecha_venc_soat: String;
+  num_tecnomecanica: string;
+  fecha_venc_tecnomecanica: String;
+  num_seguro_contractual: String;
+  fecha_venc_seguro_contractual: String;
+  maletero: Boolean;
+  parrilla: Boolean;
+  mascotas: Boolean;
+  habilitado: Boolean;
+  fecha_registro: String;
+  nombre_apellidos: String;
+  tipo_documento: String;
+  cedula: String;
+  correo: String;
+  conductores:[];
 
-  constructor(private taxisService: TaxisService, private usuarioServicio:UsuariosService) { }
-  conductores=[];
+  public arrayconductores: Array<{
+    nombres: string,
+    apellidos: string,
+    numero_celular: string,
+    num_licencia: string,
+    categoria: string,
+    fecha_venc_licencia: String,
+  }> = [];
+
+  fieldArray: Array<any> = [];
+  newAttribute: any = {};
+
+  constructor(private taxisService: TaxisService, private usuarioServicio: UsuariosService) { }
   ngOnInit() {
+    this.listarConductores();
   }
 
-  GuardarTaxi(form: NgForm, conductores: any[]) {
+  GuardarTaxi(form: NgForm) {
     const taxi = {
       modelo: form.value.modelo,
       placa: form.value.placa,
@@ -49,33 +78,74 @@ export class TaxisComponent implements OnInit {
       tipo_documento: form.value.tipo_documento,
       cedula: form.value.cedula,
       correo: form.value.correo,
-      conductores: [conductores]
+      conductores: this.arrayconductores
     };
 
     this.taxisService.postTaxis(taxi);
     form.reset();
   }
 
-  buscarUsuario(form: NgForm): void {
-    const id = form.value.cedulaC;
-    this.usuarioServicio.getUsuario(id).subscribe(data => {
-      if (data.rol =="Conductor") {
-      this.nombres = data.nombres;
-      this.apellidos = data.apellidos,
-      this.numero_celular = data.numero_celular,
-      this.num_licencia = data.num_licencia,
-      this.categoria = data.categoria,
-      this.fecha_venc_licencia = data.fecha_venc_licencia
-      } else {
-        //agregar las notificaciones
-        console.log('usuario no es un taxista', data.nombres)
+  // buscarConductor(cedula:String): void {
+  //   this.usuarioServicio.getUsuario(cedula).subscribe(data => {
+  //     if (data.rol == "Conductor") {
+  //       this.cedula = data.cedula,
+  //       this.nombres = data.nombres,
+  //       this.apellidos = data.apellidos,
+  //       this.numero_celular = data.numero_celular,
+  //       this.num_licencia = data.num_licencia,
+  //       this.categoria = data.categoria,
+  //       this.fecha_venc_licencia = data.fecha_venc_licencia
+  //     } else {
+  //       //agregar las notificaciones
+  //       console.log('usuario no es un taxista', data.nombres)
+  //     }
+  //     //  console.log('datos', data)
+  //   })
+  // }
 
-      }
-      
-    //  console.log('datos', data)
-    })
+   eliminar(index) { 
+    this.arrayconductores = this.arrayconductores.splice(index, 1); 
+    console.log(this.arrayconductores);
+   } 
+  agregarConductores() {
+    this.arrayconductores.push({
+      nombres: this.nombres,
+      apellidos: this.apellidos,
+      numero_celular: this.numero_celular,
+      num_licencia: this.num_licencia,
+      categoria: this.categoria,
+      fecha_venc_licencia: this.fecha_venc_licencia
+    });
+    console.log('conductores agregados', this.arrayconductores)
   }
-  agregarConductores(data){
-    console.log('datos', data)
+
+  buscarTaxi(form: NgForm): void {
+    const placa = form.value.placa;
+    this.taxisService.getTaxi(placa).subscribe(data => {
+      this.placa = data.placa;
+      this.modelo = data.modelo;
+      this.num_soat = data.num_soat;
+      this.fecha_venc_soat = data.fecha_venc_soat;
+      this.num_tecnomecanica = data.num_tecnomecanica;
+      this.fecha_venc_tecnomecanica = data.fecha_venc_tecnomecanica;
+      this.num_seguro_contractual = data.num_seguro_contractual;
+      this.fecha_venc_seguro_contractual = data.fecha_venc_seguro_contractual;
+      this.maletero = data.maletero;
+      this.parrilla = data.parrilla;
+      this.mascotas = data.mascotas;
+      this.habilitado = data.habilitado;
+      this.nombre_apellidos = data.nombre_apellidos;
+      this.tipo_documento = data.tipo_documento;
+      this.cedula = data.cedula;
+      this.correo = data.correo; 
+      this.conductores = data.conductores; 
+    })    
+  }
+
+    listarConductores() { 
+    this.usuarioServicio.getAllUsuario().subscribe((data: any) => {      
+      this.conductores = data.filter(data => data.rol =="Conductor");
+      console.log('conductores inscritos',this.conductores);
+    });
   }
 }

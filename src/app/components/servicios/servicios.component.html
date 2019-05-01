@@ -46,14 +46,9 @@
       <label>Taxi</label>
       <div class="row">
         <div class="col">
-          <input list="numTaxi" type="text" class="form-control" name="numTaxis"
+          <input type="text" class="form-control" name="numTaxis"
             id="d594bf3a-5a8a-449c-af31-a15422385af0" placeholder="Número de taxis" required ngModel>
-          <datalist id="numTaxi">
-            <option value="1"></option>
-            <option value="2"></option>
-            <option value="3"></option>
-          </datalist>
-        </div>
+            </div>
         <div class="col">
           <input list="taxiLibres" type="text" class="form-control" name="codTaxi"
             id="20339c4a-cd57-4d3a-b32d-e3638e35c31a" placeholder="Taxis disponibles" value="codTaxi" required ngModel>
@@ -89,6 +84,7 @@
       </button>
     </div>
   </form>
+  <div class="scrollit">
   <table class="table">
     <thead>
       <tr>
@@ -104,8 +100,9 @@
         <th scope="col">Cancelar</th>
       </tr>
     </thead>
+    
     <tbody>
-      <tr *ngFor="let servicio of listServicio;index as i">
+      <tr *ngFor="let servicio of listServicio;index as i"> 
           <td>{{i+1}}</td>
         <td>{{servicio.nombres}}</td>
         <td>{{servicio.apellidos}}</td>
@@ -123,5 +120,6 @@
         </td>
       </tr>
     </tbody>
-  </table>
+  </table>  
+</div>
 </div>
