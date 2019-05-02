@@ -25,7 +25,6 @@ export class ListarTaxisComponent implements OnInit {
  listarTaxis(){
   this.taxisService.getAllTaxis().subscribe((data: any) => {
     this.taxisList = data;
-    console.log(this.taxisList);
   });
  }
 

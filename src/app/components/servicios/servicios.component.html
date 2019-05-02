@@ -14,7 +14,8 @@
             id="7155fc3c-e775-4dd7-9e24-d49d6160e734" name="nomBusqueda" value="nomBusqueda" required ngModel>
         </div>
         <div class="col">
-          <button class="btn" id="cc04a459-a088-487b-8df7-e77b9c540e57" name="btnBuscar"(click)="buscarUsuario(formServicio)">
+          <button class="btn" id="cc04a459-a088-487b-8df7-e77b9c540e57" name="btnBuscar"
+            (click)="buscarUsuario(formServicio)">
             <img src="../../../assets/imagenes/lupa.png">
             Buscar
           </button>
@@ -24,7 +25,7 @@
       <div class="row">
         <div class="col">
           <input type="text" class="form-control" placeholder="Nombre" name="nombre"
-            id="82863fa2-5a0f-44e7-823f-63a9a6639d62" value="nombre" required [(ngModel)]="nombre" >
+            id="82863fa2-5a0f-44e7-823f-63a9a6639d62" value="nombre" required [(ngModel)]="nombre">
         </div>
         <div class="col">
           <input type="text" class="form-control" placeholder="Apellidos" name="apellidos"
@@ -46,17 +47,55 @@
       <label>Taxi</label>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" name="numTaxis"
-            id="d594bf3a-5a8a-449c-af31-a15422385af0" placeholder="Número de taxis" required ngModel>
-            </div>
-        <div class="col">
-          <input list="taxiLibres" type="text" class="form-control" name="codTaxi"
-            id="20339c4a-cd57-4d3a-b32d-e3638e35c31a" placeholder="Taxis disponibles" value="codTaxi" required ngModel>
+          <input type="text" class="form-control" name="numTaxis" id="d594bf3a-5a8a-449c-af31-a15422385af0"
+            placeholder="Número de taxis" required ngModel>
         </div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="Observaciones" name="observaciones"
-              id="3bde7444-b0d0-44d5-a98a-a63f6e6d4c16" value="observaciones" required ngModel>
+          <input list="taxiLibres" class="form-control" name="codTaxi"
+            id="20339c4a-cd57-4d3a-b32d-e3638e35c31a" placeholder="Taxis disponibles" value="codTaxi" required ngModel>
+        </div>
+        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">      
+          <img src="../../../assets/imagenes/lupa.png">
+          Enturnar
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Enturnamiento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col">
+                    <input type="text" type="text" class="form-control" name="placa" id="" placeholder="Placa"
+                      value="placa" required ngModel>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="acciones" data-toggle="modal" data-target="#exampleModal">
+
+                      +
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn">Guardar</button>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Observaciones" name="observaciones"
+            id="3bde7444-b0d0-44d5-a98a-a63f6e6d4c16" value="observaciones" required ngModel>
+        </div>
       </div>
 
     </div>
@@ -85,41 +124,41 @@
     </div>
   </form>
   <div class="scrollit">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellidos</th>
-        <th scope="col">Dirección</th>
-        <th scope="col">Teléfono</th>
-        <th scope="col">Taxi</th>
-        <th scope="col">Operador</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Observaciones</th>
-        <th scope="col">Cancelar</th>
-      </tr>
-    </thead>
-    
-    <tbody>
-      <tr *ngFor="let servicio of listServicio;index as i"> 
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Taxi</th>
+          <th scope="col">Operador</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Observaciones</th>
+          <th scope="col">Cancelar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let servicio of listServicio;index as i">
           <td>{{i+1}}</td>
-        <td>{{servicio.nombres}}</td>
-        <td>{{servicio.apellidos}}</td>
-        <td>{{servicio.direccion}}</td>
-        <td>{{servicio.telefono}}</td>
-        <td>{{servicio.cod_taxi}}</td>
-        <td>{{servicio.cod_operador}}</td>
-        <td>{{servicio.fecha_servicio | date:'yyyy/MM/dd'}}</td>
-        <td>{{servicio.observaciones}}</td>
-        <td>
-          <button (click)="delete(servicio)" class="acciones">
-            <span class="oi oi-trash"></span>
-            <img src="../../../assets/imagenes/cancelar.png">           
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>  
-</div>
+          <td>{{servicio.nombres}}</td>
+          <td>{{servicio.apellidos}}</td>
+          <td>{{servicio.direccion}}</td>
+          <td>{{servicio.telefono}}</td>
+          <td>{{servicio.cod_taxi}}</td>
+          <td>{{servicio.cod_operador}}</td>
+          <td>{{servicio.fecha_servicio | date:'yyyy/MM/dd'}}</td>
+          <td>{{servicio.observaciones}}</td>
+          <td>
+            <button (click)="delete(servicio)" class="acciones">
+              <span class="oi oi-trash"></span>
+              <img src="../../../assets/imagenes/cancelar.png">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
