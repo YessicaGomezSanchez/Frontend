@@ -31,7 +31,7 @@
           </button> -->
         </div>
         <div class="col">
-          <input type="date" class="form-control" placeholder="Fecha de vencimiento SOAT"
+          <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" placeholder="Fecha de vencimiento SOAT"
             id="a5b1553b-c9ef-4076-8e6f-a0b2e708d980" name="fecha_venc_soat" value="fecha_venc_soat" required
             [(ngModel)]="fecha_venc_soat">
         </div>
@@ -46,7 +46,7 @@
           </button> -->
         </div>
         <div class="col">
-          <input type="date" class="form-control" placeholder="Fecha de vencimiento de tecnomecánica"
+          <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" placeholder="Fecha de vencimiento de tecnomecánica"
             id="afb578f0-479b-4b5a-92d1-d3b69e949177" name="fecha_venc_tecnomecanica" value="fecha_venc_tecnomecanica"
             required [(ngModel)]="fecha_venc_tecnomecanica">
         </div>
@@ -61,7 +61,7 @@
           </button> -->
         </div>
         <div class="col">
-          <input type="date" class="form-control" placeholder="Fecha de seguro contractual"
+          <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" placeholder="Fecha de seguro contractual"
             id="33c9d8ec-b03b-4cc7-844d-51ed2c504337" name="fecha_venc_seguro_contractual"
             value="fecha_venc_seguro_contractual" required [(ngModel)]="fecha_venc_seguro_contractual">
         </div>
@@ -99,7 +99,7 @@
     <div class="row">
       <div class="col">
         <input type="search" class="form-control" placeholder="Número de cédula" id="f7f37994-5555-467a-b333-2a671c3664df"
-          name="cedulaC" value="cedulaC" required ng-model="filtro">
+          name="cedulaC" value="cedulaC" required [(ngModel)]="filtro">
       </div>
       <div class="col">
         <button class="btn" (click)="buscarConductor(cedula)">

@@ -15,10 +15,11 @@ export class ServiciosComponent implements OnInit {
   public apellidos: string;
   public direccion: string;
   public numeroCelular: string;
+  cod_servicio = Math.floor((Math.random() * 10000) + 1);
 
   constructor(private servicio: ServiciosService, private taxi: TaxisService, private usuario: UsuariosService) { }
-listServicio=[];
-  ngOnInit() { 
+  listServicio = [];
+  ngOnInit() {
     this.listarServicios();
   }
 
@@ -26,7 +27,7 @@ listServicio=[];
 
     const dataServicio =
     {
-      cod_servicio: form.value.codServicio,
+      cod_servicio: this.cod_servicio,
       nombres: form.value.nombre,
       apellidos: form.value.apellidos,
       direccion: form.value.direccion,
@@ -41,18 +42,19 @@ listServicio=[];
     this.listarServicios();
     form.reset();
   }
+
   buscarUsuario(form: NgForm): void {
     const id = form.value.nomBusqueda;
     this.usuario.getUsuario(id).subscribe(data => {
       this.nombre = data.nombres;
       this.apellidos = data.apellidos,
-      this.direccion = data.direccion,
-      this.numeroCelular = data.numero_celular,
-      console.log('datos', data)
+        this.direccion = data.direccion,
+        this.numeroCelular = data.numero_celular,
+        console.log('datos', data)
     })
   }
 
-  listarServicios() { 
+  listarServicios() {
     this.servicio.getAllServicio().subscribe((data: any) => {
       this.listServicio = data;
       console.log(this.listServicio);

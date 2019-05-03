@@ -22,7 +22,8 @@ export class UsuariosService {
         console.log(data);
       },
       error => {
-        console.log("Error", error);
+        console.log("Error", error.error.message);
+        
       }
 
     );
