@@ -22,7 +22,8 @@
             placeholder="Tipo de Documento" required ngModel>
           <datalist id="3714ef47-1150-44d2-986d-2fe942d790c5">
             <option value="Cédula de ciudadanía"></option>
-            <option value="Cédula de extranjería" (click)="formHidden = false"></option>
+            <option value="Cédula de extranjería"></option>
+            <option value="Nit"></option>
             <option value="Otro"></option>
           </datalist>
         </div>
@@ -33,8 +34,8 @@
       </div>
       <div class="row">
         <div class="col">
-          <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="fechaNacimiento"
-            id="8e0f1c59-5e45-45ba-8564-9e374ed289f9" required ngModel>
+          <input type="text" class="form-control" placeholder="Fecha de nacimiento" name="fechaNacimiento"
+            id="8e0f1c59-5e45-45ba-8564-9e374ed289f9" onfocus="(this.type='date')" onblur="(this.type='text')"  required ngModel>
         </div>
         <div class="col">
           <input type="text" class="form-control" placeholder="Dirección" name="direccion" id="32b27c7b-af29-4891-9577-f3e51cf06bba" required
@@ -92,16 +93,13 @@
     <div class="conductor">
       <label>Datos del conductor</label>
       <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Número de licencia" name="num_licencia" value="num_licencia" id="fd523628-7c91-43f4-b302-6331984f9fea" required
-            ngModel>
-        </div>
-        <div class="col">
+         <div class="col">
           <input type="text" class="form-control" placeholder="Categoría" name="categoria"  value="categoria" id="d1a2e136-a009-461d-a0b1-c7f4b8506ff3" required ngModel>
         </div>
         <div class="col">
-          <input type="date" class="form-control" placeholder="Fecha de vencimiento de licencia" value="fecha_venc_licencia"
-            name="fecha_venc_licencia" id="a818f623-af7b-4b0f-a6d6-e59aa5d8abb7" required ngModel>
+            <input placeholder="Fecha de vencimiento de licencia" value="fecha_venc_licencia"
+            name="fecha_venc_licencia"  class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" 
+            id="a818f623-af7b-4b0f-a6d6-e59aa5d8abb7"required ngModel >          
         </div>
       </div>
     </div>

@@ -83,6 +83,8 @@ export class TaxisComponent implements OnInit {
 
     this.taxisService.postTaxis(taxi);
     form.reset();
+    this.arrayconductores=[];
+    
   }
 
   // buscarConductor(cedula:String): void {
@@ -104,18 +106,20 @@ export class TaxisComponent implements OnInit {
   // }
 
    eliminar(index) { 
-    this.arrayconductores = this.arrayconductores.splice(index, 1); 
-    console.log(this.arrayconductores);
+    this.arrayconductores = this.arrayconductores.splice(index, 0); 
+    console.log(index);
+    console.log('conductor a eliminar',this.arrayconductores);
    } 
-  agregarConductores() {
+  agregarConductores(conductor:any) {
     this.arrayconductores.push({
-      nombres: this.nombres,
-      apellidos: this.apellidos,
-      numero_celular: this.numero_celular,
-      num_licencia: this.num_licencia,
-      categoria: this.categoria,
-      fecha_venc_licencia: this.fecha_venc_licencia
+      nombres: conductor.nombres,
+      apellidos: conductor.apellidos,
+      numero_celular: conductor.numero_celular,
+      num_licencia: conductor.num_licencia,
+      categoria: conductor.categoria,
+      fecha_venc_licencia: conductor.fecha_venc_licencia
     });
+    conductor.disabled = true;
     console.log('conductores agregados', this.arrayconductores)
   }
 
@@ -145,6 +149,9 @@ export class TaxisComponent implements OnInit {
     listarConductores() { 
     this.usuarioServicio.getAllUsuario().subscribe((data: any) => {      
       this.conductores = data.filter(data => data.rol =="Conductor");
+      this.conductores.map((conductor: any)=>{
+        conductor.disabled = false;
+      })
       console.log('conductores inscritos',this.conductores);
     });
   }
