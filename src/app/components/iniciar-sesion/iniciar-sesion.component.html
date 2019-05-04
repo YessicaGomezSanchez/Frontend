@@ -8,11 +8,11 @@
       <label>Correo electrónico</label>
       <div class="icon-input">
         <img src="../../../assets/imagenes/profile.png">
-        <input type="email" class="form-control" id="d2019fed-ba63-4c6b-ab2f-b27690d00f04" formControlName="email"
-          [ngClass]="{ 'is-invalid': submitted && f.email.errors}">
-            <!-- <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email is required</div>
-            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        <input type="email" class="form-control"id="d2019fed-ba63-4c6b-ab2f-b27690d00f04" formControlName="correo" placeholder="Correo electronico"
+          [ngClass]="{ 'is-invalid': submitted && validador.correo.errors}">
+            <!-- <div *ngIf="submitted && f.correo.errors" class="invalid-feedback">
+            <div *ngIf="f.correo.errors.required">correo is required</div>
+            <div *ngIf="f.correo.errors.correo">correo must be a valid correo address</div>
           </div>     -->
       </div>     
     </div>
@@ -22,8 +22,8 @@
       <label>Contraseña</label>
       <div class="icon-input">
         <img src="../../../assets/imagenes/lock.png">
-        <input type="password" class="form-control" id="59041aae-4a90-45b4-808a-01f1c3eec98f" formControlName="contrasena"
-          [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors}">
+        <input type="password" class="form-control" id="59041aae-4a90-45b4-808a-01f1c3eec98f" formControlName="contrasena" placeholder="Contraseña"
+          [ngClass]="{ 'is-invalid': submitted && validador.contrasena.errors}">
         <!-- <div *ngIf="submitted && f.contrasena.errors" class="invalid-feedback">
           <div *ngIf="f.contrasena.errors.required">Password is required</div>
           <div *ngIf="f.contrasena.errors.minlength">Password must be at least 6 characters</div>
@@ -38,7 +38,7 @@
 
     <div class="button">
       <button [disabled]="loading" type="button" class="btn btn-primary btn-lg" name="button"
-        id="4187aa79-060e-47cc-8d06-7973e74620f2" (click)="onSubmit()"> Iniciar Sesión</button>
+        id="4187aa79-060e-47cc-8d06-7973e74620f2" (click)="consultarUsuario(registerForm)"> Iniciar Sesión</button>
     </div>
     <br>
 

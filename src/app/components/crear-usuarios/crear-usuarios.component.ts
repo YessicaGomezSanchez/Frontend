@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { SesionService } from 'src/app/services/sesion.service';
 
 @Component({
   selector: 'app-crear-usuarios',
@@ -9,7 +10,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class CrearUsuariosComponent implements OnInit {
 
-  constructor(private userService: UsuariosService) { }
+  constructor(private userService: UsuariosService, private sesionService: SesionService) { }
 
   ngOnInit() {
   }
@@ -35,12 +36,20 @@ export class CrearUsuariosComponent implements OnInit {
       categoria: form.value.categoria,
       fecha_venc_licencia: form.value.fecha_venc_licencia,
       img_licencia: ''
-     
+
+    }
+    const sesion = {
+      rol: form.value.rolUsuario,
+      habilitado: true,
+      nombre_usuario: form.value.nombreUsuario,
+      correo: form.value.email,
+      constrasena: form.value.contraseña,
     }
 
     console.log(dataUsuario);
-    this.userService.saveUser(dataUsuario); 
+    this.userService.saveUser(dataUsuario);
+    this.sesionService.guardarSesion(sesion);
     form.reset();
-  } 
+  }
 
 }

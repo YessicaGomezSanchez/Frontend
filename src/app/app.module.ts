@@ -1,7 +1,7 @@
 // Modulos
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +22,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.component';
+import { ToastrComponent } from './components/shared/toastr/toastr.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.com
     DashboardComponent,
     NavbarComponent,
     CrearUsuariosComponent,
-    ListarTaxisComponent
+    ListarTaxisComponent,
+    ToastrComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,7 @@ import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.com
     HttpClientModule,
     ToastrModule.forRoot()
     ],
-  providers: [],
+  providers: [ToastrComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
