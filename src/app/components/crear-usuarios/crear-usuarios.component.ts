@@ -31,7 +31,7 @@ export class CrearUsuariosComponent implements OnInit {
       nombre_usuario: form.value.nombreUsuario,
       correo: form.value.email,
       constrasena: form.value.contraseña,
-      num_licencia: form.value.num_licencia,
+      num_licencia: form.value.numeroDocumento,
       categoria: form.value.categoria,
       fecha_venc_licencia: form.value.fecha_venc_licencia,
       img_licencia: ''
