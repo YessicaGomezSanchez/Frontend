@@ -6,39 +6,35 @@ import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
-}) 
+})
+export class SesionService {
+    URL = environment.URL + `sesion`
+  headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  constructor(private http: HttpClient) {
+  }
 
-export class UsuariosService {
-  URL = environment.URL + `usuarios`
-  headers = new HttpHeaders({'Content-Type': 'application/json'});
-  constructor( private http: HttpClient) {
-   }
-
-  
-  saveUser(form){
-    return this.http.post(this.URL, form, {headers: this.headers}).subscribe(
+  guardarSesion(sesion) {
+    return this.http.post(this.URL, sesion, { headers: this.headers }).subscribe(
       data => {
         console.log("POST Request is successful ", data);
         console.log(data);
       },
       error => {
-        console.log("Error", error.error.message);
-        
+        console.log("Error", error);
       }
-
     );
   }
 
-  getUsuario(id: any) :Observable <any> {
-    return this.http.get(this.URL+`/${id}/`,{headers: this.headers}).pipe(map((res:any)=>{      
+  getSesion(correo: any): Observable<any> {
+    return this.http.get(this.URL + `/${correo}/`, { headers: this.headers }).pipe(map((res: any) => {
       return res;
     }))
   }
-  getAllUsuario() :Observable <any> {
+  
+  getAllSesion(): Observable<any> {
     return this.http.get(this.URL).pipe(map((res: any) => {
       return res;
     }))
   }
 
-  
 }
