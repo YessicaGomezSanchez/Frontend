@@ -10,53 +10,64 @@
           <label>Datos personales</label>
           <div class="row">
               <div class="col">
-                  <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" required ngModel>
+                  <input type="text" class="form-control" placeholder="Nombre" 
+                  name="nombre" id="018250d8-f791-40e8-8764-2f6d91ab79a6"  value="nombres" required [(ngModel)]="nombres">
               </div>
               <div class="col">
-                  <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" id="apellidos" required ngModel>
+                  <input type="text" class="form-control" placeholder="Apellidos" 
+                  value="apellidos" name="apellidos" id="e912c30b-e1d9-4771-a6cd-beaf3e4f27b7" required [(ngModel)]="apellidos">
               </div>
           </div>
           <div class="row">
               <div class="col">
-                  <input list="tipoDocumento" type="text" class="form-control" name="tipoDoc" id="tipoDocument" placeholder="Tipo de Documento" required ngModel>
-                  <datalist id="tipoDocumento">
+                  <input list="tipoDocumento" type="text" class="form-control" name="tipoDoc" value="tipo_documento"
+                  id="f3f8e179-3c0c-44be-8134-a74a352f75a7" placeholder="Tipo de Documento" required [(ngModel)]="tipo_documento">
+                  <datalist id="7ee2bb73-4039-484d-8237-f6c7bfb90344">
                       <option value="Cédula de ciudadanía"></option>
                       <option value="Cédula de extranjería"></option>
+                      <option value="Nit"></option>
                       <option value="Otro"></option>
                   </datalist>
               </div>
               <div class="col">
-                  <input type="text" class="form-control" placeholder="Número de documento" name="numeroDocumento" id="numeroDocumento" required ngModel>
+                  <input type="text" class="form-control" placeholder="Número de documento" 
+                  name="numeroDocumento" id="032adc95-20d0-4a4a-8bd0-ea838e1ab442" value="cedula" required [(ngModel)]="cedula">
               </div>
           </div>
           <div class="row">
               <div class="col">
-                  <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="fechaNacimiento" id="fechaNacimiento" required ngModel>
+                  <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control"
+                   placeholder="Fecha de nacimiento" name="fechaNacimiento" id="1c160475-84dd-4e03-a365-476014fef2e3" required [(ngModel)]="fecha_nacimiento">
               </div>
               <div class="col">
-                  <input type="text" class="form-control" placeholder="Dirección" name="direccion" id="direccion" required ngModel>
+                  <input type="text" class="form-control" placeholder="Dirección" 
+                  name="direccion" id="d7749fb7-6e44-4336-aeab-a0b00f04690e" value="direccion" required [(ngModel)]="direccion">
               </div>
           </div>
           <div class="row">
               <div class="col">
-                  <input type="tel" class="form-control" placeholder="Número fijo" name="numeroFijo" id="numeroFijo" required ngModel>
+                  <input type="tel" class="form-control" placeholder="Número fijo" name="numeroFijo" 
+                  id="2b77f335-d22b-4e43-8808-9c21523cc8ea"  value="numero_fijo" required [(ngModel)]="numero_fijo">
               </div>
               <div class="col">
-                  <input type="tel" class="form-control" placeholder="Número ceular" name="numeroCelular" id="numeroCelular" required ngModel>
+                  <input type="tel" class="form-control" placeholder="Número ceular" name="numeroCelular"
+                   id="07a47f03-ae9f-4099-a55a-97d43608d334"  value="numero_celular" required [(ngModel)]="numero_celular">
               </div>
           </div>
           <div class="row">
             <div class="col">
-              <input type="text" class="form-control" placeholder="Nombre de usuario" name="nombreUsuario" id="nombreUsuario" required ngModel>
+              <input type="text" class="form-control" placeholder="Nombre de usuario" 
+              name="nombreUsuario" id="24d0cb6c-5f29-4317-a015-b6c85108d4dd" value="nombre_usuario" required [(ngModel)]="nombre_usuario">
           </div>
           <div class="col">
-            <input type="email" class="form-control" placeholder="Correo electrónico" name="email" id="3fbcc973-51a0-4b88-b6c9-c13b5ff81d3f" required ngModel>
+            <input type="email" class="form-control" placeholder="Correo electrónico" 
+            name="email" id="3fbcc973-51a0-4b88-b6c9-c13b5ff81d3f" value="correo" required [(ngModel)]="correo">
         </div>
         </div>
       </div>
      
       <div class="col" style="text-align: right">
-          <button class="btn" (click)="updateUser(usersForm)">
+          <button class="btn" (click)="actualizarDatos(usersForm)">
             <img src="../../../assets/imagenes/actualizando.png">
             Actualizar
           </button>
