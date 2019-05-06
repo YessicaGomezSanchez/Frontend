@@ -50,9 +50,9 @@ export class IniciarSesionComponent implements OnInit {
 
             this.sesionService.getSesion(sesion.correo).subscribe((data: any) => {
                 if (data.correo == sesion.correo && data.contrasena == sesion.contrasena && data.rol=='Operador' || data.rol=='Administrador')  {
+                    this.router.navigate([`/dashboard`]);
                     this.toastr.showSuccess('Bienvenido', 'Ingreso exitoso!');
-                    this.router.navigate([`/dashboard/${data.cedula}`])
-
+                    localStorage.setItem('idUsuario', data.cedula);
                 } else {
                     this.toastr.showSuccess('Verifique su información o comuniquese con un administrador', 'Ups!');                  
                 }

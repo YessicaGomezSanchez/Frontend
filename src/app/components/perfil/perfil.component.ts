@@ -31,8 +31,8 @@ export class PerfilComponent implements OnInit {
   }
   
   cargarDatos(){
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.usuariosService.getUsuario('123').subscribe(data => {
+    const id= localStorage.getItem('idUsuario');
+    this.usuariosService.getUsuario(id).subscribe(data => {
       console.log(data);
       this.nombres = data.nombres;
       this.apellidos = data.apellidos;
