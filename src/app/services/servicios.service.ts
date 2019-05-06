@@ -12,7 +12,8 @@ export class ServiciosService {
   headers = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(private http: HttpClient) { }
 
-  postServicio(form){
+  postServicio(form:any){
+    console.log(form);
     return this.http.post(this.URL, form, {headers: this.headers}).subscribe(
       data => {
         console.log("POST Request is successful ", data);

@@ -10,6 +10,7 @@ import { TaxisService } from 'src/app/services/taxis.service';
   styleUrls: ['./servicios.component.css']
 })
 export class ServiciosComponent implements OnInit {
+  id = localStorage.getItem('idUsuario');
 
   public nombre: string;
   public apellidos: string;
@@ -32,12 +33,13 @@ export class ServiciosComponent implements OnInit {
       apellidos: form.value.apellidos,
       direccion: form.value.direccion,
       telefono: form.value.numeroCelular,
-      cod_operador: form.value.codOperador,
+      cod_operador: this.id,
       observaciones: form.value.observaciones,
       cod_taxi: form.value.codTaxi,
+      fecha_servicio: '2019-05-01',      
+      pvx: true,
     }
 
-    console.log(dataServicio);
     this.servicio.postServicio(dataServicio);
     this.listarServicios();
     form.reset();

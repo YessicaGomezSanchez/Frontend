@@ -13,6 +13,7 @@ enableProdMode();
   styleUrls: ['./taxis.component.css']
 })
 export class TaxisComponent implements OnInit {
+  id = localStorage.getItem('idUsuario');
 
   nombres: string;
   apellidos: string;
@@ -59,6 +60,7 @@ export class TaxisComponent implements OnInit {
   }
 
   GuardarTaxi(form: NgForm) {
+    
     let now = new Date();
     const taxi = {
       modelo: form.value.modelo,

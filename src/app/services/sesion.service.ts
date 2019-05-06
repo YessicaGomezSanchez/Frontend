@@ -39,7 +39,7 @@ export class SesionService {
   }
 
   putSesion(form){
-    return this.http.post(this.URL+ `/${form.correo}/`, form, {headers: this.headers}).subscribe(
+    return this.http.put(this.URL+ `/${form.correo}/`, form, {headers: this.headers}).subscribe(
       data => {
         console.log("PUT Request is successful ", data);
       },
