@@ -14,7 +14,7 @@ import {ListarTaxisComponent} from './components/listar-taxis/listar-taxis.compo
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: 'dashboard/:id',
     component: DashboardComponent,
     children: [
       { path: 'perfil', component: PerfilComponent },

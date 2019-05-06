@@ -14,13 +14,14 @@ export class SesionService {
   }
 
   guardarSesion(sesion) {
+    console.log(sesion);
     return this.http.post(this.URL, sesion, { headers: this.headers }).subscribe(
       data => {
         console.log("POST Request is successful ", data);
         console.log(data);
       },
       error => {
-        console.log("Error", error);
+        console.log("Error", error.error.message);
       }
     );
   }
@@ -35,6 +36,20 @@ export class SesionService {
     return this.http.get(this.URL).pipe(map((res: any) => {
       return res;
     }))
+  }
+
+  putSesion(form){
+    return this.http.post(this.URL+ `/${form.correo}/`, form, {headers: this.headers}).subscribe(
+      data => {
+        console.log("PUT Request is successful ", data);
+      },
+      error => {
+
+        console.log("Error", error);
+
+      }
+
+    );
   }
 
 }

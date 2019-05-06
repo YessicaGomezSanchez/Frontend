@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.prod';
 import { Observable } from 'rxjs';
+import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,18 @@ export class UsuariosService {
     }))
   }
 
-  
+  putUsuario(form){
+    return this.http.post(this.URL+`/${form.id}/`,form, {headers: this.headers}).subscribe(
+      data => {
+        console.log("PUT Request is successful ", data);
+
+      },
+      error => {
+
+        console.log("Error", error);
+
+      }
+
+    );
+  }
 }

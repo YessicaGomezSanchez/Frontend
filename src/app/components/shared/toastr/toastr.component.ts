@@ -22,12 +22,12 @@ export class ToastrComponent implements OnInit {
     this.toastr.errorToastr(message, title);
   }
 
-  showWarning() {
-    this.toastr.warningToastr('This is warning toast.', 'Alert!');
+  showWarning(message: string, title: string) {
+    this.toastr.warningToastr(message, title);
   }
 
-  showInfo() {
-    this.toastr.infoToastr('This is info toast.', 'Info');
+  showInfo(message: string, title: string) {
+    this.toastr.infoToastr(message, title);
   }
 
   // showCustom() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
-import { FormBuilder, FormGroup, Validators, Form, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -47,11 +47,27 @@ export class IniciarSesionComponent implements OnInit {
                 correo: registerForm.value.correo,
                 contrasena: registerForm.value.contrasena,
             }
-            console.log(sesion.correo);
-            this.sesionService.getSesion(sesion.correo);
-         
-            this.toastr.showSuccess('Bienvenido', 'Ingreso exitoso!');
-            this.router.navigate([`/dashboard`])
+
+            this.sesionService.getSesion(sesion.correo).subscribe((data: any) => {
+                if (data.correo == sesion.correo && data.contrasena == sesion.contrasena && data.rol=='Operador' || data.rol=='Administrador')  {
+                    this.toastr.showSuccess('Bienvenido', 'Ingreso exitoso!');
+                    this.router.navigate([`/dashboard/${data.cedula}`])
+
+                } else {
+                    this.toastr.showSuccess('Verifique su información o comuniquese con un administrador', 'Ups!');                  
+                }
+            },
+                error => {
+
+                    if (error.status = 404) {
+                        this.toastr.showInfo('El usuario no está registrado', 'Ups!');
+                    } else {
+
+                    }
+
+                });
+
+
         }
     }
 }

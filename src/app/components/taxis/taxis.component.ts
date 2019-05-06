@@ -13,6 +13,7 @@ enableProdMode();
   styleUrls: ['./taxis.component.css']
 })
 export class TaxisComponent implements OnInit {
+
   nombres: string;
   apellidos: string;
   numero_celular: string;
@@ -37,7 +38,7 @@ export class TaxisComponent implements OnInit {
   tipo_documento: String;
   cedula: String;
   correo: String;
-  conductores:[];
+  conductores: [];
 
   public arrayconductores: Array<{
     nombres: string,
@@ -51,12 +52,14 @@ export class TaxisComponent implements OnInit {
   fieldArray: Array<any> = [];
   newAttribute: any = {};
 
-  constructor(private taxisService: TaxisService, private usuarioServicio: UsuariosService) { }
+  constructor(private taxisService: TaxisService, private usuarioServicio: UsuariosService) {    
+  }
   ngOnInit() {
     this.listarConductores();
   }
 
   GuardarTaxi(form: NgForm) {
+    let now = new Date();
     const taxi = {
       modelo: form.value.modelo,
       placa: form.value.placa,
@@ -73,7 +76,8 @@ export class TaxisComponent implements OnInit {
       parrilla: true,
       mascotas: true,
       habilitado: true,
-      fecha_registro: form.value.fecha_registro,
+      asignado: false,
+      fecha_registro: now,
       nombre_apellidos: form.value.nombre_apellidos,
       tipo_documento: form.value.tipo_documento,
       cedula: form.value.cedula,
@@ -83,8 +87,8 @@ export class TaxisComponent implements OnInit {
 
     this.taxisService.postTaxis(taxi);
     form.reset();
-    this.arrayconductores=[];
-    
+    this.arrayconductores = [];
+
   }
 
   // buscarConductor(cedula:String): void {
@@ -105,17 +109,17 @@ export class TaxisComponent implements OnInit {
   //   })
   // }
 
-   eliminar(index) { 
-    this.arrayconductores = this.arrayconductores.splice(index, 0); 
+  eliminar(index) {
+    this.arrayconductores = this.arrayconductores.splice(index, 0);
     console.log(index);
-    console.log('conductor a eliminar',this.arrayconductores);
-   } 
-  agregarConductores(conductor:any) {
+    console.log('conductor a eliminar', this.arrayconductores);
+  }
+  agregarConductores(conductor: any) {
     this.arrayconductores.push({
       nombres: conductor.nombres,
       apellidos: conductor.apellidos,
       numero_celular: conductor.numero_celular,
-      num_licencia: conductor.num_licencia,
+      num_licencia: conductor.cedula,
       categoria: conductor.categoria,
       fecha_venc_licencia: conductor.fecha_venc_licencia
     });
@@ -141,18 +145,18 @@ export class TaxisComponent implements OnInit {
       this.nombre_apellidos = data.nombre_apellidos;
       this.tipo_documento = data.tipo_documento;
       this.cedula = data.cedula;
-      this.correo = data.correo; 
-      this.conductores = data.conductores; 
-    })    
+      this.correo = data.correo;
+      this.conductores = data.conductores;
+    })
   }
 
-    listarConductores() { 
-    this.usuarioServicio.getAllUsuario().subscribe((data: any) => {      
-      this.conductores = data.filter(data => data.rol =="Conductor");
-      this.conductores.map((conductor: any)=>{
+  listarConductores() {
+    this.usuarioServicio.getAllUsuario().subscribe((data: any) => {
+      this.conductores = data.filter(data => data.rol == "Conductor");
+      this.conductores.map((conductor: any) => {
         conductor.disabled = false;
       })
-      console.log('conductores inscritos',this.conductores);
+      console.log('conductores inscritos', this.conductores);
     });
   }
 }

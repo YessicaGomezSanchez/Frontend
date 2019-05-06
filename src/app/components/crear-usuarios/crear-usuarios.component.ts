@@ -29,9 +29,10 @@ export class CrearUsuariosComponent implements OnInit {
       numero_celular: form.value.numeroCelular,
       rol: form.value.rolUsuario,
       habilitado: true,
+      pvx:true,
       nombre_usuario: form.value.nombreUsuario,
       correo: form.value.email,
-      constrasena: form.value.contraseña,
+      contrasena: form.value.contraseña,
       num_licencia: form.value.numeroDocumento,
       categoria: form.value.categoria,
       fecha_venc_licencia: form.value.fecha_venc_licencia,
@@ -39,14 +40,16 @@ export class CrearUsuariosComponent implements OnInit {
 
     }
     const sesion = {
+      cedula: form.value.numeroDocumento,
       rol: form.value.rolUsuario,
       habilitado: true,
       nombre_usuario: form.value.nombreUsuario,
       correo: form.value.email,
-      constrasena: form.value.contraseña,
+      contrasena: form.value.contraseña,
     }
 
     console.log(dataUsuario);
+    console.log(sesion);
     this.userService.saveUser(dataUsuario);
     this.sesionService.guardarSesion(sesion);
     form.reset();
