@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios.service';
 import { ServiciosService } from 'src/app/services/servicios.service';
 import { TaxisService } from 'src/app/services/taxis.service';
+import { isNgTemplate } from '@angular/compiler';
 
 
 @Component({
@@ -55,7 +56,7 @@ export class ServiciosComponent implements OnInit {
     const dataTaxi =
     {
       cod_taxi: this.selected,
-      asignado: 'true'
+      asignado: false
     }
 
     this.listarServicios();
@@ -82,29 +83,29 @@ export class ServiciosComponent implements OnInit {
   }
   enturnar() {
     this.taxiService.getAllTaxis().subscribe((data: any) => {
-      this.taxisList = data.filter(res => res.habilitado == true);
-      console.log(this.taxisList)
+      this.taxisList = data.filter(res => res.habilitado == true && res.asignado == false);
+
     });
   }
 
   taxisDisponibles() {
     this.taxiService.getAllTaxis().subscribe((data: any) => {
-      this.taxisListD = data.filter(res => res.habilitado == true && res.asignado == false);
-      console.log(this.taxisListD)
+      this.taxisListD = data.filter(res => res.habilitado == true && res.asignado == true);
+
     });
   }
 
-  guardarturno(list) {
-   this.enturnados = list.selectedOptions.selected.map(item => item.value);
-    console.log(this.enturnados);
-
-    // const dataTaxi =
-    // {
-    //   cod_taxi: this.selected,
-    //   asignado: 'false'
-    // }
-
-    // this.taxiService.putTaxi(dataTaxi);
+  guardarturno(list: any) {
+    this.enturnados = list.selectedOptions.selected.map(item => item.value);
+   
+    for (let i = 0; i < this.enturnados.length; i++) {
+      let data =
+      {
+        placa: this.enturnados[i],
+        asignado: true
+      }
+      this.taxiService.putTaxi(data);
+    }
   }
 
 }
