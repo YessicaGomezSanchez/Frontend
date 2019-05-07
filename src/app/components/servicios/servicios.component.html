@@ -51,14 +51,18 @@
             placeholder="Número de taxis" required ngModel>
         </div>
         <div class="col">
-          <input list="taxiLibres" class="form-control" name="codTaxi"
-            id="20339c4a-cd57-4d3a-b32d-e3638e35c31a" placeholder="Taxis disponibles" value="codTaxi" required ngModel>
+          <mat-select [(value)]="selected" name="codTaxi" placeholder="Placa">
+            <mat-option *ngFor="let taxi of taxisListD" [value]="taxi.placa">
+              {{taxi.placa}}
+            </mat-option>
+          </mat-select>
         </div>
-        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">      
-          <img src="../../../assets/imagenes/lupa.png">
-          Enturnar
-        </button>
-
+        <div class="col">
+          <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" (click)="enturnar()">
+            <img src="../../../assets/imagenes/lupa.png">
+            Enturnar
+          </button>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
@@ -70,21 +74,17 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col">
-                    <input type="text" type="text" class="form-control" name="placa" id="" placeholder="Placa"
-                      value="placa" required ngModel>
-                  </div>
-                  <div class="col">
-                    <button type="button" class="acciones" data-toggle="modal" data-target="#exampleModal">
-
-                      +
-                    </button>
-
-                  </div>
-                </div>
-              </div>
+              <div class="modal-body" >
+                <mat-selection-list #taxis [(ngModel)]="selectedOptions" name="taxis">
+                  <label>Placa</label>
+                  <mat-list-option *ngFor="let taxi of taxisList" [selected]="taxi.asignado"  (click)="guardarturno(taxis)" [value]="taxi.placa" >
+                    {{taxi.placa}}
+                  </mat-list-option>
+                </mat-selection-list>
+                <p>
+                  Taxis ocupados: {{taxis.selectedOptions.selected.length}}
+                </p> 
+              </div>     
               <div class="modal-footer">
                 <button type="button" class="btn">Guardar</button>
               </div>
@@ -139,7 +139,6 @@
           <th scope="col">Cancelar</th>
         </tr>
       </thead>
-
       <tbody>
         <tr *ngFor="let servicio of listServicio;index as i">
           <td>{{i+1}}</td>
