@@ -16,10 +16,9 @@ export class TaxisService {
 
   getAllTaxis(): Observable<any> {    
     return this.http.get(this.URL).pipe(map((res: any) => {
-      return res;
+      return res;        
     }))
   }
-
   postTaxis(form){
     return this.http.post<Form>(this.URL, form,  {headers: this.headers}).subscribe(
       data => {
@@ -39,5 +38,21 @@ export class TaxisService {
       return res;
     }))
   }
+
+  putTaxi(form){
+    return this.http.put(this.URL+`/${form.placa}/`,form, {headers: this.headers}).subscribe(
+      data => {
+        console.log("PUT Request is successful ", data);
+
+      },
+      error => {
+
+        console.log("Error", error);
+
+      }
+
+    );
+  }
+
 
 }

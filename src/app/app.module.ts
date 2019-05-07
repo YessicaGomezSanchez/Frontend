@@ -1,6 +1,7 @@
 // Modulos
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {MatListModule} from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -57,6 +58,7 @@ import { ToastrComponent } from './components/shared/toastr/toastr.component';
     ReactiveFormsModule,
     MatCheckboxModule,
     HttpClientModule,
+    MatListModule,    
     ToastrModule.forRoot()
     ],
   providers: [ToastrComponent],
