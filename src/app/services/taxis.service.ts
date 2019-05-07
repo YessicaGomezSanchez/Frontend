@@ -11,16 +11,16 @@ import { Form } from '@angular/forms';
 
 export class TaxisService {
   URL = environment.URL + `taxis`
-  headers = new HttpHeaders({'Content-Type': 'application/json'});
+  headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient) { }
 
-  getAllTaxis(): Observable<any> {    
+  getAllTaxis(): Observable<any> {
     return this.http.get(this.URL).pipe(map((res: any) => {
-      return res;        
+      return res;
     }))
   }
-  postTaxis(form){
-    return this.http.post<Form>(this.URL, form,  {headers: this.headers}).subscribe(
+  postTaxis(form) {
+    return this.http.post<Form>(this.URL, form, { headers: this.headers }).subscribe(
       data => {
         console.log("POST Request is successful ", data);
         console.log(data);
@@ -33,26 +33,26 @@ export class TaxisService {
 
     );
   }
-  getTaxi(placa:any): Observable<any> {    
-    return this.http.get(this.URL+`/${placa}/`,{headers: this.headers}).pipe(map((res:any)=>{      
+  getTaxi(placa: any): Observable<any> {
+    return this.http.get(this.URL + `/${placa}/`, { headers: this.headers }).pipe(map((res: any) => {
       return res;
     }))
   }
 
-  putTaxi(form){
-    return this.http.put(this.URL+`/${form.placa}/`,form, {headers: this.headers}).subscribe(
-      data => {
-        console.log("PUT Request is successful ", data);
+  putTaxi(form: any) {
+   
+      this.http.put(this.URL+`/${form.placa}/`,form, {headers: this.headers}).subscribe(
+        data => {
+          console.log("PUT Request is successful ", data);
 
-      },
-      error => {
+        },
+        error => {
 
-        console.log("Error", error);
+          console.log("Error", error);
 
-      }
+        }
 
-    );
+      );
+    }
+
   }
-
-
-}

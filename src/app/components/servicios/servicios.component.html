@@ -51,11 +51,16 @@
             placeholder="Número de taxis" required ngModel>
         </div>
         <div class="col">
-          <mat-select [(value)]="selected" name="codTaxi" placeholder="Placa">
+            <select [(value)]="selected" name="codTaxi" placeholder="Placa">
+                <option *ngFor="let taxi of taxisListD" [value]="taxi.placa">
+                  {{taxi.placa}}
+                </option>
+              </select>
+          <!-- <mat-select [(value)]="selected" name="codTaxi" placeholder="Placa">
             <mat-option *ngFor="let taxi of taxisListD" [value]="taxi.placa">
               {{taxi.placa}}
             </mat-option>
-          </mat-select>
+          </mat-select> -->
         </div>
         <div class="col">
           <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" (click)="enturnar()">
@@ -77,7 +82,7 @@
               <div class="modal-body" >
                 <mat-selection-list #taxis [(ngModel)]="selectedOptions" name="taxis">
                   <label>Placa</label>
-                  <mat-list-option *ngFor="let taxi of taxisList" [selected]="taxi.asignado"  (click)="guardarturno(taxis)" [value]="taxi.placa" >
+                  <mat-list-option *ngFor="let taxi of taxisList" [selected]="taxi.asignado" [value]="taxi.placa" >
                     {{taxi.placa}}
                   </mat-list-option>
                 </mat-selection-list>
@@ -86,7 +91,7 @@
                 </p> 
               </div>     
               <div class="modal-footer">
-                <button type="button" class="btn">Guardar</button>
+                <button type="button" class="btn" (click)="guardarturno(taxis)">Guardar</button>
               </div>
             </div>
           </div>
