@@ -17,17 +17,9 @@ export class UsuariosService {
 
   
   saveUser(form){
-    return this.http.post(this.URL, form, {headers: this.headers}).subscribe(
-      data => {
-        console.log("POST Request is successful ", data);
-        console.log(data);
-      },
-      error => {
-        console.log("Error", error.error.message);
-        
-      }
-
-    );
+    return this.http.post(this.URL, form, {headers: this.headers}).pipe(map((res:any)=>{      
+      return res;
+    }))
   }
 
   getUsuario(id: any) :Observable <any> {
@@ -42,17 +34,8 @@ export class UsuariosService {
   }
 
   putUsuario(form){
-    return this.http.put(this.URL+`/${form.id}/`,form, {headers: this.headers}).subscribe(
-      data => {
-        console.log("PUT Request is successful ", data);
-
-      },
-      error => {
-
-        console.log("Error", error);
-
-      }
-
-    );
+    return this.http.put(this.URL+`/${form.id}/`,form, {headers: this.headers}).pipe(map((res:any)=>{      
+      return res;
+    }))
   }
 }

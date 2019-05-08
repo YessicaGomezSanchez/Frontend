@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios.service';
 import { ServiciosService } from 'src/app/services/servicios.service';
 import { TaxisService } from 'src/app/services/taxis.service';
-import { isNgTemplate } from '@angular/compiler';
 
 
 @Component({
@@ -55,13 +54,32 @@ export class ServiciosComponent implements OnInit {
     }
     const dataTaxi =
     {
-      cod_taxi: this.selected,
+      placa: this.selected,
       asignado: false
     }
 
-    this.listarServicios();
-    this.servicio.postServicio(dataServicio);
-    this.taxiService.putTaxi(dataTaxi);
+  
+    this.servicio.postServicio(dataServicio).subscribe(data => {
+      console.log("POST Request is successful ", data);
+      console.log(data);     
+    },
+    error => {
+      console.log("Error", error);
+    }
+
+  );
+    this.taxiService.putTaxi(dataTaxi).subscribe(data => {
+        console.log("POST Request is successful ", data);
+        console.log(data);
+        this.listarServicios();
+        this.taxisDisponibles() ;
+      },
+      error => {
+        console.log("Error", error);
+      }
+    );
+    
+    
     form.reset();
   }
 
@@ -104,7 +122,18 @@ export class ServiciosComponent implements OnInit {
         placa: this.enturnados[i],
         asignado: true
       }
-      this.taxiService.putTaxi(data);
+      this.taxiService.putTaxi(data).subscribe(data => {
+        console.log("POST Request is successful ", data);
+        console.log(data);
+        this.taxisDisponibles();
+      },
+      error => {
+
+        console.log("Error", error);
+
+      }
+
+    );;
     }
   }
 
