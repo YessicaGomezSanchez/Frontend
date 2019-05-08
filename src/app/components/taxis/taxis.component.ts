@@ -87,30 +87,20 @@ export class TaxisComponent implements OnInit {
       conductores: this.arrayconductores
     };
 
-    this.taxisService.postTaxis(taxi);
-    form.reset();
-    this.arrayconductores = [];
+    this.taxisService.postTaxis(taxi).subscribe(data => {
+      console.log("POST Request is successful ", data);
+      console.log(data);
+      form.reset();
+      this.arrayconductores = [];
+    },
+      error => {
+        console.log("Error", error);
+      }
+
+    );
+
 
   }
-
-  // buscarConductor(cedula:String): void {
-  //   this.usuarioServicio.getUsuario(cedula).subscribe(data => {
-  //     if (data.rol == "Conductor") {
-  //       this.cedula = data.cedula,
-  //       this.nombres = data.nombres,
-  //       this.apellidos = data.apellidos,
-  //       this.numero_celular = data.numero_celular,
-  //       this.num_licencia = data.num_licencia,
-  //       this.categoria = data.categoria,
-  //       this.fecha_venc_licencia = data.fecha_venc_licencia
-  //     } else {
-  //       //agregar las notificaciones
-  //       console.log('usuario no es un taxista', data.nombres)
-  //     }
-  //     //  console.log('datos', data)
-  //   })
-  // }
-
   eliminar(index) {
     this.arrayconductores = this.arrayconductores.splice(index, 0);
     console.log(index);
@@ -160,5 +150,16 @@ export class TaxisComponent implements OnInit {
       })
       console.log('conductores inscritos', this.conductores);
     });
+  }
+
+  applyFilter(filterValue: string) {
+    this.usuarioServicio.getAllUsuario().subscribe(data => {
+      data.filter = filterValue.trim().toLowerCase();
+    },
+      error => {
+        console.log("Error", error);
+      }
+
+    );
   }
 }

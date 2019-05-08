@@ -19,7 +19,7 @@ export class TaxisService {
       return res;
     }))
   }
-  postTaxis(form):any{
+  postTaxis(form:any){
     return this.http.post(this.URL, form, { headers: this.headers }).pipe(map((res: any) => {
       return res;
     }))
@@ -29,7 +29,7 @@ export class TaxisService {
       return res;
     }))
   }
-  putTaxi(form): any {
+  putTaxi(form: any) {
     return this.http.put(this.URL + `/${form.placa}/`, form, { headers: this.headers }).pipe(map((res: any) => {
       return res;
     }))

@@ -58,28 +58,28 @@ export class ServiciosComponent implements OnInit {
       asignado: false
     }
 
-  
+
     this.servicio.postServicio(dataServicio).subscribe(data => {
       console.log("POST Request is successful ", data);
-      console.log(data);     
+      console.log(data);
     },
-    error => {
-      console.log("Error", error);
-    }
+      error => {
+        console.log("Error", error);
+      }
 
-  );
+    );
     this.taxiService.putTaxi(dataTaxi).subscribe(data => {
-        console.log("POST Request is successful ", data);
-        console.log(data);
-        this.listarServicios();
-        this.taxisDisponibles() ;
-      },
+      console.log("POST Request is successful ", data);
+      console.log(data);
+      this.listarServicios();
+      this.taxisDisponibles();
+    },
       error => {
         console.log("Error", error);
       }
     );
-    
-    
+
+
     form.reset();
   }
 
@@ -115,7 +115,7 @@ export class ServiciosComponent implements OnInit {
 
   guardarturno(list: any) {
     this.enturnados = list.selectedOptions.selected.map(item => item.value);
-   
+
     for (let i = 0; i < this.enturnados.length; i++) {
       let data =
       {
@@ -127,13 +127,13 @@ export class ServiciosComponent implements OnInit {
         console.log(data);
         this.taxisDisponibles();
       },
-      error => {
+        error => {
 
-        console.log("Error", error);
+          console.log("Error", error);
 
-      }
+        }
 
-    );;
+      );
     }
   }
 
