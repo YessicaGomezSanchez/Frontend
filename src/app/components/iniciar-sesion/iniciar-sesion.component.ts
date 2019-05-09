@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { SesionService } from 'src/app/services/sesion.service';
 
@@ -20,8 +18,6 @@ export class IniciarSesionComponent implements OnInit {
         public toastr: ToastrComponent,
         private formBuilder: FormBuilder,
         private sesionService: SesionService,
-        private route: ActivatedRoute,
-        private location: Location,
         private router: Router) { }
 
     ngOnInit() {
@@ -35,7 +31,7 @@ export class IniciarSesionComponent implements OnInit {
         return this.registerForm.controls;
     }
 
-    consultarUsuario(registerForm) {
+    consultarUsuario(registerForm:any) {
         this.submitted = true;
 
         // stop here if form is invalid
@@ -59,7 +55,7 @@ export class IniciarSesionComponent implements OnInit {
             },
                 error => {
 
-                    if (error.status = 404) {
+                    if (error.status == 404) {
                         this.toastr.showInfo('El usuario no está registrado', 'Ups!');
                     } else {
 

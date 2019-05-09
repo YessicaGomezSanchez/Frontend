@@ -4,14 +4,19 @@
     <h3>Taxis Registrados</h3>
   </div>
 
-
-  <div *ngFor="let taxi of taxisList" class="col-3-4">
+<div class="tarjetas">
+  <div *ngFor="let taxi of taxisList" >
     <div class="module">
-      <h4>{{ taxi.placa }}</h4>
-      <h5>{{ taxi.nombre_apellidos }}</h5>
-      <h5>{{ taxi.correo }}</h5>
-      <h5>{{ taxi.cedula }}</h5>
+      <label>Placa: {{ taxi.placa }}</label>
+      <br>
+      <label>Habilitado: {{ taxi.habilitado }}</label>
+      <br>
+      <label>Fecha Vencimiento SOAT: {{ taxi.fecha_venc_soat | date:'dd/MM/yyyy'}}</label>
+      <br>
+      <label>Fecha Vencimiento TC: {{ taxi.cedula }}</label>
+      <br>
+      <label>Fecha Vencimiento S.C: {{ taxi.num_seguro_contractual | date:'dd/MM/yyyy' }}</label>
     </div>
   </div>
-
+</div>
 </div>

@@ -14,16 +14,9 @@ export class SesionService {
   }
 
   guardarSesion(sesion) {
-    console.log(sesion);
-    return this.http.post(this.URL, sesion, { headers: this.headers }).subscribe(
-      data => {
-        console.log("POST Request is successful ", data);
-        console.log(data);
-      },
-      error => {
-        console.log("Error", error.error.message);
-      }
-    );
+    return this.http.post(this.URL, sesion, { headers: this.headers }).pipe(map((res: any) => {
+      return res;
+    }))
   }
 
   getSesion(correo: any): Observable<any> {
@@ -39,17 +32,9 @@ export class SesionService {
   }
 
   putSesion(form){
-    return this.http.put(this.URL+ `/${form.correo}/`, form, {headers: this.headers}).subscribe(
-      data => {
-        console.log("PUT Request is successful ", data);
-      },
-      error => {
-
-        console.log("Error", error);
-
-      }
-
-    );
+    return this.http.put(this.URL+ `/${form.correo}/`, form, {headers: this.headers}).pipe(map((res: any) => {
+      return res;
+    }))
   }
 
 }

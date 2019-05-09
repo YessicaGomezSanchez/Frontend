@@ -3,7 +3,8 @@ import { NgForm } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios.service';
 import { ServiciosService } from 'src/app/services/servicios.service';
 import { TaxisService } from 'src/app/services/taxis.service';
-import { isNgTemplate } from '@angular/compiler';
+import { ToastrComponent } from '../shared/toastr/toastr.component';
+
 
 
 @Component({
@@ -26,6 +27,7 @@ export class ServiciosComponent implements OnInit {
   taxisListD: [];
 
   constructor(
+    public toastr: ToastrComponent,
     private servicio: ServiciosService,
     private taxiService: TaxisService,
     private usuario: UsuariosService) { }
@@ -55,13 +57,35 @@ export class ServiciosComponent implements OnInit {
     }
     const dataTaxi =
     {
-      cod_taxi: this.selected,
+      placa: this.selected,
       asignado: false
     }
 
-    this.listarServicios();
-    this.servicio.postServicio(dataServicio);
-    this.taxiService.putTaxi(dataTaxi);
+
+    this.servicio.postServicio(dataServicio).subscribe(data => {
+      this.toastr.showSuccess('El servicio fué creado', 'Exito!'); 
+    },
+      error => {
+        if (error.status == 404) {
+          this.toastr.showError(error.message, 'Ups!'); 
+        }else{
+          this.toastr.showError(error.message, 'Ups!'); 
+        }
+      }
+
+    );
+    this.taxiService.putTaxi(dataTaxi).subscribe(data => {
+      console.log("POST Request is successful ", data);
+      console.log(data);
+      this.listarServicios();
+      this.taxisDisponibles();
+    },
+      error => {
+        console.log("Error", error);
+      }
+    );
+
+
     form.reset();
   }
 
@@ -72,18 +96,42 @@ export class ServiciosComponent implements OnInit {
       this.apellidos = data.apellidos,
         this.direccion = data.direccion,
         this.numeroCelular = data.numero_celular,
-        console.log('datos', data)
+        this.toastr.showSuccess('El usuario fué encontrado', 'Encontrado!'); 
+    },
+    error => {
+      if (error.status == 404) {
+        this.toastr.showError(error.message, 'Ups!'); 
+      }else{
+        this.toastr.showError(error.message, 'Ups!'); 
+      }
+
     })
   }
 
   listarServicios() {
     this.servicio.getAllServicio().subscribe((data: any) => {
       this.listServicio = data;
+    },
+    error => {
+      if (error.status == 404) {
+        this.toastr.showError(error.message, 'Ups!'); 
+      }else{
+        this.toastr.showError(error.message, 'Ups!'); 
+      }
+
     });
   }
   enturnar() {
     this.taxiService.getAllTaxis().subscribe((data: any) => {
       this.taxisList = data.filter(res => res.habilitado == true && res.asignado == false);
+     
+    },
+    error => {
+      if (error.status == 404) {
+        this.toastr.showError(error.message, 'Ups!'); 
+      }else{
+        this.toastr.showError(error.message, 'Ups!'); 
+      }
 
     });
   }
@@ -92,19 +140,40 @@ export class ServiciosComponent implements OnInit {
     this.taxiService.getAllTaxis().subscribe((data: any) => {
       this.taxisListD = data.filter(res => res.habilitado == true && res.asignado == true);
 
+    },
+    error => {
+      if (error.status == 404) {
+        this.toastr.showError(error.message, 'Ups!'); 
+      }else{
+        this.toastr.showError(error.message, 'Ups!'); 
+      }
+
     });
   }
 
   guardarturno(list: any) {
     this.enturnados = list.selectedOptions.selected.map(item => item.value);
-   
+
     for (let i = 0; i < this.enturnados.length; i++) {
       let data =
       {
         placa: this.enturnados[i],
         asignado: true
       }
-      this.taxiService.putTaxi(data);
+      this.taxiService.putTaxi(data).subscribe(data => {
+        this.taxisDisponibles();
+        this.toastr.showSuccess('Los taxis fueron enturnados', 'Exito!'); 
+      },
+        error => {
+          if (error.status == 404) {
+            this.toastr.showError(error.message, 'Ups!'); 
+          }else{
+            this.toastr.showError(error.message, 'Ups!'); 
+          }
+
+        }
+
+      );
     }
   }
 

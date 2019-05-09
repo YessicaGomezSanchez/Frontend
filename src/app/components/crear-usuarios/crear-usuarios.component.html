@@ -4,22 +4,23 @@
     <img src="../../../assets/imagenes/usuarios-multiples-en-silueta.png">
     <h3>Registro de usuarios</h3>
   </div>
-  <form #usersForm="ngForm">
+  <form [formGroup]="usersForm">
     <div class="usuario">
       <label>Datos personales</label>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="1f89afe9-7acb-4061-a88a-9ffe8f02373c" required ngModel>
+          <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre" id="1f89afe9-7acb-4061-a88a-9ffe8f02373c" 
+           [ngClass]="{ 'is-invalid': submitted && validador.nombre.errors}">
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" id="02584f59-ce80-49fd-b67b-a2f7d693f566" required
-            ngModel>
+          <input type="text" class="form-control" placeholder="Apellidos" formControlName="apellidos" id="02584f59-ce80-49fd-b67b-a2f7d693f566"
+          [ngClass]="{ 'is-invalid': submitted && validador.apellidos.errors}">
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <input list="tipoDocumento" type="text" class="form-control" name="tipoDocumento" id="2c4221a7-a046-473b-bc3d-3beea120522e"
-            placeholder="Tipo de Documento" required ngModel>
+          <input list="tipoDocumento" type="text" class="form-control" formControlName="tipoDocumento" id="2c4221a7-a046-473b-bc3d-3beea120522e"
+            placeholder="Tipo de Documento" [ngClass]="{ 'is-invalid': submitted && validador.tipoDocumento.errors}">
           <datalist id="tipoDocumento">
             <option value="Cédula de ciudadanía"></option>
             <option value="Cédula de extranjería"></option>
@@ -28,28 +29,28 @@
           </datalist>
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Número de documento" name="numeroDocumento"
-            id="1bdfc5b0-cf64-4be7-a852-30f61399d956" required ngModel>
+          <input type="text" class="form-control" placeholder="Número de documento" formControlName="numeroDocumento"
+            id="1bdfc5b0-cf64-4be7-a852-30f61399d956" [ngClass]="{ 'is-invalid': submitted && validador.numeroDocumento.errors}">
         </div>
       </div>
       <div class="row">
         <div class="col">
           <input type="text" class="form-control" placeholder="Fecha de nacimiento" name="fechaNacimiento"
-            id="8e0f1c59-5e45-45ba-8564-9e374ed289f9" onfocus="(this.type='date')" onblur="(this.type='text')"  required ngModel>
+            id="8e0f1c59-5e45-45ba-8564-9e374ed289f9" onfocus="(this.type='date')" onblur="(this.type='text')" >
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Dirección" name="direccion" id="32b27c7b-af29-4891-9577-f3e51cf06bba" required
-            ngModel>
+          <input type="text" class="form-control" placeholder="Dirección" formControlName="direccion" id="32b27c7b-af29-4891-9577-f3e51cf06bba"
+          [ngClass]="{ 'is-invalid': submitted && validador.direccion.errors}">
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <input type="tel" class="form-control" placeholder="Número fijo" name="numeroFijo" id="53340338-d77a-412c-8210-a527c8462bf7" required
-            ngModel>
+          <input type="tel" class="form-control" placeholder="Número fijo" formControlName="numeroFijo" id="53340338-d77a-412c-8210-a527c8462bf7"
+          [ngClass]="{ 'is-invalid': submitted && validador.numeroFijo.errors}">
         </div>
         <div class="col">
-          <input type="tel" class="form-control" placeholder="Número ceular" name="numeroCelular" id="1ceb9319-1610-4f99-8942-8bd8887c3036"
-            required ngModel>
+          <input type="tel" class="form-control" placeholder="Número ceular" formControlName="numeroCelular" id="1ceb9319-1610-4f99-8942-8bd8887c3036"
+            [ngClass]="{ 'is-invalid': submitted && validador.numeroCelular.errors}">
         </div>
       </div>
     </div>
@@ -57,28 +58,29 @@
       <label>Datos de inicio de sesión</label>
       <div class="row">
         <div class="col">
-          <input list="rolUsuarios" type="text" class="form-control" name="rolUsuario" id="d46a4159-69db-42ef-8dcc-4b3aad818781"
-            placeholder="Rol de usuario" required ngModel>
+          <input list="rolUsuarios" type="text" class="form-control" formControlName="rolUsuario" id="d46a4159-69db-42ef-8dcc-4b3aad818781"
+            placeholder="Rol de usuario" [ngClass]="{ 'is-invalid': submitted && validador.rolUsuario.errors}">
           <datalist id="rolUsuarios">
             <option value="Cliente"></option>
+            <option value="Empresa"></option>
             <option value="Administrador"></option>
             <option value="Operador"></option>
             <option value="Conductor"></option>
           </datalist>
         </div>        
         <div class="col">
-          <input type="email" class="form-control" placeholder="Correo electrónico" name="email"
-            id="3fbcc973-51a0-4b88-b6c9-c13b5ff81d3f" required ngModel>
+          <input type="email" class="form-control" placeholder="Correo electrónico" formControlName="email"
+            id="3fbcc973-51a0-4b88-b6c9-c13b5ff81d3f" [ngClass]="{ 'is-invalid': submitted && validador.email.errors}">
         </div>
       </div>
       <div class="row">
         <div class="col">
           <input type="text" class="form-control" placeholder="Nombre de usuario" name="nombreUsuario"
-            id="90723941-be03-4ecb-827a-39c58e8d385b" required ngModel>
+            id="90723941-be03-4ecb-827a-39c58e8d385b">
         </div>
         <div class="col">
-          <input type="password" class="form-control" placeholder="Contraseña" name="contraseña" id="573b12a4-a589-4e6b-a794-3347f4a1507f"
-            required ngModel>
+          <input type="password" class="form-control" placeholder="Contraseña" formControlName="contrasena" id="573b12a4-a589-4e6b-a794-3347f4a1507f"
+            [ngClass]="{ 'is-invalid': submitted && validador.contrasena.errors}">
         </div>
       </div>
       <div class="row">
@@ -86,8 +88,8 @@
 
         </div>
         <div class="col">
-          <input type="password" class="form-control" placeholder="Confirmación contraseña" name="confContraseña"
-            id="9810b625-9dd6-4217-ac5b-045e12d4636b" required ngModel>
+          <input type="password" class="form-control" placeholder="Confirmación contraseña" formControlName="confContrasena"
+            id="9810b625-9dd6-4217-ac5b-045e12d4636b" [ngClass]="{ 'is-invalid': submitted && validador.confContrasena.errors}">
         </div>
       </div>
     </div>
@@ -95,12 +97,12 @@
       <label>Datos del conductor</label>
       <div class="row">
          <div class="col">
-          <input type="text" class="form-control" placeholder="Categoría" name="categoria"  value="categoria" id="d1a2e136-a009-461d-a0b1-c7f4b8506ff3" required ngModel>
+          <input type="text" class="form-control" placeholder="Categoría" name="categoria"  value="" id="d1a2e136-a009-461d-a0b1-c7f4b8506ff3">
         </div>
         <div class="col">
-            <input placeholder="Fecha de vencimiento de licencia" value="fecha_venc_licencia"
+            <input placeholder="Fecha de vencimiento de licencia" value=""
             name="fecha_venc_licencia"  class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" 
-            id="a818f623-af7b-4b0f-a6d6-e59aa5d8abb7"required ngModel >          
+            id="a818f623-af7b-4b0f-a6d6-e59aa5d8abb7">          
         </div>
       </div>
     </div>
@@ -109,7 +111,7 @@
         <img src="../../../assets/imagenes/guardar.png">
         Agregar
       </button>
-      <button class="btnCancelar">
+      <button class="btnCancelar" (click)="cancelar()">
         <img src="../../../assets/imagenes/cancelar.png">
         Cancelar
       </button>

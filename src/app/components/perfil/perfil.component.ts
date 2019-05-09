@@ -4,6 +4,7 @@ import{UsuariosService} from '../../services/usuarios.service';
 import{SesionService} from '../../services/sesion.service';
 import {enableProdMode} from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ToastrComponent } from '../shared/toastr/toastr.component';
 
 enableProdMode();
 
@@ -24,7 +25,7 @@ export class PerfilComponent implements OnInit {
   numero_fijo: string;
   nombre_usuario: string;
 
-  constructor( private route: ActivatedRoute, private usuariosService:UsuariosService, private sesionService: SesionService) { }
+  constructor( public toastr: ToastrComponent, private route: ActivatedRoute, private usuariosService:UsuariosService, private sesionService: SesionService) { }
 
   ngOnInit() {
     this.cargarDatos();
@@ -68,8 +69,25 @@ export class PerfilComponent implements OnInit {
       correo: form.value.email
     }
 
-    this.usuariosService.putUsuario(dataUsuario);
-    this.sesionService.putSesion(sesion);
+    this.usuariosService.putUsuario(dataUsuario).subscribe((data:any)=>{
+      this.sesionService.putSesion(sesion).subscribe((dataS:any)=>{
+        this.toastr.showSuccess('Actualizado', 'La información del usuario se ha actualizado!');
+      },error => {
+        if (error.status == 404) {
+          this.toastr.showError(error.message, 'Ups!'); 
+        }else{
+          this.toastr.showError(error.message, 'Ups!'); 
+        }
+    });
+    },error => {
+      if (error.status == 404) {
+        this.toastr.showError(error.message, 'Ups!'); 
+      }else{
+        this.toastr.showError(error.message, 'Ups!'); 
+      }
+  });
+    
   }
+
 
 }

@@ -1,14 +1,19 @@
-<div class="container">
+<div class="container">  
   <div class="titulo row">
     <img src="../../../assets/imagenes/usuarios-multiples-en-silueta.png">
     <h3>Usuarios registrados</h3>
   </div>
-    <div *ngFor="let item of nuevoUsuario" class="col-3-4">
+  <div class="tarjetas">
+    <div *ngFor="let item of nuevoUsuario" >
       <div class="module">
-        <h4 class="">{{ item.nombre_usuario }}</h4>
-        <h5 class="">{{ item.correo }}</h5>
-        <h5 class="">{{ item.numero_celular }}</h5>
-        <h5 class="">{{ item.rol }}</h5>
+        <label>Nombre: {{ item.nombres }} {{ item.apellidos }}</label>
+        <br>
+        <label>Cedula: {{ item.cedula }}</label>
+        <br>
+        <label>Rol: {{ item.rol }}</label>
+        <br>
+        <label>PVX: {{ item.pvx }}</label>
       </div>
     </div>
+  </div>
 </div>

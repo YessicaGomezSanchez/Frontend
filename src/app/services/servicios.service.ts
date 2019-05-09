@@ -14,16 +14,9 @@ export class ServiciosService {
 
   postServicio(form:any){
     console.log(form);
-    return this.http.post(this.URL, form, {headers: this.headers}).subscribe(
-      data => {
-        console.log("POST Request is successful ", data);
-        console.log(data);
-      },
-      error => {
-        console.log("Error", error);
-      }
-
-    );
+    return this.http.post(this.URL, form, {headers: this.headers}).pipe(map((res:any)=>{      
+      return res;
+    }))
   }
 
   getServicio(id: any) :Observable <any> {
