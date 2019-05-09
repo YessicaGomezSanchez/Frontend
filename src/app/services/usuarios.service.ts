@@ -34,7 +34,7 @@ export class UsuariosService {
   }
 
   putUsuario(form){
-    return this.http.put(this.URL+`/${form.id}/`,form, {headers: this.headers}).pipe(map((res:any)=>{      
+    return this.http.put(this.URL+`/${form.cedula}/`,form, {headers: this.headers}).pipe(map((res:any)=>{      
       return res;
     }))
   }

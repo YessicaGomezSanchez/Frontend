@@ -48,20 +48,21 @@ export class CrearUsuariosComponent implements OnInit {
     if (this.usersForm.invalid) {
 
       console.log(this.usersForm.invalid);
-      return this.toastr.showError('Complete los campos resaltados', 'Campos incompletos');
+      return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
     } else {
 
       if (usersForm.value.rolUsuario != "Empresa") {
         this.pvx = true;
       } else {
         this.pvx = false;
+        
       }
-
+      
       const dataUsuario =
       {
         nombres: usersForm.value.nombre,
         apellidos: usersForm.value.apellidos,
-        tipo_documento: usersForm.value.tipoDocument,
+        tipo_documento: usersForm.value.tipoDocumento,
         cedula: usersForm.value.numeroDocumento,
         fecha_nacimiento: usersForm.value.fechaNacimiento,
         direccion: usersForm.value.direccion,
@@ -87,43 +88,36 @@ export class CrearUsuariosComponent implements OnInit {
         correo: usersForm.value.email,
         contrasena: usersForm.value.contrasena,
       }
-
-      console.log(dataUsuario);
-      console.log(sesion);
-      this.userService.saveUser(dataUsuario).subscribe((data: any) => {
-        if ( data.rol == 'Conductor') {
-          this.toastr.showWarning('Verifique la información del conductor', 'Ups!');
-        } else {
-          this.sesionService.guardarSesion(sesion).subscribe((datos: any) => {
-            this.toastr.showSuccess('Guardado', 'La información del usuario se ha guardado!');         
-             usersForm.reset();
-          },
-            error => {
-
-              if (error.status == 404) {
-                this.toastr.showInfo('Los datos de sesión están incorrectos', 'Ups!');
-              } else {
-
-              }
-
-            });
-        }
-      },
-        error => {
-
+ 
+      this.userService.saveUser(dataUsuario).subscribe((data:any)=>{
+        console.log('datos del usuario',data);
+        this.sesionService.guardarSesion(sesion).subscribe(()=>{
+          this.toastr.showSuccess('Guardado', 'La información del usuario se ha guardado!');
+        },error => {
           if (error.status == 404) {
-            console.log('dsadas');
-            this.toastr.showError('Ocurrió un error en el sistema', 'Ups!');
-          } else {
-            if (error.status == 500) {
-              console.log('dsadas');
-              this.toastr.showInfo(error.error.message, 'Ups!');
-            }
+            this.toastr.showError(error.message, 'Ups!'); 
+          }else{
+            this.toastr.showError(error.message, 'Ups!'); 
           }
-
-        });
-
+      });
+      },error => {
+          if (error.status == 404) {
+            this.toastr.showError(error.message, 'Ups!'); 
+          }else{
+            this.toastr.showError(error.message, 'Ups!'); 
+          }
+      });
+     
+      
     }
+    this.submitted = false;
+    this.usersForm.reset();
+
+    
+  }
+
+  cancelar() {
+    this.usersForm.reset();
   }
 
 }

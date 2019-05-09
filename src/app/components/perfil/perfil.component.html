@@ -20,7 +20,7 @@
           </div>
           <div class="row">
               <div class="col">
-                  <input list="tipoDocumento" type="text" class="form-control" name="tipoDoc" value="tipo_documento"
+                  <input list="7ee2bb73-4039-484d-8237-f6c7bfb90344" type="text" class="form-control" name="tipoDoc" value="tipo_documento"
                   id="f3f8e179-3c0c-44be-8134-a74a352f75a7" placeholder="Tipo de Documento" required [(ngModel)]="tipo_documento">
                   <datalist id="7ee2bb73-4039-484d-8237-f6c7bfb90344">
                       <option value="Cédula de ciudadanía"></option>
@@ -71,7 +71,7 @@
             <img src="../../../assets/imagenes/actualizando.png">
             Actualizar
           </button>
-          <button class="btnCancelar">
+          <button class="btnCancelar" (click)="cargarDatos()">
             <img src="../../../assets/imagenes/cancelar.png">
             Cancelar
           </button>

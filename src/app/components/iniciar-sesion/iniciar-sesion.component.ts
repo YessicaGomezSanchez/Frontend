@@ -55,7 +55,7 @@ export class IniciarSesionComponent implements OnInit {
             },
                 error => {
 
-                    if (error.status = 404) {
+                    if (error.status == 404) {
                         this.toastr.showInfo('El usuario no está registrado', 'Ups!');
                     } else {
 
