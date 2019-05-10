@@ -34,6 +34,9 @@ export class CrearUsuariosComponent implements OnInit {
       contrasena: ['', [Validators.required, Validators.minLength(6)]],
       confContrasena: ['', [Validators.required, Validators.minLength(6)]],
       email: ['', [Validators.required, Validators.email]],
+      fecha_nacimiento: [''],
+      categoria: ['' ],
+      fecha_venc_licencia: [''],
     });
 
   }
@@ -64,7 +67,7 @@ export class CrearUsuariosComponent implements OnInit {
         apellidos: usersForm.value.apellidos,
         tipo_documento: usersForm.value.tipoDocumento,
         cedula: usersForm.value.numeroDocumento,
-        fecha_nacimiento: usersForm.value.fechaNacimiento,
+        fecha_nacimiento: usersForm.value.fecha_nacimiento,
         direccion: usersForm.value.direccion,
         numero_fijo: usersForm.value.numeroFijo,
         numero_celular: usersForm.value.numeroCelular,
