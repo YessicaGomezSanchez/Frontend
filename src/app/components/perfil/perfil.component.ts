@@ -90,30 +90,30 @@ export class PerfilComponent implements OnInit {
         numero_fijo: usersForm.value.numero_fijo,
         numero_celular: usersForm.value.numero_celular,
         nombre_usuario: usersForm.value.nombre_usuario,
-        correo: usersForm.value.email
+        correo: usersForm.value.correo
       }
       const sesion = {
         cedula: usersForm.value.cedula,
         habilitado: true,
         nombre_usuario: usersForm.value.nombre_usuario,
-        correo: usersForm.value.email
+        correo: usersForm.value.correo
       }
 
-      this.usuariosService.putUsuario(dataUsuario).subscribe((data: any) => {
-         this.sesionService.putSesion(sesion).subscribe((dataS: any) => {
+      this.usuariosService.putUsuario(dataUsuario).subscribe(() => {
+         this.sesionService.putSesion(sesion).subscribe(() => {
           this.toastr.showSuccess('Actualizado', 'La información del usuario se ha actualizado!');
         }, error => {
           if (error.status == 404) {
-            this.toastr.showError(error.message, 'Ups!');
+            this.toastr.showError("El correo " + sesion.correo+ " no está registrado", 'Ups!');
           } else {
             this.toastr.showError(error.message, 'Ups!');
           }
         });
       }, error => {
         if (error.status == 404) {
-          this.toastr.showError(error.message, 'Ups!');
+          this.toastr.showError("El usuario " + sesion.cedula+ " no está registrado", 'Ups!');
         } else {
-          this.toastr.showError(error.message, 'Ups!');
+          this.toastr.showError(error.message, 'Ups2!usuario');
         }
       });
 
