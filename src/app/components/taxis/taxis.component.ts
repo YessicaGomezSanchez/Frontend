@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TaxisService } from '../../services/taxis.service';
 import { UsuariosService } from '../../services/usuarios.service';
 import { enableProdMode } from '@angular/core';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
-
 
 enableProdMode();
 
@@ -13,6 +12,7 @@ enableProdMode();
   templateUrl: './taxis.component.html',
   styleUrls: ['./taxis.component.css']
 })
+
 export class TaxisComponent implements OnInit {
   id = localStorage.getItem('idUsuario');
 
@@ -62,20 +62,21 @@ export class TaxisComponent implements OnInit {
   ngOnInit() {
     this.listarConductores();
     this.validacionCampos();
+
   }
   validacionCampos() {
     this.taxiForm = this.formBuilder.group({
-      modelo: ['', [Validators.required,Validators.pattern('[0-9]*')]],
+      modelo: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       placa: ['', [Validators.required]],
-      num_soat: ['', [Validators.required,Validators.pattern('[0-9]*')]],
+      num_soat: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       fecha_venc_soat: ['', [Validators.required]],
-      num_tecnomecanica: ['', [Validators.required,Validators.pattern('[0-9]*')]],
+      num_tecnomecanica: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       fecha_venc_tecnomecanica: ['', [Validators.required]],
-      num_seguro_contractual: ['', [Validators.required,Validators.pattern('[0-9]*')]],
+      num_seguro_contractual: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       fecha_venc_seguro_contractual: ['', [Validators.required]],
-      nombre_apellidos: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      nombre_apellidos: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       tipo_documento: ['', [Validators.required]],
-      cedula: ['', [Validators.required,Validators.pattern('[0-9]*')]],
+      cedula: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       correo: ['', [Validators.required, Validators.email]],
       cedulaC: ['']
     });
@@ -116,22 +117,26 @@ export class TaxisComponent implements OnInit {
         correo: taxiForm.value.correo,
         conductores: this.arrayconductores
       };
-
+      if (this.arrayconductores.length == 0) {
+        return this.toastr.showError('Debe agregar almenos un conductor!','Ups!' );
+       }       
+      
       this.taxisService.postTaxis(taxi).subscribe(data => {
-        this.toastr.showSuccess('Guardado', 'La información del usuario se ha guardado!');
+        console.log('taxi.conductores', taxi.conductores);    
+           this.toastr.showSuccess('Guardado', 'La información del usuario se ha guardado!');
       },
         error => {
           if (error.status == 404) {
             this.toastr.showError(error.message, 'Ups1!');
           } else if (error.status == 500) {
-            this.toastr.showError(error.message, 'Ups2!');
+            this.toastr.showError('El taxi ya se encuentra registrado', 'Ups2!');
           }
         }
 
       );
     }
     taxiForm.reset();
-    this.arrayconductores = [];
+    this.listarConductores();
     this.submitted = false;
   }
 
@@ -139,7 +144,6 @@ export class TaxisComponent implements OnInit {
   eliminar(index) {
     this.arrayconductores = this.arrayconductores.splice(index, 0);
     console.log(index);
-    console.log('conductor a eliminar', this.arrayconductores);
   }
   agregarConductores(conductor: any) {
     this.arrayconductores.push({
@@ -151,7 +155,7 @@ export class TaxisComponent implements OnInit {
       fecha_venc_licencia: conductor.fecha_venc_licencia
     });
     conductor.disabled = true;
-    console.log('conductores agregados', this.arrayconductores)
+    console.log('se agregó', this.arrayconductores);
   }
 
   buscarTaxi(taxiForm: any): void {
@@ -183,18 +187,15 @@ export class TaxisComponent implements OnInit {
       this.conductores.map((conductor: any) => {
         conductor.disabled = false;
       })
+      });
+  }
+  buscarConductor(cedulaC: any): void {
+    this.usuarioServicio.getAllUsuario().subscribe((data: any) => {
+      this.conductores = data.filter(data => data.cedula == cedulaC);
+      this.conductores.map((conductor: any) => {
+        conductor.disabled = false;
+      })
       console.log('conductores inscritos', this.conductores);
     });
-  }
-
-  applyFilter(filterValue: string) {
-    this.usuarioServicio.getAllUsuario().subscribe(data => {
-      data.filter = filterValue.trim().toLowerCase();
-    },
-      error => {
-        console.log("Error", error);
-      }
-
-    );
-  }
+  };
 }

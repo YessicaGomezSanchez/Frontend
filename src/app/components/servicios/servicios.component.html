@@ -5,16 +5,16 @@
     <h3>Servicios</h3>
   </div>
 
-  <form #formServicio="ngForm">
+  <form [formGroup]="formServicio">
     <div class="usuario">
       <label>Usuario</label>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Número de Teléfono"
-            id="7155fc3c-e775-4dd7-9e24-d49d6160e734" name="nomBusqueda" value="nomBusqueda" required ngModel>
+          <input type="text" class="form-control" placeholder="Número de documento"
+            id="7155fc3c-e775-4dd7-9e24-d49d6160e734" formControlName="nomBusqueda">
         </div>
         <div class="col">
-          <button class="btn" id="cc04a459-a088-487b-8df7-e77b9c540e57" name="btnBuscar"
+          <button class="btn" id="cc04a459-a088-487b-8df7-e77b9c540e57" 
             (click)="buscarUsuario(formServicio)">
             <img src="../../../assets/imagenes/lupa.png">
             Buscar
@@ -24,36 +24,32 @@
       </div>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Nombre" name="nombre"
-            id="82863fa2-5a0f-44e7-823f-63a9a6639d62" value="nombre" required [(ngModel)]="nombre">
+          <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre"
+            id="82863fa2-5a0f-44e7-823f-63a9a6639d62"  [ngClass]="{ 'is-invalid': submitted && validador.nombre.errors}" [(ngModel)]="nombre">
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Apellidos" name="apellidos"
-            id="a22e6f63-2e01-40b9-bca2-bf2fb7191cc1" value="apellidos" required [(ngModel)]="apellidos">
+          <input type="text" class="form-control" placeholder="Apellidos" formControlName="apellidos"
+            id="a22e6f63-2e01-40b9-bca2-bf2fb7191cc1"  [ngClass]="{ 'is-invalid': submitted && validador.apellidos.errors}" [(ngModel)]="apellidos">
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Número celular" name="numeroCelular"
-            id="f38ac245-b271-45a9-b131-49e0eb1f5d77" value="numeroCelular" required [(ngModel)]="numeroCelular">
+          <input type="text" class="form-control" placeholder="Número celular" formControlName="numeroCelular"
+            id="f38ac245-b271-45a9-b131-49e0eb1f5d77"  [ngClass]="{ 'is-invalid': submitted && validador.numeroCelular.errors}" [(ngModel)]="numeroCelular">
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Dirección" name="direccion"
-            id="923f4a2d-57b9-4418-aece-8e6bb9826ee8" value="direccion" required [(ngModel)]="direccion">
+          <input type="text" class="form-control" placeholder="Dirección" formControlName="direccion"
+            id="923f4a2d-57b9-4418-aece-8e6bb9826ee8" [ngClass]="{ 'is-invalid': submitted && validador.direccion.errors}" [(ngModel)]="direccion">
         </div>
       </div>
     </div>
     <div class="taxi">
       <label>Taxi</label>
       <div class="row">
-        <!-- <div class="col">
-          <input type="text" class="form-control" name="numTaxis" id="d594bf3a-5a8a-449c-af31-a15422385af0"
-            placeholder="Número de taxis" required ngModel>
-        </div> -->
         <div class="col">
           <div class="row">
             <div class="col">
-              <mat-select [(value)]="selected" name="codTaxi" placeholder="Taxis disponibles" class="form-control">
+              <mat-select [(value)]="selected" formControlName="codTaxi" placeholder="Taxis disponibles" class="form-control">
                 <mat-option *ngFor="let taxi of taxisListD" [value]="taxi.placa">
                   {{taxi.placa}}
                 </mat-option>
@@ -66,72 +62,50 @@
               </button>
             </div>
           </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Enturnamiento</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <mat-selection-list #taxis [(ngModel)]="selectedOptions" name="taxis">
-                  <label>Placa</label>
-                  <mat-list-option *ngFor="let taxi of taxisList" [selected]="taxi.asignado" [value]="taxi.placa">
-                    {{taxi.placa}}
-                  </mat-list-option>
-                </mat-selection-list>
-                <p>
-                  Taxis ocupados: {{taxis.selectedOptions.selected.length}}
-                </p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn" (click)="guardarturno(taxis)" data-dismiss="modal">Guardar</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        </div>       
         <div class="col">
-          <input type="text" class="form-control" placeholder="Observaciones" name="observaciones"
-            id="3bde7444-b0d0-44d5-a98a-a63f6e6d4c16" value="observaciones" required ngModel>
+          <input type="text" class="form-control" placeholder="Observaciones" formControlName="observaciones"
+            id="3bde7444-b0d0-44d5-a98a-a63f6e6d4c16">
         </div>
       </div>
-
-
-
-
-    </div>
-    <!-- <label>Observaciones</label>
-    <div class="row">
-      <div class="col">
-        <mat-checkbox>Maletero amplio</mat-checkbox>
-      </div>
-      <div class="col">
-        <mat-checkbox>Parrilla</mat-checkbox>
-      </div>
-      <div class="col">
-        <mat-checkbox>Transportar mascota</mat-checkbox>
-      </div>
-      <div class="col">
-        <textarea class="form" aria-label="With textarea" placeholder="Otras"></textarea>
-      </div>
-    </div> -->
-
+    </div>    
     <div class="col" style="text-align: right">
-      <button class="btn" (click)="guardarServicio(formServicio)" id="13ae4d9c-d34b-4ead-8bb5-176afc4e077f"
-        name="btnAgregar">
+      <button class="btn" (click)="guardarServicio(formServicio)" id="13ae4d9c-d34b-4ead-8bb5-176afc4e077f">
         <img src="../../../assets/imagenes/anadir.png">
         Agregar
       </button>
     </div>
   </form>
+   <!-- Modal -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Enturnamiento</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+         <mat-selection-list #taxis [(ngModel)]="selectedOptions" name="taxis">
+           <label>Placa</label>
+           <mat-list-option *ngFor="let taxi of taxisList" [selected]="taxi.asignado" [value]="taxi.placa">
+             {{taxi.placa}}
+           </mat-list-option>
+         </mat-selection-list>
+         <p>
+           Taxis ocupados: {{taxis.selectedOptions.selected.length}}
+         </p>
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn" (click)="guardarturno(taxis)" data-dismiss="modal">Guardar</button>
+       </div>
+     </div>
+   </div>
+ </div>
   <div class="scrollit">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">#</th>

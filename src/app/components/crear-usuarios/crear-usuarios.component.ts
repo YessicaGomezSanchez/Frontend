@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { SesionService } from 'src/app/services/sesion.service';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
-import { max } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-crear-usuarios',
@@ -21,8 +21,10 @@ export class CrearUsuariosComponent implements OnInit {
     public toastr: ToastrComponent,
     private formBuilder: FormBuilder) { }
 
-  ngOnInit() {
-
+  ngOnInit() {  
+this.validarCampos();
+  }
+  validarCampos(){
     this.usersForm = this.formBuilder.group({
       nombre: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
       apellidos: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
@@ -40,7 +42,6 @@ export class CrearUsuariosComponent implements OnInit {
       fecha_venc_licencia: [''],
       nombreUsuario: [''],  
     });
-
   }
   get validador() {
     return this.usersForm.controls;
