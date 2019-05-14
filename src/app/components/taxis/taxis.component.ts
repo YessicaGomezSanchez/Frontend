@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TaxisService } from '../../services/taxis.service';
 import { UsuariosService } from '../../services/usuarios.service';
 import { enableProdMode } from '@angular/core';
-
+import { ToastrComponent } from '../shared/toastr/toastr.component';
 
 enableProdMode();
 
@@ -12,6 +12,7 @@ enableProdMode();
   templateUrl: './taxis.component.html',
   styleUrls: ['./taxis.component.css']
 })
+
 export class TaxisComponent implements OnInit {
   id = localStorage.getItem('idUsuario');
 
@@ -49,62 +50,100 @@ export class TaxisComponent implements OnInit {
     categoria: string,
     fecha_venc_licencia: String,
   }> = [];
+  taxiForm: FormGroup;
+  submitted = false;
 
-  fieldArray: Array<any> = [];
-  newAttribute: any = {};
-
-  constructor(private taxisService: TaxisService, private usuarioServicio: UsuariosService) {    
+  constructor(
+    private taxisService: TaxisService,
+    private usuarioServicio: UsuariosService,
+    public toastr: ToastrComponent,
+    private formBuilder: FormBuilder) {
   }
   ngOnInit() {
     this.listarConductores();
-  }
-
-  GuardarTaxi(form: NgForm) {
-    
-    let now = new Date();
-    const taxi = {
-      modelo: form.value.modelo,
-      placa: form.value.placa,
-      num_soat: form.value.num_soat,
-      fecha_venc_soat: form.value.fecha_venc_soat,
-      img_soat: '',
-      num_tecnomecanica: form.value.num_tecnomecanica,
-      fecha_venc_tecnomecanica: form.value.fecha_venc_tecnomecanica,
-      img_tecnomecanica: '',
-      num_seguro_contractual: form.value.num_seguro_contractual,
-      fecha_venc_seguro_contractual: form.value.fecha_venc_seguro_contractual,
-      img_seguro_contractual: '',
-      maletero: true,
-      parrilla: true,
-      mascotas: true,
-      habilitado: true,
-      asignado: false,
-      fecha_registro: now,
-      nombre_apellidos: form.value.nombre_apellidos,
-      tipo_documento: form.value.tipo_documento,
-      cedula: form.value.cedula,
-      correo: form.value.correo,
-      conductores: this.arrayconductores
-    };
-
-    this.taxisService.postTaxis(taxi).subscribe(data => {
-      console.log("POST Request is successful ", data);
-      console.log(data);
-      form.reset();
-      this.arrayconductores = [];
-    },
-      error => {
-        console.log("Error", error);
-      }
-
-    );
-
+    this.validacionCampos();
 
   }
+  validacionCampos() {
+    this.taxiForm = this.formBuilder.group({
+      modelo: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      placa: ['', [Validators.required]],
+      num_soat: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      fecha_venc_soat: ['', [Validators.required]],
+      num_tecnomecanica: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      fecha_venc_tecnomecanica: ['', [Validators.required]],
+      num_seguro_contractual: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      fecha_venc_seguro_contractual: ['', [Validators.required]],
+      nombre_apellidos: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      tipo_documento: ['', [Validators.required]],
+      cedula: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      correo: ['', [Validators.required, Validators.email]],
+      cedulaC: ['']
+    });
+
+  }
+  get validador() {
+    return this.taxiForm.controls;
+  }
+
+  GuardarTaxi(taxiForm: any) {
+    this.submitted = true;
+
+    if (this.taxiForm.invalid) {
+      return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
+    } else {
+      let now = new Date();
+      const taxi = {
+        modelo: taxiForm.value.modelo,
+        placa: taxiForm.value.placa,
+        num_soat: taxiForm.value.num_soat,
+        fecha_venc_soat: taxiForm.value.fecha_venc_soat,
+        img_soat: '',
+        num_tecnomecanica: taxiForm.value.num_tecnomecanica,
+        fecha_venc_tecnomecanica: taxiForm.value.fecha_venc_tecnomecanica,
+        img_tecnomecanica: '',
+        num_seguro_contractual: taxiForm.value.num_seguro_contractual,
+        fecha_venc_seguro_contractual: taxiForm.value.fecha_venc_seguro_contractual,
+        img_seguro_contractual: '',
+        maletero: true,
+        parrilla: true,
+        mascotas: true,
+        habilitado: true,
+        asignado: false,
+        fecha_registro: now,
+        nombre_apellidos: taxiForm.value.nombre_apellidos,
+        tipo_documento: taxiForm.value.tipo_documento,
+        cedula: taxiForm.value.cedula,
+        correo: taxiForm.value.correo,
+        conductores: this.arrayconductores
+      };
+      if (this.arrayconductores.length == 0) {
+        return this.toastr.showError('Debe agregar almenos un conductor!','Ups!' );
+       }       
+      
+      this.taxisService.postTaxis(taxi).subscribe(data => {
+        console.log('taxi.conductores', taxi.conductores);    
+           this.toastr.showSuccess('Guardado', 'La información del usuario se ha guardado!');
+      },
+        error => {
+          if (error.status == 404) {
+            this.toastr.showError(error.message, 'Ups1!');
+          } else if (error.status == 500) {
+            this.toastr.showError('El taxi ya se encuentra registrado', 'Ups2!');
+          }
+        }
+
+      );
+    }
+    taxiForm.reset();
+    this.listarConductores();
+    this.submitted = false;
+  }
+
+
   eliminar(index) {
     this.arrayconductores = this.arrayconductores.splice(index, 0);
     console.log(index);
-    console.log('conductor a eliminar', this.arrayconductores);
   }
   agregarConductores(conductor: any) {
     this.arrayconductores.push({
@@ -116,11 +155,11 @@ export class TaxisComponent implements OnInit {
       fecha_venc_licencia: conductor.fecha_venc_licencia
     });
     conductor.disabled = true;
-    console.log('conductores agregados', this.arrayconductores)
+    console.log('se agregó', this.arrayconductores);
   }
 
-  buscarTaxi(form: NgForm): void {
-    const placa = form.value.placa;
+  buscarTaxi(taxiForm: any): void {
+    const placa = taxiForm.value.placa;
     this.taxisService.getTaxi(placa).subscribe(data => {
       this.placa = data.placa;
       this.modelo = data.modelo;
@@ -148,18 +187,15 @@ export class TaxisComponent implements OnInit {
       this.conductores.map((conductor: any) => {
         conductor.disabled = false;
       })
+      });
+  }
+  buscarConductor(cedulaC: any): void {
+    this.usuarioServicio.getAllUsuario().subscribe((data: any) => {
+      this.conductores = data.filter(data => data.cedula == cedulaC);
+      this.conductores.map((conductor: any) => {
+        conductor.disabled = false;
+      })
       console.log('conductores inscritos', this.conductores);
     });
-  }
-
-  applyFilter(filterValue: string) {
-    this.usuarioServicio.getAllUsuario().subscribe(data => {
-      data.filter = filterValue.trim().toLowerCase();
-    },
-      error => {
-        console.log("Error", error);
-      }
-
-    );
-  }
+  };
 }

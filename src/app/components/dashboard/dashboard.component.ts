@@ -27,5 +27,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
+  cerrarSesion(){
+   localStorage.removeItem('idUsuario');
+  }
 
 }

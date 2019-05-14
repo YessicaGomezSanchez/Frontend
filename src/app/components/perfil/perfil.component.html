@@ -10,12 +10,12 @@
           <label>Datos personales</label>
           <div class="row">
               <div class="col">
-                  <input type="text" class="form-control" placeholder="Nombre" 
-                  formControlName="nombres" id="018250d8-f791-40e8-8764-2f6d91ab79a6" [(ngModel)]="nombres" [ngClass]="{ 'is-invalid': submitted && validador.nombres.errors}" >
+                  <input type="text" class="form-control" placeholder="Nombre" formControlName="nombres"
+                   id="018250d8-f791-40e8-8764-2f6d91ab79a6" [(ngModel)]="nombres" [ngClass]="{ 'is-invalid': submitted && validador.nombres.errors}" >
               </div>
               <div class="col">
                   <input type="text" class="form-control" placeholder="Apellidos" 
-                 formControlName="apellidos" id="e912c30b-e1d9-4771-a6cd-beaf3e4f27b7" required [(ngModel)]="apellidos" [ngClass]="{ 'is-invalid': submitted && validador.apellidos.errors}">
+                 formControlName="apellidos" id="e912c30b-e1d9-4771-a6cd-beaf3e4f27b7" [(ngModel)]="apellidos" [ngClass]="{ 'is-invalid': submitted && validador.apellidos.errors}">
               </div>
           </div>
           <div class="row">

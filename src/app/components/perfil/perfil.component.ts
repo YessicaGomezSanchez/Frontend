@@ -1,10 +1,10 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { UsuariosService } from '../../services/usuarios.service';
 import { SesionService } from '../../services/sesion.service';
 import { enableProdMode } from '@angular/core';
-import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
+
 
 enableProdMode();
 
@@ -26,9 +26,9 @@ export class PerfilComponent implements OnInit {
   nombre_usuario: string;
   usersForm: FormGroup;
   submitted = false;
+  documento: string;
   constructor(
     public toastr: ToastrComponent,
-    private route: ActivatedRoute,
     private usuariosService: UsuariosService,
     private sesionService: SesionService,
     private formBuilder: FormBuilder) { }
@@ -39,13 +39,13 @@ export class PerfilComponent implements OnInit {
   }
   campoRequeridos() {
     this.usersForm = this.formBuilder.group({
-      nombres: ['', [Validators.required]],
-      apellidos: ['', [Validators.required]],
+      nombres: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      apellidos: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
       tipo_documento: ['', [Validators.required]],
-      cedula: ['', [Validators.required]],
+      cedula: [{value:'',disabled: true}, [Validators.required]],
       direccion: ['', [Validators.required]],
-      numero_fijo: ['', [Validators.required]],
-      numero_celular: ['', [Validators.required]],
+      numero_fijo: ['', [Validators.required,Validators.pattern('[0-9]*'),Validators.maxLength(7),Validators.minLength(7)]],
+      numero_celular: ['', [Validators.required,Validators.pattern('[0-9]*'),Validators.maxLength(10),Validators.minLength(7)]],
       nombre_usuario: ['', [Validators.required]],
       correo: ['', [Validators.required, Validators.email]],
       fecha_nacimiento: [''],
@@ -56,20 +56,21 @@ export class PerfilComponent implements OnInit {
     return this.usersForm.controls;
   }
   cargarDatos() {
+    
     const id = localStorage.getItem('idUsuario');
     this.usuariosService.getUsuario(id).subscribe(data => {
-      console.log(data);
       this.nombres = data.nombres;
       this.apellidos = data.apellidos;
       this.tipo_documento = data.tipo_documento;
       this.cedula = data.cedula;
-      this.fecha_nacimiento = data.fecha_nacimiento;
+      this.fecha_nacimiento =data.fecha_nacimiento ;
       this.direccion = data.direccion;
       this.numero_fijo = data.numero_fijo;
       this.numero_celular = data.numero_celular;
       this.nombre_usuario = data.nombre_usuario;
       this.correo = data.correo;
     });
+
   }
 
   actualizarDatos(usersForm: any) {
@@ -84,7 +85,7 @@ export class PerfilComponent implements OnInit {
         nombres: usersForm.value.nombres,
         apellidos: usersForm.value.apellidos,
         tipo_documento: usersForm.value.tipo_documento,
-        cedula: usersForm.value.cedula,
+        cedula: this.cedula,
         fecha_nacimiento: usersForm.value.fecha_nacimiento,
         direccion: usersForm.value.direccion,
         numero_fijo: usersForm.value.numero_fijo,
@@ -119,7 +120,6 @@ export class PerfilComponent implements OnInit {
 
     }
     this.submitted = false;
-  }
-
+  }  
 
 }
