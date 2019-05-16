@@ -7,7 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ng6-toastr-notifications';
-import { MatCardModule, MatButtonModule, MatInputModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatCardModule, MatButtonModule, MatInputModule, 
+  MatMenuModule, MatToolbarModule, MatIconModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -24,7 +26,7 @@ import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuari
 import { HttpClientModule } from '@angular/common/http';
 import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.component';
 import { ToastrComponent } from './components/shared/toastr/toastr.component';
-
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { ToastrComponent } from './components/shared/toastr/toastr.component';
     MatInputModule,
     MatButtonModule,
     MatMenuModule,
+    MomentModule,  
+    MatSlideToggleModule,
     MatToolbarModule,
     MatIconModule,
     FormsModule,

@@ -1,10 +1,11 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../services/usuarios.service';
 import { SesionService } from '../../services/sesion.service';
 import { enableProdMode } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
-
+import * as moment from 'moment';
+import { DataRowOutlet } from '@angular/cdk/table';
 
 enableProdMode();
 
@@ -20,13 +21,14 @@ export class PerfilComponent implements OnInit {
   correo: string;
   tipo_documento: string;
   cedula: string;
-  fecha_nacimiento: string;
+  fecha_nacimiento: Date;
   direccion: string;
   numero_fijo: string;
   nombre_usuario: string;
   usersForm: FormGroup;
   submitted = false;
   documento: string;
+
   constructor(
     public toastr: ToastrComponent,
     private usuariosService: UsuariosService,
@@ -39,13 +41,13 @@ export class PerfilComponent implements OnInit {
   }
   campoRequeridos() {
     this.usersForm = this.formBuilder.group({
-      nombres: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-      apellidos: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      nombres: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      apellidos: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       tipo_documento: ['', [Validators.required]],
-      cedula: [{value:'',disabled: true}, [Validators.required]],
+      cedula: [{ value: '', disabled: true }, [Validators.required]],
       direccion: ['', [Validators.required]],
-      numero_fijo: ['', [Validators.required,Validators.pattern('[0-9]*'),Validators.maxLength(7),Validators.minLength(7)]],
-      numero_celular: ['', [Validators.required,Validators.pattern('[0-9]*'),Validators.maxLength(10),Validators.minLength(7)]],
+      numero_fijo: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(7), Validators.minLength(7)]],
+      numero_celular: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(10), Validators.minLength(7)]],
       nombre_usuario: ['', [Validators.required]],
       correo: ['', [Validators.required, Validators.email]],
       fecha_nacimiento: [''],
@@ -56,21 +58,20 @@ export class PerfilComponent implements OnInit {
     return this.usersForm.controls;
   }
   cargarDatos() {
-    
+
     const id = localStorage.getItem('idUsuario');
     this.usuariosService.getUsuario(id).subscribe(data => {
       this.nombres = data.nombres;
       this.apellidos = data.apellidos;
       this.tipo_documento = data.tipo_documento;
       this.cedula = data.cedula;
-      this.fecha_nacimiento =data.fecha_nacimiento ;
+      this.fecha_nacimiento = data.fecha_nacimiento;
       this.direccion = data.direccion;
       this.numero_fijo = data.numero_fijo;
       this.numero_celular = data.numero_celular;
       this.nombre_usuario = data.nombre_usuario;
       this.correo = data.correo;
     });
-
   }
 
   actualizarDatos(usersForm: any) {
@@ -79,7 +80,7 @@ export class PerfilComponent implements OnInit {
 
       console.log(this.usersForm.invalid);
       return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
-    } else {
+    } else { 
       const dataUsuario =
       {
         nombres: usersForm.value.nombres,
@@ -101,18 +102,18 @@ export class PerfilComponent implements OnInit {
       }
 
       this.usuariosService.putUsuario(dataUsuario).subscribe(() => {
-         this.sesionService.putSesion(sesion).subscribe(() => {
+        this.sesionService.putSesion(sesion).subscribe(() => {
           this.toastr.showSuccess('Actualizado', 'La información del usuario se ha actualizado!');
         }, error => {
           if (error.status == 404) {
-            this.toastr.showError("El correo " + sesion.correo+ " no está registrado", 'Ups!');
+            this.toastr.showError("El correo " + sesion.correo + " no está registrado", 'Ups!');
           } else {
             this.toastr.showError(error.message, 'Ups!');
           }
         });
       }, error => {
         if (error.status == 404) {
-          this.toastr.showError("El usuario " + sesion.cedula+ " no está registrado", 'Ups!');
+          this.toastr.showError("El usuario " + sesion.cedula + " no está registrado", 'Ups!');
         } else {
           this.toastr.showError(error.message, 'Ups2!usuario');
         }
@@ -120,6 +121,20 @@ export class PerfilComponent implements OnInit {
 
     }
     this.submitted = false;
-  }  
+  }
 
+  actFecha(fecha: any) {
+
+    console.log(typeof fecha)
+    if( fecha.match('^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$') || fecha == '' || typeof fecha !== "string")
+    { 
+      this.usersForm.value.fecha_nacimiento2 = '';
+      // this.toastr.showError("Error" , "Fecha invalida MM/DD/YYYY");
+
+    }else{
+      this.fecha_nacimiento = new Date(fecha);
+      console.log(this.fecha_nacimiento);
+    }
+   
+  }
 }
