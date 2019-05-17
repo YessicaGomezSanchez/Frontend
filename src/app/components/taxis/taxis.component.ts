@@ -4,6 +4,7 @@ import { TaxisService } from '../../services/taxis.service';
 import { UsuariosService } from '../../services/usuarios.service';
 import { enableProdMode } from '@angular/core';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
+import { DatePipe } from '@angular/common';
 
 enableProdMode();
 
@@ -41,6 +42,8 @@ export class TaxisComponent implements OnInit {
   cedula: String;
   correo: String;
   conductores: [];
+  actived = true;
+  nameGuardar: String;
 
   public arrayconductores: Array<{
     nombres: string,
@@ -62,6 +65,7 @@ export class TaxisComponent implements OnInit {
   ngOnInit() {
     this.listarConductores();
     this.validacionCampos();
+    this.nameGuardar = "Guardar";
 
   }
   validacionCampos() {
@@ -86,7 +90,7 @@ export class TaxisComponent implements OnInit {
     return this.taxiForm.controls;
   }
 
-  GuardarTaxi(taxiForm: any) {
+  guardarTaxi(taxiForm: any) {
     this.submitted = true;
 
     if (this.taxiForm.invalid) {
@@ -117,13 +121,39 @@ export class TaxisComponent implements OnInit {
         correo: taxiForm.value.correo,
         conductores: this.arrayconductores
       };
+      if (taxiForm.value.fecha_venc_soat !== "") {
+        var myDate = new Date(taxiForm.value.fecha_venc_soat + " ");
+        var today = new Date();
+        today.setHours(0, 0, 0, 0)
+        if (myDate < today) {
+          return this.toastr.showError('La fecha de vencimiento del SOAT debe ser mayor a la fecha actual', 'Ups!');
+        }
+      }
+
+      if (taxiForm.value.fecha_venc_tecnomecanica !== "") {
+        var myDate = new Date(taxiForm.value.fecha_venc_tecnomecanica + " ");
+        var today = new Date();
+        today.setHours(0, 0, 0, 0)
+        if (myDate < today) {
+          return this.toastr.showError('La fecha de vencimiento de la tecnomecánica debe ser mayor a la actual', 'Ups!');
+        }
+      }
+
+      if (taxiForm.value.fecha_venc_seguro_contractual !== "") {
+        var myDate = new Date(taxiForm.value.fecha_venc_seguro_contractual + " ");
+        var today = new Date();
+        today.setHours(0, 0, 0, 0)
+        if (myDate < today) {
+          return this.toastr.showError('La fecha de vencimiento del seguro contractual debe ser mayor a la fecha actual', 'Ups!');
+        }
+      }
       if (this.arrayconductores.length == 0) {
-        return this.toastr.showError('Debe agregar almenos un conductor!','Ups!' );
-       }       
-      
+        return this.toastr.showError('Debe agregar almenos un conductor!', 'Ups!');
+      }
+
       this.taxisService.postTaxis(taxi).subscribe(data => {
-        console.log('taxi.conductores', taxi.conductores);    
-           this.toastr.showSuccess('Guardado', 'La información del usuario se ha guardado!');
+        console.log('taxi.conductores', taxi.conductores);
+        this.toastr.showSuccess('Guardado', 'La información del usuario se ha guardado!');
       },
         error => {
           if (error.status == 404) {
@@ -141,9 +171,15 @@ export class TaxisComponent implements OnInit {
   }
 
 
-  eliminar(index) {
-    this.arrayconductores = this.arrayconductores.splice(index, 0);
-    console.log(index);
+  eliminar(index, conductor: any) {
+    if (this.arrayconductores.length == 0) {
+      this.toastr.showInfo('No hay conductores por eliminar ', 'ups!!');
+    } else {
+      this.arrayconductores = this.arrayconductores.splice(index, 0);
+      this.toastr.showWarning('El conductor fué removido del taxi ', 'Removido!');
+      conductor.disabled = false;
+    }
+
   }
   agregarConductores(conductor: any) {
     this.arrayconductores.push({
@@ -154,6 +190,7 @@ export class TaxisComponent implements OnInit {
       categoria: conductor.categoria,
       fecha_venc_licencia: conductor.fecha_venc_licencia
     });
+    this.toastr.showInfo('El conductor fué agregado ', 'Agregado!');
     conductor.disabled = true;
     console.log('se agregó', this.arrayconductores);
   }
@@ -178,7 +215,10 @@ export class TaxisComponent implements OnInit {
       this.cedula = data.cedula;
       this.correo = data.correo;
       this.conductores = data.conductores;
+      this.arrayconductores=this.conductores;
     })
+ 
+    this.nameGuardar = "Actualizar";
   }
 
   listarConductores() {
@@ -187,7 +227,7 @@ export class TaxisComponent implements OnInit {
       this.conductores.map((conductor: any) => {
         conductor.disabled = false;
       })
-      });
+    });
   }
   buscarConductor(cedulaC: any): void {
     this.usuarioServicio.getAllUsuario().subscribe((data: any) => {
@@ -195,7 +235,110 @@ export class TaxisComponent implements OnInit {
       this.conductores.map((conductor: any) => {
         conductor.disabled = false;
       })
-      console.log('conductores inscritos', this.conductores);
     });
   };
+
+  editarTaxi(taxiForm: any) {
+    this.submitted = true;
+
+    if (this.taxiForm.invalid) {
+      return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
+    } else {
+      let now = new Date();
+       const taxi = {
+        modelo: taxiForm.value.modelo,
+        placa: taxiForm.value.placa,
+        num_soat: taxiForm.value.num_soat,
+        fecha_venc_soat: taxiForm.value.fecha_venc_soat,
+        img_soat: '',
+        num_tecnomecanica: taxiForm.value.num_tecnomecanica,
+        fecha_venc_tecnomecanica: taxiForm.value.fecha_venc_tecnomecanica,
+        img_tecnomecanica: '',
+        num_seguro_contractual: taxiForm.value.num_seguro_contractual,
+        fecha_venc_seguro_contractual: taxiForm.value.fecha_venc_seguro_contractual,
+        img_seguro_contractual: '',
+        maletero: true,
+        parrilla: true,
+        mascotas: true,
+        habilitado: true,
+        asignado: false,
+        fecha_registro: now,
+        nombre_apellidos: taxiForm.value.nombre_apellidos,
+        tipo_documento: taxiForm.value.tipo_documento,
+        cedula: taxiForm.value.cedula,
+        correo: taxiForm.value.correo,
+        conductores: this.arrayconductores       
+        
+      };
+           
+      if (taxiForm.value.fecha_venc_soat !== "") {
+        var myDate = new Date(taxiForm.value.fecha_venc_soat + " ");
+        var today = new Date();
+        today.setHours(0, 0, 0, 0)
+        if (myDate < today) {
+          return this.toastr.showError('La fecha de vencimiento del SOAT debe ser mayor a la fecha actual', 'Ups!');
+        }
+      }
+
+      if (taxiForm.value.fecha_venc_tecnomecanica !== "") {
+        var myDate = new Date(taxiForm.value.fecha_venc_tecnomecanica + " ");
+        var today = new Date();
+        today.setHours(0, 0, 0, 0)
+        if (myDate < today) {
+          return this.toastr.showError('La fecha de vencimiento de la tecnomecánica debe ser mayor a la actual', 'Ups!');
+        }
+      }
+
+      if (taxiForm.value.fecha_venc_seguro_contractual !== "") {
+        var myDate = new Date(taxiForm.value.fecha_venc_seguro_contractual + " ");
+        var today = new Date();
+        today.setHours(0, 0, 0, 0)
+        if (myDate < today) {
+          return this.toastr.showError('La fecha de vencimiento del seguro contractual debe ser mayor a la fecha actual', 'Ups!');
+        }
+      }
+
+
+      if (this.arrayconductores.length == 0) {
+        return this.toastr.showError('Debe agregar almenos un conductor!', 'Ups!');
+      }
+      if (this.arrayconductores.length == 0) {
+        return this.toastr.showError('Debe agregar almenos un conductor!', 'Ups!');
+      }
+
+      this.taxisService.putTaxi(taxi).subscribe(data => {
+        console.log('taxi.conductores', taxi.conductores);
+        this.toastr.showSuccess('Editado', 'La información del usuario se ha actualizado!');
+      },
+        error => {
+          if (error.status == 404) {
+            this.toastr.showError(error.message, 'Ups1!');
+          } else if (error.status == 500) {
+            this.toastr.showError('El taxi ya se encuentra registrado', 'Ups2!');
+          }
+        }
+
+      );
+    }
+    taxiForm.reset();
+    this.listarConductores();
+    this.submitted = false;
+    this.nameGuardar = "Guardar";
+  }
+
+  actionFormulario(taxiForm: any) {
+    if (this.nameGuardar === "Guardar") {
+      this.guardarTaxi(taxiForm);
+    } else {
+      this.editarTaxi(taxiForm);
+    }
+
+  }
+
+  transform(value: string) {
+    var datePipe = new DatePipe('en-US');
+     value = datePipe.transform(value, 'dd/MM/yyyy');
+     return value;
+
+ }
 }

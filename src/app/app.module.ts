@@ -22,7 +22,6 @@ import { TaxisComponent } from './components/taxis/taxis.component';
 import { ServiciosComponent } from './components/servicios/servicios.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.component';
@@ -40,7 +39,6 @@ import { MomentModule } from 'ngx-moment';
     ServiciosComponent,
     HomeComponent,
     DashboardComponent,
-    NavbarComponent,
     CrearUsuariosComponent,
     ListarTaxisComponent,
     ToastrComponent
