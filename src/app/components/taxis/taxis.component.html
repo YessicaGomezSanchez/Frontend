@@ -168,13 +168,12 @@
             <td>{{conductor.categoria | uppercase}}</td>
             <td>{{conductor.fecha_venc_licencia | date:'dd/MM/yyyy'}}</td>
             <td>
-                <mat-slide-toggle></mat-slide-toggle>
-              <!-- <button (click)="agregarConductores(conductor)" class="acciones" [disabled]="conductor.disabled">
+              <button (click)="agregarConductores(conductor)" class="acciones"[disabled]="conductor.disabled" >
                 <img src="../../../assets/imagenes/anadir.png">
               </button>
-              <button (click)="eliminar(i+1)" class="acciones">
+              <button (click)="eliminar(i+1,conductor)" class="acciones">
                 <img src="../../../assets/imagenes/cancelar.png">
-              </button> -->
+              </button>
             </td>
           </tr>
         </tbody>
@@ -182,9 +181,9 @@
     </div>
 
     <div class="col" style="text-align: right">
-      <button class="btn" (click)="GuardarTaxi(taxiForm)">
+      <button class="btn" (click)="actionFormulario(taxiForm)">
         <img src="../../../assets/imagenes/guardar.png">
-        Guardar
+        {{nameGuardar}}
       </button>
     </div>
   </form>
