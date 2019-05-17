@@ -9,7 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatCardModule, MatButtonModule, MatInputModule, 
-  MatMenuModule, MatToolbarModule, MatIconModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
+  MatMenuModule, MatToolbarModule, MatIconModule, MatSelectModule,
+   MatFormFieldModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -50,6 +51,8 @@ import { MomentModule } from 'ngx-moment';
     BrowserAnimationsModule,
     MatCardModule,
     MatFormFieldModule,
+    MatDatepickerModule,
+     MatNativeDateModule,
     MatSelectModule,
     MatInputModule,
     MatButtonModule,

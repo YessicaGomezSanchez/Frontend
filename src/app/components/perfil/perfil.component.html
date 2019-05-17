@@ -40,17 +40,18 @@
       </div>
       <div class="row">
         <div class="col">
-          <!-- <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date" class="form-control">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field> -->
-
-
-          <input type="text" class="form-control" placeholder="DD/MM/YYYY" formControlName="fecha_nacimiento"
-            id="1c160475-84dd-4e03-a365-476014fef2e3" [(ngModel)]="fecha_nacimiento2" (focusout)="actFecha(fecha_nacimiento2)"
-            value="{{fecha_nacimiento | date:'MM/dd/yyyy'}}">
+           <div class="row">
+              <div class="col">
+                <span>Fecha de Nacimiento</span>
+              </div>
+              <div class="col">
+                <input type="date" class="form-control" placeholder="Fecha de nacimiento" formControlName="fecha_nacimiento"
+                  id="1c160475-84dd-4e03-a365-476014fef2e3" [(ngModel)]="fecha_nacimiento"
+                  value="{{fecha_nacimiento | date:'yyyy-MM-dd'}}">
+              </div>
+            </div>
         </div>
+
         <div class="col">
           <input type="text" class="form-control" placeholder="Dirección" formControlName="direccion"
             id="d7749fb7-6e44-4336-aeab-a0b00f04690e"

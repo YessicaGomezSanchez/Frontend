@@ -4,8 +4,8 @@ import { SesionService } from '../../services/sesion.service';
 import { enableProdMode } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
-import * as moment from 'moment';
-import { DataRowOutlet } from '@angular/cdk/table';
+
+import { DatePipe } from '@angular/common';
 
 enableProdMode();
 
@@ -21,7 +21,7 @@ export class PerfilComponent implements OnInit {
   correo: string;
   tipo_documento: string;
   cedula: string;
-  fecha_nacimiento: Date;
+  fecha_nacimiento: string;
   direccion: string;
   numero_fijo: string;
   nombre_usuario: string;
@@ -38,6 +38,7 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     this.cargarDatos();
     this.campoRequeridos();
+
   }
   campoRequeridos() {
     this.usersForm = this.formBuilder.group({
@@ -48,7 +49,7 @@ export class PerfilComponent implements OnInit {
       direccion: ['', [Validators.required]],
       numero_fijo: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(7), Validators.minLength(7)]],
       numero_celular: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(10), Validators.minLength(7)]],
-      nombre_usuario: ['', [Validators.required]],
+      nombre_usuario: [''],
       correo: ['', [Validators.required, Validators.email]],
       fecha_nacimiento: [''],
 
@@ -58,7 +59,6 @@ export class PerfilComponent implements OnInit {
     return this.usersForm.controls;
   }
   cargarDatos() {
-
     const id = localStorage.getItem('idUsuario');
     this.usuariosService.getUsuario(id).subscribe(data => {
       this.nombres = data.nombres;
@@ -72,15 +72,16 @@ export class PerfilComponent implements OnInit {
       this.nombre_usuario = data.nombre_usuario;
       this.correo = data.correo;
     });
+
   }
 
   actualizarDatos(usersForm: any) {
-    this.submitted = true;
-    if (this.usersForm.invalid) {
 
-      console.log(this.usersForm.invalid);
-      return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
-    } else { 
+    this.submitted = true;
+
+    if (this.usersForm.invalid) {
+     return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
+    } else {
       const dataUsuario =
       {
         nombres: usersForm.value.nombres,
@@ -123,18 +124,26 @@ export class PerfilComponent implements OnInit {
     this.submitted = false;
   }
 
-  actFecha(fecha: any) {
+  // actFecha(fecha: any) {
 
-    console.log(typeof fecha)
-    if( fecha.match('^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$') || fecha == '' || typeof fecha !== "string")
-    { 
-      this.usersForm.value.fecha_nacimiento2 = '';
-      // this.toastr.showError("Error" , "Fecha invalida MM/DD/YYYY");
+  //   console.log(typeof fecha)
+  //   if( fecha.match('^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$') || fecha == '' || typeof fecha !== "string")
+  //   {
+  //     this.usersForm.value.fecha_nacimiento2 = '';
+  //     // this.toastr.showError("Error" , "Fecha invalida MM/DD/YYYY");
 
-    }else{
-      this.fecha_nacimiento = new Date(fecha);
-      console.log(this.fecha_nacimiento);
-    }
-   
-  }
+  //   }else{
+  //     this.fecha_nacimiento = new Date(fecha);
+  //     console.log(this.fecha_nacimiento);
+  //   }
+
+  // }
+
+  transform(value: string) {
+    var datePipe = new DatePipe('en-US');
+     value = datePipe.transform(value, 'dd/MM/yyyy');
+     return value;
+
+ }
+
 }
