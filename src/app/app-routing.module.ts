@@ -19,16 +19,16 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: 'perfil', component: PerfilComponent, canActivate: [LoginGuard] },
-      { path: 'servicios', component: ServiciosComponent, canActivate: [LoginGuard] },
-      { path: 'taxis', component: TaxisComponent, canActivate: [LoginGuard] },
-      { path: 'usuarios', component: UsuariosComponent, canActivate: [LoginGuard]},
-      { path: 'crear-usuarios', component: CrearUsuariosComponent, canActivate: [LoginGuard]},
-      { path: 'listar-taxis', component: ListarTaxisComponent, canActivate: [LoginGuard]}
+      { path: 'perfil', component: PerfilComponent},
+      { path: 'servicios', component: ServiciosComponent},
+      { path: 'taxis', component: TaxisComponent},
+      { path: 'usuarios', component: UsuariosComponent},
+      { path: 'crear-usuarios', component: CrearUsuariosComponent},
+      { path: 'listar-taxis', component: ListarTaxisComponent}
     ]
 
 },
-    { path: 'sesion', component: IniciarSesionComponent, canActivate: [NoLoginGuard] },
+    { path: 'sesion', component: IniciarSesionComponent},
     { path: 'restablecer', component: RestablecerContrasenaComponent },
     { path: '**', component: HomeComponent },
     { path: '', component: HomeComponent }

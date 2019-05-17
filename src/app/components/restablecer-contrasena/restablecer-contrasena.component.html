@@ -1,17 +1,41 @@
-<form class="style">
+<form [formGroup]="restablerForm" class="style" autocomplete="off">
   <div class="labels">
     <label class="titles">Restablecer Contraseña</label>
   </div>
 
   <div class="form-group">
-    <label>Correo electrónico/Nombre de usuario</label>
+    <label>Correo electrónico</label>
     <div class="icon-input">
       <img src="../../../assets/imagenes/profile.png">
-      <input type="email" class="form-control" id="" aria-describedby="emailHelp">
+      <input type="email" class="form-control" id="6be40af7-fe7c-4096-8f09-e3354cf85902" aria-describedby="emailHelp"
+        placeholder="Correo Electrónico" formControlName="correo"
+        [ngClass]="{ 'is-invalid': submitted && validador.correo.errors}">
     </div>
-  </div>  
-  <div class="button">
-    <button type="button" class="btn btn-primary btn-lg" [routerLink]="[ '/dashboard']">Recuperar contraseña</button>
   </div>
- 
+  <div class="form-group">
+      <label>Contraseña</label>
+    <div class="icon-input">
+      <img src="../../../assets/imagenes/lock.png">
+      <input type="password" class="form-control" id="d56927e8-8494-4601-8283-c7bf1b584bf7" aria-describedby="emailHelp"
+        placeholder="Nueva contraseña" formControlName="contrasena"
+        [ngClass]="{ 'is-invalid': submitted && validador.contrasena.errors}">
+    </div>
+  </div>
+  <div class="form-group">
+      <label>Confirmación de contraseña</label>
+    <div class="icon-input">
+      <img src="../../../assets/imagenes/lock.png">
+      <input type="password" class="form-control" id="8629dfb7-ac89-4d4c-8899-968361accf0d" aria-describedby="emailHelp"
+        placeholder="Confirmación de contraseña" formControlName="confContrasena"
+        [ngClass]="{ 'is-invalid': submitted && validador.confContrasena.errors}">
+    </div>
+  </div>
+  <div class="button">
+    <button type="button" class="btn btn-primary btn-lg" (click)="restablerContrasena(restablerForm)">Recuperar
+      contraseña</button>
+  </div>
+  <br>
+
+  <a href="sesion" class="" id="58d9d48f-2c2f-4a4d-8db9-ca271c5d2d42">Iniciar Sesión</a>
+  <br>
 </form>

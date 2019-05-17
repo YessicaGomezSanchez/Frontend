@@ -23,17 +23,19 @@ export class ServiciosComponent implements OnInit {
   public apellidos: string;
   public direccion: string;
   public numeroCelular: string;
-  cod_servicio = Math.floor((Math.random() * 10000) + 1);
   taxisListD: [];
   formServicio: FormGroup;
   submitted = false;
-
+  myDate:Date;
+  today: any = Date.now();
   constructor(
     public toastr: ToastrComponent,
     private servicio: ServiciosService,
     private taxiService: TaxisService,
     private usuario: UsuariosService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder) {
+      this.myDate = new Date();
+     }
 
 
   ngOnInit() {
@@ -50,7 +52,7 @@ export class ServiciosComponent implements OnInit {
       apellidos: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       direccion: ['', [Validators.required]],
       numeroCelular: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(10), Validators.minLength(7)]],
-      observaciones: ['', [Validators.required]],
+      observaciones: ['', []],
       codTaxi: ['', [Validators.required]],
     });
   }
@@ -65,15 +67,14 @@ export class ServiciosComponent implements OnInit {
     } else {
       const dataServicio =
       {
-        cod_servicio: this.cod_servicio,
-        nombres: formServicio.value.nombre,
+         nombres: formServicio.value.nombre,
         apellidos: formServicio.value.apellidos,
         direccion: formServicio.value.direccion,
         telefono: formServicio.value.numeroCelular,
         cod_operador: this.id,
         observaciones: formServicio.value.observaciones,
         cod_taxi: this.selected,
-        fecha_servicio: '2019-05-01',
+        fecha_servicio: this.today,
         pvx: true,
 
       }
@@ -83,22 +84,23 @@ export class ServiciosComponent implements OnInit {
         asignado: false
       }
 
-
+      console.log('fecha actual', this.today)
       this.servicio.postServicio(dataServicio).subscribe(data => {
         this.toastr.showSuccess('El servicio fué creado', 'Exito!');
+        this.listarServicios();
       },
         error => {
+          console.log(error.error.msn);
+
           if (error.status == 404) {
-            this.toastr.showError(error.message, 'Ups!');
-          } else {
-            this.toastr.showError(error.message, 'Ups!');
+            this.toastr.showError('Error en el servidor intente más tarde', 'Ups!');
+          } else if(error.status == 500 && error.error.msn.code == 11000){
+            this.toastr.showError('El Servicio ya fué creado', 'Ups!');
           }
         }
 
       );
       this.taxiService.putTaxi(dataTaxi).subscribe(data => {
-        console.log("POST Request is successful ", data);
-        console.log(data);
         this.listarServicios();
         this.taxisDisponibles();
       },
@@ -133,7 +135,7 @@ export class ServiciosComponent implements OnInit {
 
   listarServicios() {
     this.servicio.getAllServicio().subscribe((data: any) => {
-      this.listServicio = data;
+      this.listServicio = data.filter(filtro => filtro.cod_operador == this.id);
     },
       error => {
         if (error.status == 404) {
@@ -147,7 +149,6 @@ export class ServiciosComponent implements OnInit {
   enturnar() {
     this.taxiService.getAllTaxis().subscribe((data: any) => {
       this.taxisList = data.filter(res => res.habilitado == true && res.asignado == false);
-
     },
       error => {
         if (error.status == 404) {

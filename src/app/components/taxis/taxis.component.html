@@ -127,7 +127,7 @@
         </div>
     </div>
     <div class="scroll">
-      <table class="table table-striped table-bordered ">
+      <table class="table table-striped table-bordered " id="tablePrueba">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -151,12 +151,13 @@
             <td>{{conductor.categoria | uppercase}}</td>
             <td>{{conductor.fecha_venc_licencia | date:'dd/MM/yyyy'}}</td>
             <td>
-              <button (click)="agregarConductores(conductor)" class="acciones" [disabled]="conductor.disabled">
+                <mat-slide-toggle></mat-slide-toggle>
+              <!-- <button (click)="agregarConductores(conductor)" class="acciones" [disabled]="conductor.disabled">
                 <img src="../../../assets/imagenes/anadir.png">
               </button>
               <button (click)="eliminar(i+1)" class="acciones">
                 <img src="../../../assets/imagenes/cancelar.png">
-              </button>
+              </button> -->
             </td>
           </tr>
         </tbody>
@@ -171,3 +172,12 @@
     </div>
   </form>
 </div>
+
+<script>
+    $(document).ready(function () {
+  $('#tablePrueba').DataTable({
+    "paging": false // false to disable pagination (or any other option)
+  });
+  $('.dataTables_length').addClass('bs-select');
+});
+</script>

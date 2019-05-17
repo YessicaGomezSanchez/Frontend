@@ -21,16 +21,16 @@ export class TaxisComponent implements OnInit {
   numero_celular: string;
   num_licencia: string;
   categoria: string;
-  fecha_venc_licencia: String;
+  fecha_venc_licencia: Date;
 
   placa: string;
   modelo: string;
   num_soat: string;
-  fecha_venc_soat: String;
+  fecha_venc_soat: Date;
   num_tecnomecanica: string;
-  fecha_venc_tecnomecanica: String;
+  fecha_venc_tecnomecanica: Date;
   num_seguro_contractual: String;
-  fecha_venc_seguro_contractual: String;
+  fecha_venc_seguro_contractual: Date;
   maletero: Boolean;
   parrilla: Boolean;
   mascotas: Boolean;

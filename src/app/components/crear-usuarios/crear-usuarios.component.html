@@ -35,8 +35,16 @@
       </div>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Fecha de nacimiento" formControlName="fecha_nacimiento" 
-          id="8e0f1c59-5e45-45ba-8564-9e374ed289f9" onfocus="(this.type='date')" onblur="(this.type='text')"> 
+            <div class="row">
+                <div class="col">
+                  <span>Fecha de Nacimiento</span>
+                </div>
+                <div class="col">
+                  <input type="date" class="form-control" placeholder="Fecha de nacimiento" formControlName="fecha_nacimiento"
+                    id="8e0f1c59-5e45-45ba-8564-9e374ed289f9" [(ngModel)]="fecha_nacimiento"
+                    value="{{fecha_nacimiento | date:'yyyy-MM-dd'}}">
+                </div>
+            </div>          
         </div>
         <div class="col">
           <input type="text" class="form-control" placeholder="Dirección" formControlName="direccion" id="32b27c7b-af29-4891-9577-f3e51cf06bba"
@@ -100,9 +108,16 @@
           <input type="text" class="form-control" placeholder="Categoría" formControlName="categoria" id="d1a2e136-a009-461d-a0b1-c7f4b8506ff3">
         </div>
         <div class="col">
-            <input placeholder="Fecha de vencimiento de licencia" formControlName="fecha_venc_licencia"
-              class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" 
-            id="a818f623-af7b-4b0f-a6d6-e59aa5d8abb7">          
+            <div class="row">
+                <div class="col">
+                  <span>Fecha de vencimiento de licencia</span>
+                </div>
+                <div class="col">
+                  <input type="date" class="form-control" placeholder="Fecha de licencia" formControlName="fecha_venc_licencia"
+                    id="a818f623-af7b-4b0f-a6d6-e59aa5d8abb7" [(ngModel)]="fecha_venc_licencia"
+                    value="{{fecha_venc_licencia | date:'yyyy-MM-dd'}}">
+                </div>
+            </div>    
         </div>
       </div>
     </div>
