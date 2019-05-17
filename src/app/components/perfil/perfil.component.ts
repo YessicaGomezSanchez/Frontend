@@ -124,21 +124,6 @@ export class PerfilComponent implements OnInit {
     this.submitted = false;
   }
 
-  // actFecha(fecha: any) {
-
-  //   console.log(typeof fecha)
-  //   if( fecha.match('^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$') || fecha == '' || typeof fecha !== "string")
-  //   {
-  //     this.usersForm.value.fecha_nacimiento2 = '';
-  //     // this.toastr.showError("Error" , "Fecha invalida MM/DD/YYYY");
-
-  //   }else{
-  //     this.fecha_nacimiento = new Date(fecha);
-  //     console.log(this.fecha_nacimiento);
-  //   }
-
-  // }
-
   transform(value: string) {
     var datePipe = new DatePipe('en-US');
      value = datePipe.transform(value, 'dd/MM/yyyy');
