@@ -4,7 +4,7 @@
     <h3>Registrar Taxis</h3>
   </div>
   <form [formGroup]="taxiForm">
-    <div class="usuario">
+    <div class="taxi">
       <label>Datos del taxi</label>
       <div class="row">
         <div class="col-4">
@@ -34,10 +34,16 @@
           </button> -->
         </div>
         <div class="col">
-          <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control"
-            placeholder="Fecha de vencimiento SOAT" id="a5b1553b-c9ef-4076-8e6f-a0b2e708d980"
-            formControlName="fecha_venc_soat" [ngClass]="{ 'is-invalid': submitted && validador.fecha_venc_soat.errors}"
-            [(ngModel)]="fecha_venc_soat">
+            <div class="row">
+                <div class="col">
+                  <span>Fecha de vencimiento del SOAT</span>
+                </div>
+                <div class="col">
+                  <input type="date" class="form-control" placeholder="" formControlName="fecha_venc_soat"
+                    id="a5b1553b-c9ef-4076-8e6f-a0b2e708d980" [(ngModel)]="fecha_venc_soat"
+                    value="{{fecha_venc_soat | date:'yyyy-MM-dd'}}" [ngClass]="{ 'is-invalid': submitted && validador.fecha_venc_soat.errors}">
+                </div>
+              </div>
         </div>
       </div>
       <div class="row">
@@ -51,11 +57,17 @@
           </button> -->
         </div>
         <div class="col">
-          <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control"
-            placeholder="Fecha de vencimiento de tecnomecánica" id="afb578f0-479b-4b5a-92d1-d3b69e949177"
-            formControlName="fecha_venc_tecnomecanica"
-            [ngClass]="{ 'is-invalid': submitted && validador.fecha_venc_tecnomecanica.errors}"
-            [(ngModel)]="fecha_venc_tecnomecanica">
+
+            <div class="row">
+                <div class="col">
+                  <span>Fecha de vencimiento de TECNO</span>
+                </div>
+                <div class="col">
+                  <input type="date" class="form-control" placeholder="Fecha de nacimiento" formControlName="fecha_venc_tecnomecanica"
+                    id="afb578f0-479b-4b5a-92d1-d3b69e949177" [(ngModel)]="fecha_venc_tecnomecanica"
+                    value="{{fecha_venc_tecnomecanica | date:'yyyy-MM-dd'}}"  [ngClass]="{ 'is-invalid': submitted && validador.fecha_venc_tecnomecanica.errors}">
+                </div>
+              </div>
         </div>
       </div>
       <div class="row">
@@ -69,11 +81,16 @@
           </button> -->
         </div>
         <div class="col">
-          <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control"
-            placeholder="Fecha de seguro contractual" id="33c9d8ec-b03b-4cc7-844d-51ed2c504337"
-            formControlName="fecha_venc_seguro_contractual"
-            [ngClass]="{ 'is-invalid': submitted && validador.fecha_venc_seguro_contractual.errors}"
-            [(ngModel)]="fecha_venc_seguro_contractual">
+            <div class="row">
+                <div class="col">
+                  <span>Fecha de seguro contractual</span>
+                </div>
+                <div class="col">
+                  <input type="date" class="form-control" placeholder="Fecha de nacimiento" formControlName="fecha_venc_seguro_contractual"
+                    id="1c160475-84dd-4e03-a365-476014fef2e3" [(ngModel)]="fecha_venc_seguro_contractual"
+                    value="{{fecha_venc_seguro_contractual | date:'yyyy-MM-dd'}}" [ngClass]="{ 'is-invalid': submitted && validador.fecha_venc_seguro_contractual.errors}">
+                </div>
+              </div>
         </div>
       </div>
     </div>
@@ -173,11 +190,3 @@
   </form>
 </div>
 
-<script>
-    $(document).ready(function () {
-  $('#tablePrueba').DataTable({
-    "paging": false // false to disable pagination (or any other option)
-  });
-  $('.dataTables_length').addClass('bs-select');
-});
-</script>
