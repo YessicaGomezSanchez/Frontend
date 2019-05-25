@@ -78,9 +78,9 @@ export class PerfilComponent implements OnInit {
   actualizarDatos(usersForm: any) {
 
     this.submitted = true;
-
+    
     if (this.usersForm.invalid) {
-     return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
+     return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
       const dataUsuario =
       {
@@ -100,6 +100,14 @@ export class PerfilComponent implements OnInit {
         habilitado: true,
         nombre_usuario: usersForm.value.nombre_usuario,
         correo: usersForm.value.correo
+      }
+      if (usersForm.value.fecha_nacimiento !== "") {
+        var myDate = new Date(usersForm.value.fecha_nacimiento + " ");
+        var today = new Date();
+        today.setHours(0, 0, 0, 0)
+        if (myDate > today) {
+          return this.toastr.showError('La fecha de nacimiento debe ser menor a la fecha actual', 'Ups!');
+        }
       }
 
       this.usuariosService.putUsuario(dataUsuario).subscribe(() => {

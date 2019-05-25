@@ -31,12 +31,12 @@ export class IniciarSesionComponent implements OnInit {
         return this.registerForm.controls;
     }
 
-    consultarUsuario(registerForm:any) {
+    consultarUsuario(registerForm: any) {
         this.submitted = true;
 
         // stop here if form is invalid
         if (this.registerForm.invalid) {
-            return this.toastr.showError('Complete los campos resaltados', 'Campos incompletos');
+            return this.toastr.showError('Los campos presentan un error, por favor verificar la información', 'Campos incompletos');
         } else {
             const sesion =
             {
@@ -45,23 +45,24 @@ export class IniciarSesionComponent implements OnInit {
             }
 
             this.sesionService.getSesion(sesion.correo).subscribe((data: any) => {
-                if (data.correo == sesion.correo && data.contrasena == sesion.contrasena && data.rol=='Operador' || data.rol=='Administrador')  {
+                if (data.correo === sesion.correo && data.contrasena === sesion.contrasena && (data.rol ==='Operador' || data.rol ==='Administrador')) {
                     this.router.navigate([`/dashboard`]);
                     this.toastr.showSuccess('Bienvenido', 'Ingreso exitoso!');
                     localStorage.setItem('idUsuario', data.cedula);
                 } else {
-                    this.toastr.showSuccess('Verifique su información o comuniquese con un administrador', 'Ups!');                  
+                    return this.toastr.showInfo('La información ingresada es incorrecta, de lo contrario por favor comunicarse con el administrador del acopio', 'Ups!');
                 }
             },
                 error => {
 
                     if (error.status == 404) {
-                        this.toastr.showInfo('El usuario no está registrado', 'Ups!');
+                        this.toastr.showInfo('El usuario no se encuentra registrado en nuestro sistema, por favor comunicarse con el administrador del acopio', 'Ups!');
                     } else {
 
                     }
 
-                });
+                }
+            );
 
 
         }

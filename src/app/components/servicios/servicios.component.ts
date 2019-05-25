@@ -19,23 +19,21 @@ export class ServiciosComponent implements OnInit {
   taxisList: [];
   listServicio = [];
   asignado: Boolean;
-  public nombre: string;
-  public apellidos: string;
-  public direccion: string;
-  public numeroCelular: string;
+  nombre: string;
+  apellidos: string;
+  direccion: string;
+  numeroCelular: string;
   taxisListD: [];
   formServicio: FormGroup;
   submitted = false;
-  myDate:Date;
-  today: any = Date.now();
   constructor(
     public toastr: ToastrComponent,
     private servicio: ServiciosService,
     private taxiService: TaxisService,
     private usuario: UsuariosService,
     private formBuilder: FormBuilder) {
-      this.myDate = new Date();
-     }
+
+  }
 
 
   ngOnInit() {
@@ -63,18 +61,20 @@ export class ServiciosComponent implements OnInit {
     this.submitted = true;
     if (this.formServicio.invalid) {
       console.log(this.formServicio.invalid);
-      return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
+      return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
+      var fechaActual = new Date();
+      fechaActual.setHours(0, 0, 0, 0)
       const dataServicio =
       {
-         nombres: formServicio.value.nombre,
+        nombres: formServicio.value.nombre,
         apellidos: formServicio.value.apellidos,
         direccion: formServicio.value.direccion,
         telefono: formServicio.value.numeroCelular,
         cod_operador: this.id,
         observaciones: formServicio.value.observaciones,
         cod_taxi: this.selected,
-        fecha_servicio: this.today,
+        fecha_servicio: fechaActual,
         pvx: true,
 
       }
@@ -84,17 +84,14 @@ export class ServiciosComponent implements OnInit {
         asignado: false
       }
 
-      console.log('fecha actual', this.today)
       this.servicio.postServicio(dataServicio).subscribe(data => {
         this.toastr.showSuccess('El servicio fué creado', 'Exito!');
         this.listarServicios();
       },
         error => {
-          console.log(error.error.msn);
-
-          if (error.status == 404) {
+         if (error.status == 404) {
             this.toastr.showError('Error en el servidor intente más tarde', 'Ups!');
-          } else if(error.status == 500 && error.error.msn.code == 11000){
+          } else if (error.status == 500 && error.error.msn.code == 11000) {
             this.toastr.showError('El Servicio ya fué creado', 'Ups!');
           }
         }
@@ -105,7 +102,11 @@ export class ServiciosComponent implements OnInit {
         this.taxisDisponibles();
       },
         error => {
-          console.log("Error", error);
+          if (error.status == 404) {
+            this.toastr.showError(error.message, 'Ups!');
+          } else {
+            this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
+          }
         }
       );
 
@@ -116,32 +117,43 @@ export class ServiciosComponent implements OnInit {
 
   buscarUsuario(formServicio: any): void {
     const id = formServicio.value.nomBusqueda;
-    this.usuario.getUsuario(id).subscribe(data => {
-      this.nombre = data.nombres;
-      this.apellidos = data.apellidos,
-        this.direccion = data.direccion,
-        this.numeroCelular = data.numero_celular,
-        this.toastr.showSuccess('El usuario fué encontrado', 'Encontrado!');
-    },
-      error => {
-        if (error.status == 404) {
-          this.toastr.showError(error.message, 'Ups!');
-        } else {
-          this.toastr.showError(error.message, 'Ups!');
-        }
+    if (id === "") {
+      this.toastr.showError('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
+    } else {
+      this.usuario.getUsuario(id).subscribe(data => {
+        this.nombre = data.nombres;
+        this.apellidos = data.apellidos,
+          this.direccion = data.direccion,
+          this.numeroCelular = data.numero_celular,
+          this.toastr.showSuccess('El usuario fué encontrado', 'Encontrado!');
+      },
+        error => {
+          if (error.status == 404) {
+            this.toastr.showError(error.error.message, 'Ups!');
+          } else {
+            this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
+          }
 
-      })
+        })
+
+    }
+
   }
 
   listarServicios() {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     this.servicio.getAllServicio().subscribe((data: any) => {
+      console.log('fecha servicio', data);
       this.listServicio = data.filter(filtro => filtro.cod_operador == this.id);
+      console.log('today', today);    
     },
       error => {
         if (error.status == 404) {
           this.toastr.showError(error.message, 'Ups!');
         } else {
-          this.toastr.showError(error.message, 'Ups!');
+          this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
         }
 
       });
@@ -154,7 +166,7 @@ export class ServiciosComponent implements OnInit {
         if (error.status == 404) {
           this.toastr.showError(error.message, 'Ups!');
         } else {
-          this.toastr.showError(error.message, 'Ups!');
+          this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
         }
 
       });
@@ -169,7 +181,7 @@ export class ServiciosComponent implements OnInit {
         if (error.status == 404) {
           this.toastr.showError(error.message, 'Ups!');
         } else {
-          this.toastr.showError(error.message, 'Ups!');
+          this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
         }
 
       });
@@ -186,13 +198,13 @@ export class ServiciosComponent implements OnInit {
       }
       this.taxiService.putTaxi(data).subscribe(data => {
         this.taxisDisponibles();
-        this.toastr.showSuccess('Los taxis fueron enturnados', 'Exito!');
+        this.toastr.showSuccess('Los taxis seleccionados fueron enturnados exitosamente', 'Taxis enturnados!');
       },
         error => {
           if (error.status == 404) {
             this.toastr.showError(error.message, 'Ups!');
           } else {
-            this.toastr.showError(error.message, 'Ups!');
+            this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
           }
 
         }

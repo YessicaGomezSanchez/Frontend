@@ -94,7 +94,7 @@ export class TaxisComponent implements OnInit {
     this.submitted = true;
 
     if (this.taxiForm.invalid) {
-      return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
+      return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
       let now = new Date();
       const taxi = {
@@ -148,12 +148,12 @@ export class TaxisComponent implements OnInit {
         }
       }
       if (this.arrayconductores.length == 0) {
-        return this.toastr.showError('Debe agregar almenos un conductor!', 'Ups!');
+        return this.toastr.showError('Debe agregar al menos un conductor!', 'Ups!');
       }
 
       this.taxisService.postTaxis(taxi).subscribe(data => {
-        console.log('taxi.conductores', taxi.conductores);
-        this.toastr.showSuccess('Guardado', 'La información del usuario se ha guardado!');
+        
+        this.toastr.showSuccess('La información del taxi se ha guardado!','Guardado');
       },
         error => {
           if (error.status == 404) {
@@ -173,7 +173,7 @@ export class TaxisComponent implements OnInit {
 
   eliminar(index, conductor: any) {
     if (this.arrayconductores.length == 0) {
-      this.toastr.showInfo('No hay conductores por eliminar ', 'ups!!');
+      this.toastr.showWarning('No hay conductores por eliminar ', 'ups!!');
     } else {
       this.arrayconductores = this.arrayconductores.splice(index, 0);
       this.toastr.showWarning('El conductor fué removido del taxi ', 'Removido!');
@@ -192,7 +192,7 @@ export class TaxisComponent implements OnInit {
     });
     this.toastr.showInfo('El conductor fué agregado ', 'Agregado!');
     conductor.disabled = true;
-    console.log('se agregó', this.arrayconductores);
+    
   }
 
   buscarTaxi(taxiForm: any): void {
@@ -216,9 +216,10 @@ export class TaxisComponent implements OnInit {
       this.correo = data.correo;
       this.conductores = data.conductores;
       this.arrayconductores=this.conductores;
+      this.nameGuardar = "Actualizar";
     })
  
-    this.nameGuardar = "Actualizar";
+    
   }
 
   listarConductores() {
@@ -242,7 +243,7 @@ export class TaxisComponent implements OnInit {
     this.submitted = true;
 
     if (this.taxiForm.invalid) {
-      return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
+      return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
       let now = new Date();
        const taxi = {
@@ -300,15 +301,15 @@ export class TaxisComponent implements OnInit {
 
 
       if (this.arrayconductores.length == 0) {
-        return this.toastr.showError('Debe agregar almenos un conductor!', 'Ups!');
+        return this.toastr.showError('Debe agregar al menos un conductor!', 'Ups!');
       }
       if (this.arrayconductores.length == 0) {
-        return this.toastr.showError('Debe agregar almenos un conductor!', 'Ups!');
+        return this.toastr.showError('Debe agregar al menos un conductor!', 'Ups!');
       }
 
       this.taxisService.putTaxi(taxi).subscribe(data => {
         console.log('taxi.conductores', taxi.conductores);
-        this.toastr.showSuccess('Editado', 'La información del usuario se ha actualizado!');
+        this.toastr.showSuccess('La información del taxi se ha actualizado!','Editado');
       },
         error => {
           if (error.status == 404) {

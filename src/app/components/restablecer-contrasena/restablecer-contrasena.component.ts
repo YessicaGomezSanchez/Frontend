@@ -38,7 +38,7 @@ export class RestablecerContrasenaComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.restablerForm.invalid) {
-      return this.toastr.showError('Complete los campos resaltados', 'Campos incompletos');
+      return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos incompletos');
     } else if (restablerForm.value.contrasena === restablerForm.value.confContrasena) {
 
       const restablecer =
@@ -57,7 +57,7 @@ export class RestablecerContrasenaComponent implements OnInit {
             error => {
 
               if (error.status == 404) {
-                this.toastr.showInfo('El usuario no está registrado', 'Ups!');
+                this.toastr.showInfo('El usuario no se está registrado en nuestro sistema', 'Ups!');
               } else if (error.status == 500) {
                 this.toastr.showError('Ocurrión un problema con el servidor, intenta más tarde', 'Ups!');
               }
@@ -81,7 +81,7 @@ export class RestablecerContrasenaComponent implements OnInit {
         });
 
     } else {
-      return this.toastr.showError('Verifique la contraseña', 'Contraseñas no coinciden');
+      return this.toastr.showError('La contraseña y confirmación de contraseña no coinciden', 'Contraseñas no coinciden');
 
     }
   }
