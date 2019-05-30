@@ -9,7 +9,7 @@
       <label>Búsqueda</label>
       <div class="row">
         <div class="col-4">
-          <input type="text" class="form-control" placeholder="Número de cédula a buscar" formControlName="NumCedula"
+          <input type="number" class="form-control" placeholder="Número de documento a buscar" formControlName="NumCedula"
             id="252c31d2-bda5-43f8-a5db-7d80efca831f">
         </div>
         <div class="col-2">
@@ -50,7 +50,7 @@
           </datalist>
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Número de documento" formControlName="numeroDocumento"
+          <input type="number" class="form-control" placeholder="Número de documento" formControlName="numeroDocumento"
             [(ngModel)]="cedula" id="1bdfc5b0-cf64-4be7-a852-30f61399d956"
             [ngClass]="{ 'is-invalid': submitted && validador.numeroDocumento.errors}">
         </div>
@@ -76,12 +76,12 @@
       </div>
       <div class="row">
         <div class="col">
-          <input type="tel" class="form-control" placeholder="Número fijo" formControlName="numeroFijo"
+          <input type="number" class="form-control" placeholder="Número fijo" formControlName="numeroFijo"
             [(ngModel)]="numero_fijo" id="53340338-d77a-412c-8210-a527c8462bf7"
             [ngClass]="{ 'is-invalid': submitted && validador.numeroFijo.errors}">
         </div>
         <div class="col">
-          <input type="tel" class="form-control" placeholder="Número ceular" formControlName="numeroCelular"
+          <input type="number" class="form-control" placeholder="Número ceular" formControlName="numeroCelular"
             [(ngModel)]="numero_celular" id="1ceb9319-1610-4f99-8942-8bd8887c3036"
             [ngClass]="{ 'is-invalid': submitted && validador.numeroCelular.errors}">
         </div>

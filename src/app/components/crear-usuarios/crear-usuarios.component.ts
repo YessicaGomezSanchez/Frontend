@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { SesionService } from 'src/app/services/sesion.service';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
+import { empty } from 'rxjs';
 
 
 @Component({
@@ -73,7 +74,7 @@ export class CrearUsuariosComponent implements OnInit {
     this.submitted = true;
 
     if (this.usersForm.invalid) {
-      return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
+      return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
 
       if (usersForm.value.rolUsuario != "Empresa") {
@@ -99,11 +100,12 @@ export class CrearUsuariosComponent implements OnInit {
           return this.toastr.showError('La fecha de vencimiento de licencia debe ser mayor a la actual', 'Ups!');
         }
       }
-
-
-    // if (usersForm.value.rolUsuario === 'Conductor' && usersForm.value.categoria === "" && usersForm.value.fecha_venc_licencia === "") {
-    //   return this.toastr.showError('Complete los campos pendientes del conductor', 'Campos obligatorios del conductor');
-    // }
+     
+      if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.categoria === undefined || usersForm.value.categoria === " ")) {
+        return this.toastr.showError('Complete la categoría  de la licencia de conducción', 'Campos obligatorios del conductor');
+      } else if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.fecha_venc_licencia === undefined || usersForm.value.fecha_venc_licencia === " ")) {
+        return this.toastr.showError('Complete la fecha de vencimiento de la licencia de conducción', 'Campos obligatorios del conductor');
+      }
 
       if (usersForm.value.contrasena !== usersForm.value.confContrasena) {
         return this.toastr.showError('La contraseña no coincide con la confirmación de la contraseña', 'Ups!');
@@ -167,13 +169,14 @@ export class CrearUsuariosComponent implements OnInit {
 
   cancelar() {
     this.usersForm.reset();
+    this.nameGuardar = "Guardar";
   }
 
   actualizarUsuarios(usersForm: any) {
     this.submitted = true;
 
     if (this.usersForm.invalid) {
-      return this.toastr.showError('Complete los campos resaltados', 'Campos obligatorios');
+      return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
 
       if (usersForm.value.rolUsuario != "Empresa") {
@@ -192,13 +195,20 @@ export class CrearUsuariosComponent implements OnInit {
       }
 
       if (usersForm.value.fecha_venc_licencia !== "") {
-        var myDate = new Date(usersForm.value.fecha_nacimiento + " ");
+        var myDate = new Date(usersForm.value.fecha_venc_licencia + " ");
         var today = new Date();
         today.setHours(0, 0, 0, 0)
         if (myDate < today) {
           return this.toastr.showError('La fecha de vencimiento de licencia debe ser mayor a la actual', 'Ups!');
         }
       }
+      
+      if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.categoria === undefined || usersForm.value.categoria === " ")) {
+        return this.toastr.showError('Complete la categoría  de la licencia de conducción', 'Campos obligatorios del conductor');
+      } else if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.fecha_venc_licencia === undefined || usersForm.value.fecha_venc_licencia === " ")) {
+        return this.toastr.showError('Complete la fecha de vencimiento de la licencia de conducción', 'Campos obligatorios del conductor');
+      }
+
       if (usersForm.value.contrasena !== usersForm.value.confContrasena) {
         return this.toastr.showError('La contraseña no coincide con la confirmación de la contraseña', 'Ups!');
       } else {
@@ -272,27 +282,41 @@ export class CrearUsuariosComponent implements OnInit {
 
   buscarUsuario(usersForm: any): void {
     const cedula = usersForm.value.NumCedula;
-    this.userService.getUsuario(cedula).subscribe(data => {
-      this.nombres = data.nombres;
-      this.apellidos = data.apellidos;
-      this.tipo_documento = data.tipo_documento;
-      this.cedula = data.cedula;
-      this.fecha_nacimiento = data.fecha_nacimiento;
-      this.direccion = data.direccion;
-      this.numero_fijo = data.numero_fijo;
-      this.numero_celular = data.numero_fijo;
-      this.rol = data.rol;
-      this.nombre_usuario = data.nombre_usuario;
-      this.correo = data.correo;
-      this.contrasena = data.contrasena;
-      this.num_licencia = data.num_licencia;
-      this.categoria = data.categoria;
-      this.fecha_venc_licencia = data.fecha_venc_licencia;
-      this.confContrasena = data.contrasena;
-      console.log(data);
-    })
 
-    this.nameGuardar = "Actualizar";
+    if (cedula === "" || cedula === " ") {
+      this.toastr.showWarning('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
+    } else {
+      
+      this.userService.getUsuario(cedula).subscribe(data => {
+        this.nombres = data.nombres;
+        this.apellidos = data.apellidos;
+        this.tipo_documento = data.tipo_documento;
+        this.cedula = data.cedula;
+        this.fecha_nacimiento = data.fecha_nacimiento;
+        this.direccion = data.direccion;
+        this.numero_fijo = data.numero_fijo;
+        this.numero_celular = data.numero_fijo;
+        this.rol = data.rol;
+        this.nombre_usuario = data.nombre_usuario;
+        this.correo = data.correo;
+        this.contrasena = data.contrasena;
+        this.num_licencia = data.num_licencia;
+        this.categoria = data.categoria;
+        this.fecha_venc_licencia = data.fecha_venc_licencia;
+        this.confContrasena = data.contrasena;
+        this.nameGuardar = "Actualizar";
+      },
+        error => {
+          if (error.status === 404) {
+            this.toastr.showError(error.error.message, 'Ups!');
+          } else {
+            this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
+          }
+
+        }
+      )
+    }
+  
   }
 
 
