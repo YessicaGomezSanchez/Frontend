@@ -58,5 +58,16 @@
  .buscarP{
   flex-direction:column   
  }
+ .btnCancelar img {
+  width: 25%;
+  height: 25%;
+}
+.btnCancelar {
+  background-color: #0a08083b;
+  padding: 3px;
+  border-radius: 16px;
+  border: none;
+  margin: 5px;
+}
 
 

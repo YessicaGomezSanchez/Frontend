@@ -284,7 +284,7 @@ export class CrearUsuariosComponent implements OnInit {
     const cedula = usersForm.value.NumCedula;
 
     if (cedula === "" || cedula === " ") {
-      this.toastr.showError('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
+      this.toastr.showWarning('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
     } else {
       
       this.userService.getUsuario(cedula).subscribe(data => {

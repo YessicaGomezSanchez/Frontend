@@ -60,7 +60,6 @@ export class ServiciosComponent implements OnInit {
   guardarServicio(formServicio: any) {
     this.submitted = true;
     if (this.formServicio.invalid) {
-      console.log(this.formServicio.invalid);
       return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
       var fechaActual = new Date();
@@ -118,7 +117,7 @@ export class ServiciosComponent implements OnInit {
   buscarUsuario(formServicio: any): void {
     const id = formServicio.value.nomBusqueda;
     if (id === "") {
-      this.toastr.showError('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
+      this.toastr.showWarning('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
     } else {
       this.usuario.getUsuario(id).subscribe(data => {
         this.nombre = data.nombres;

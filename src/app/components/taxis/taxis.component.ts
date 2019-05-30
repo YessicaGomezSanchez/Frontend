@@ -152,8 +152,8 @@ export class TaxisComponent implements OnInit {
       }
 
       this.taxisService.postTaxis(taxi).subscribe(data => {
-        
-        this.toastr.showSuccess('La información del taxi se ha guardado!','Guardado');
+
+        this.toastr.showSuccess('La información del taxi se ha guardado!', 'Guardado');
       },
         error => {
           if (error.status == 404) {
@@ -192,34 +192,47 @@ export class TaxisComponent implements OnInit {
     });
     this.toastr.showInfo('El conductor fué agregado ', 'Agregado!');
     conductor.disabled = true;
-    
+
   }
 
   buscarTaxi(taxiForm: any): void {
     const placa = taxiForm.value.placa;
-    this.taxisService.getTaxi(placa).subscribe(data => {
-      this.placa = data.placa;
-      this.modelo = data.modelo;
-      this.num_soat = data.num_soat;
-      this.fecha_venc_soat = data.fecha_venc_soat;
-      this.num_tecnomecanica = data.num_tecnomecanica;
-      this.fecha_venc_tecnomecanica = data.fecha_venc_tecnomecanica;
-      this.num_seguro_contractual = data.num_seguro_contractual;
-      this.fecha_venc_seguro_contractual = data.fecha_venc_seguro_contractual;
-      this.maletero = data.maletero;
-      this.parrilla = data.parrilla;
-      this.mascotas = data.mascotas;
-      this.habilitado = data.habilitado;
-      this.nombre_apellidos = data.nombre_apellidos;
-      this.tipo_documento = data.tipo_documento;
-      this.cedula = data.cedula;
-      this.correo = data.correo;
-      this.conductores = data.conductores;
-      this.arrayconductores=this.conductores;
-      this.nameGuardar = "Actualizar";
-    })
- 
-    
+    if (placa === "" || placa === " " || placa === undefined) {
+      this.toastr.showWarning('Debe ingresar una placa para realizar la búsqueda', 'Ups!');
+    } else {
+
+      this.taxisService.getTaxi(placa).subscribe(data => {
+        this.placa = data.placa;
+        this.modelo = data.modelo;
+        this.num_soat = data.num_soat;
+        this.fecha_venc_soat = data.fecha_venc_soat;
+        this.num_tecnomecanica = data.num_tecnomecanica;
+        this.fecha_venc_tecnomecanica = data.fecha_venc_tecnomecanica;
+        this.num_seguro_contractual = data.num_seguro_contractual;
+        this.fecha_venc_seguro_contractual = data.fecha_venc_seguro_contractual;
+        this.maletero = data.maletero;
+        this.parrilla = data.parrilla;
+        this.mascotas = data.mascotas;
+        this.habilitado = data.habilitado;
+        this.nombre_apellidos = data.nombre_apellidos;
+        this.tipo_documento = data.tipo_documento;
+        this.cedula = data.cedula;
+        this.correo = data.correo;
+        this.conductores = data.conductores;
+        this.arrayconductores = this.conductores;
+        console.log('conductores del taxi', data.conductores);
+        this.nameGuardar = "Actualizar";
+      },
+        error => {
+          if (error.status === 404) {
+            let message = error.error.message;
+            this.toastr.showError(message, 'Ups!');
+          } else {
+            this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
+          }
+        })
+    }
+
   }
 
   listarConductores() {
@@ -231,12 +244,25 @@ export class TaxisComponent implements OnInit {
     });
   }
   buscarConductor(cedulaC: any): void {
-    this.usuarioServicio.getAllUsuario().subscribe((data: any) => {
-      this.conductores = data.filter(data => data.cedula == cedulaC);
-      this.conductores.map((conductor: any) => {
-        conductor.disabled = false;
-      })
-    });
+
+    if (cedulaC === "" || cedulaC === " " || cedulaC === undefined) {
+      this.toastr.showWarning('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
+    } else {
+      this.usuarioServicio.getAllUsuario().subscribe((data: any) => {
+        this.conductores = data.filter(data => data.cedula == cedulaC);
+        this.conductores.map((conductor: any) => {
+          conductor.disabled = false;
+        })
+      },
+        error => {
+          if (error.status === 404) {
+            const mensaje = error.error.message;            
+            this.toastr.showError(mensaje, 'Ups!');
+          } else {
+            this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
+          }
+        });
+    }
   };
 
   editarTaxi(taxiForm: any) {
@@ -246,7 +272,7 @@ export class TaxisComponent implements OnInit {
       return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
       let now = new Date();
-       const taxi = {
+      const taxi = {
         modelo: taxiForm.value.modelo,
         placa: taxiForm.value.placa,
         num_soat: taxiForm.value.num_soat,
@@ -268,10 +294,10 @@ export class TaxisComponent implements OnInit {
         tipo_documento: taxiForm.value.tipo_documento,
         cedula: taxiForm.value.cedula,
         correo: taxiForm.value.correo,
-        conductores: this.arrayconductores       
-        
+        conductores: this.arrayconductores
+
       };
-           
+
       if (taxiForm.value.fecha_venc_soat !== "") {
         var myDate = new Date(taxiForm.value.fecha_venc_soat + " ");
         var today = new Date();
@@ -308,12 +334,13 @@ export class TaxisComponent implements OnInit {
       }
 
       this.taxisService.putTaxi(taxi).subscribe(data => {
-        console.log('taxi.conductores', taxi.conductores);
-        this.toastr.showSuccess('La información del taxi se ha actualizado!','Editado');
+     
+        this.toastr.showSuccess('La información del taxi se ha actualizado!', 'Editado');
       },
         error => {
           if (error.status == 404) {
-            this.toastr.showError(error.message, 'Ups1!');
+            const message = error.message;
+            this.toastr.showError(message, 'Ups!');
           } else if (error.status == 500) {
             this.toastr.showError('El taxi ya se encuentra registrado', 'Ups2!');
           }
@@ -338,8 +365,14 @@ export class TaxisComponent implements OnInit {
 
   transform(value: string) {
     var datePipe = new DatePipe('en-US');
-     value = datePipe.transform(value, 'dd/MM/yyyy');
-     return value;
+    value = datePipe.transform(value, 'dd/MM/yyyy');
+    return value;
 
- }
+  }
+  cancelar() {
+    this.taxiForm.reset();
+    this.listarConductores();
+    this.nameGuardar = "Guardar";
+
+  }
 }

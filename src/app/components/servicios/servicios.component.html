@@ -53,7 +53,7 @@
           <div class="row">
             <div class="col">
               <mat-select [(value)]="selected" formControlName="codTaxi" placeholder="Taxis disponibles"
-                class="form-control">
+                class="form-control" [ngClass]="{ 'is-invalid': submitted && validador.codTaxi.errors}">
                 <mat-option *ngFor="let taxi of taxisListD" [value]="taxi.placa">
                   {{taxi.placa}}
                 </mat-option>
