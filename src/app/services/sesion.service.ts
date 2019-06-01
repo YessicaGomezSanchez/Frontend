@@ -36,5 +36,10 @@ export class SesionService {
       return res;
     }))
   }
+  postPrimeraVez(){
+    return this.http.post(environment.URL, { headers: this.headers }).pipe(map((res: any) => {
+      return res;
+    }))
+  }
 
 }
