@@ -3,7 +3,6 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { SesionService } from 'src/app/services/sesion.service';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
-import { empty } from 'rxjs';
 
 
 @Component({
@@ -12,11 +11,12 @@ import { empty } from 'rxjs';
   styleUrls: ['./crear-usuarios.component.css']
 })
 export class CrearUsuariosComponent implements OnInit {
-  pvx: boolean;
+
   usersForm: FormGroup;
   submitted = false;
   nameGuardar: String;
 
+ pvx: boolean;
   nombres: String;
   apellidos: String;
   tipo_documento: String;

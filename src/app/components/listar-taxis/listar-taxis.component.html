@@ -1,22 +1,49 @@
 <div class="container">
   <div class="titulo row">
-        <img src="../../../assets/imagenes/taxi-frontal.png">
+    <img src="../../../assets/imagenes/taxi-frontal.png">
     <h3>Taxis Registrados</h3>
   </div>
-
-<div class="tarjetas">
-  <div *ngFor="let taxi of taxisList" >
-    <div class="module">
-      <label>Placa: {{ taxi.placa }}</label>
-      <br>
-      <label>Habilitado: {{ taxi.habilitado }}</label>
-      <br>
-      <label>Fecha Vencimiento SOAT: {{ taxi.fecha_venc_soat | date:'dd/MM/yyyy'}}</label>
-      <br>
-      <label>Fecha Vencimiento TC: {{ taxi.fecha_venc_tecnomecanica  | date:'dd/MM/yyyy'}}</label>
-      <br>
-      <label>Fecha Vencimiento S.C: {{ taxi.num_seguro_contractual | date:'dd/MM/yyyy' }}</label>
+  <div>
+    <div class="filtros">
+      <label>Filtros</label>
+      <div class="row">
+        <div class="col-4">
+          <input type="text" class="form-control" placeholder="Buscar" name="placa" id="" [(ngModel)]="placa"
+            value="placa">
+        </div>
+        <div class="col-2">
+          <button class="btn" id="" (click)="buscarTaxi(placa)" id="">
+            <img src="../../../assets/imagenes/lupa.png">Buscar
+          </button>
+        </div>
+        <div class="col-6">
+          <button class="btn" id="" (click)="listarTaxis()" id="">
+            <img src="./../../assets/imagenes/busqueda.png">Todos
+          </button>
+        </div>
+      </div>
     </div>
+
+    <div class="tarjetas">
+      <div *ngFor="let taxi of taxisList">
+        <div class="module">
+          <label>Placa: {{ taxi.placa }}</label>
+          <br>
+          <label>Fecha Vencimiento SOAT: {{ taxi.fecha_venc_soat | date:'dd/MM/yyyy'}}</label>
+          <br>
+          <label>Fecha Vencimiento TC: {{ taxi.fecha_venc_tecnomecanica  | date:'dd/MM/yyyy'}}</label>
+          <br>
+          <label>Fecha Vencimiento S.C: {{ taxi.num_seguro_contractual | date:'dd/MM/yyyy' }}</label>
+          <button mat-button>Inactivar</button>
+        </div>
+      </div>
+    </div>
+    
+      <mat-paginator [length]="length"
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="pageSizeOptions" 
+                    (page)="pageEvent = setPageSizeOptions($event)">
+      </mat-paginator>
+      
   </div>
-</div>
 </div>

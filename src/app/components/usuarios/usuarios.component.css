@@ -1,33 +1,49 @@
 .container {
-    border-radius: 16px;
- 
-  }
-  .tarjetas{
-    display: flex;
-    flex-wrap: wrap;
+  border-radius: 16px;
+}
+.tarjetas{
+  display: flex;
+  flex-wrap: wrap;
 
-  }
-  .titulo {
-    padding: 15px;
-    justify-content: center;
-  }
-  
-  img {
-    width: 4%;
-    height: 4%;
-  }
+}
+.titulo {
+  padding: 15px;
+  justify-content: center;
+}
 
+.btn img {
+  width: 25%;
+  height: 25%;
+}
 .grid {
-  margin: 0}
+margin: 0}
 
 .module {
-  margin: 5px;
-  padding: 12px;
-  text-align: justify;
-  color: #000000;
-  background-color: #eef07c88;
-  border-radius: 9px;
-  max-width: 310px;
-  min-width: 175px;
+margin: 5px;
+padding: 12px;
+text-align: justify;
+color: #000000;
+background-color: #eef07c88;
+border-radius: 9px;
+max-width: 310px;
+min-width: 175px;
+}
 
+.btn {
+background-color: #ffdb008a;
+padding: 3px;
+border-radius: 16px;
+margin: 5px;
+}
+
+.mat-button{
+background-color: #ffdb008a;
+border-radius: 10px;
+}
+img {
+width: 4%;
+height: 4%;
+}
+mat-form-field {
+margin-right: 12px;
 }

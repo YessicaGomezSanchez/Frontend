@@ -11,11 +11,10 @@
     justify-content: center;
   }
 
-  img {
-    width: 4%;
-    height: 4%;
+  .btn img {
+    width: 25%;
+    height: 25%;
   }
-
 .grid {
   margin: 0}
 
@@ -28,4 +27,23 @@
   border-radius: 9px;
   max-width: 310px;
   min-width: 175px;
+}
+
+.btn {
+  background-color: #ffdb008a;
+  padding: 3px;
+  border-radius: 16px;
+  margin: 5px;
+}
+
+.mat-button{
+  background-color: #ffdb008a;
+  border-radius: 10px;
+}
+img {
+  width: 4%;
+  height: 4%;
+}
+mat-form-field {
+  margin-right: 12px;
 }

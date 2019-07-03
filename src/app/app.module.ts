@@ -10,7 +10,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatCardModule, MatButtonModule, MatInputModule, 
   MatMenuModule, MatToolbarModule, MatIconModule, MatSelectModule,
-   MatFormFieldModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+   MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatPaginatorModule} from '@angular/material';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -50,7 +50,7 @@ import { MomentModule } from 'ngx-moment';
     MatCardModule,
     MatFormFieldModule,
     MatDatepickerModule,
-     MatNativeDateModule,
+    MatNativeDateModule,
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
@@ -63,7 +63,8 @@ import { MomentModule } from 'ngx-moment';
     ReactiveFormsModule,
     MatCheckboxModule,
     HttpClientModule,
-    MatListModule,    
+    MatListModule,
+    MatPaginatorModule,   
     ToastrModule.forRoot()
     ],
   providers: [ToastrComponent],
