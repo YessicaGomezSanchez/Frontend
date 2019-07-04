@@ -9,7 +9,7 @@
       <label>Búsqueda</label>
       <div class="row">
         <div class="col-4">
-          <input type="number" class="form-control" placeholder="Número de documento a buscar" formControlName="NumCedula"
+          <input type="number" class="form-control" placeholder="Número identificador" formControlName="id"
             id="252c31d2-bda5-43f8-a5db-7d80efca831f">
         </div>
         <div class="col-2">
@@ -76,14 +76,14 @@
       </div>
       <div class="row">
         <div class="col">
-          <input type="number" class="form-control" placeholder="Número fijo" formControlName="numeroFijo"
-            [(ngModel)]="numero_fijo" id="53340338-d77a-412c-8210-a527c8462bf7"
-            [ngClass]="{ 'is-invalid': submitted && validador.numeroFijo.errors}">
-        </div>
-        <div class="col">
-          <input type="number" class="form-control" placeholder="Número ceular" formControlName="numeroCelular"
+          <input type="number" class="form-control" placeholder="Número de contacto" formControlName="numero_contacto"
             [(ngModel)]="numero_celular" id="1ceb9319-1610-4f99-8942-8bd8887c3036"
-            [ngClass]="{ 'is-invalid': submitted && validador.numeroCelular.errors}">
+            [ngClass]="{ 'is-invalid': submitted && validador.numero_contacto.errors}">
+        </div>
+                <div class="col">
+          <!-- <input type="number" class="form-control" placeholder="Número fijo" formControlName="numeroFijo"
+            [(ngModel)]="numero_fijo" id="53340338-d77a-412c-8210-a527c8462bf7"
+            [ngClass]="{ 'is-invalid': submitted && validador.numeroFijo.errors}"> -->
         </div>
       </div>
     </div>

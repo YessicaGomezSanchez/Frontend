@@ -17,13 +17,12 @@ enableProdMode();
 export class PerfilComponent implements OnInit {
   nombres: string;
   apellidos: string;
-  numero_celular: string;
+  numero_contacto: string;
   correo: string;
   tipo_documento: string;
-  cedula: string;
+  numero_documento: string;
   fecha_nacimiento: string;
   direccion: string;
-  numero_fijo: string;
   nombre_usuario: string;
   usersForm: FormGroup;
   submitted = false;
@@ -45,10 +44,9 @@ export class PerfilComponent implements OnInit {
       nombres: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       apellidos: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       tipo_documento: ['', [Validators.required]],
-      cedula: [{ value: '', disabled: true }, [Validators.required]],
+      numero_documento: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
-      numero_fijo: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(7), Validators.minLength(7)]],
-      numero_celular: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(10), Validators.minLength(7)]],
+      numero_contacto: [{ value: '', disabled: true }, [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(10), Validators.minLength(7)]],
       nombre_usuario: [''],
       correo: ['', [Validators.required, Validators.email]],
       fecha_nacimiento: [''],
@@ -64,11 +62,10 @@ export class PerfilComponent implements OnInit {
       this.nombres = data.nombres;
       this.apellidos = data.apellidos;
       this.tipo_documento = data.tipo_documento;
-      this.cedula = data.cedula;
+      this.numero_documento = data.numero_documento;
       this.fecha_nacimiento = data.fecha_nacimiento;
       this.direccion = data.direccion;
-      this.numero_fijo = data.numero_fijo;
-      this.numero_celular = data.numero_celular;
+      this.numero_contacto = data.numero_contacto;
       this.nombre_usuario = data.nombre_usuario;
       this.correo = data.correo;
     });
@@ -87,19 +84,19 @@ export class PerfilComponent implements OnInit {
         nombres: usersForm.value.nombres,
         apellidos: usersForm.value.apellidos,
         tipo_documento: usersForm.value.tipo_documento,
-        cedula: this.cedula,
+        numero_documento: this.numero_documento,
         fecha_nacimiento: usersForm.value.fecha_nacimiento,
         direccion: usersForm.value.direccion,
-        numero_fijo: usersForm.value.numero_fijo,
-        numero_celular: usersForm.value.numero_celular,
+        numero_contacto: usersForm.value.numero_contacto,
         nombre_usuario: usersForm.value.nombre_usuario,
         correo: usersForm.value.correo
       }
       const sesion = {
-        cedula: usersForm.value.cedula,
+        numero_documento: usersForm.value.numero_documento,
         habilitado: true,
         nombre_usuario: usersForm.value.nombre_usuario,
-        correo: usersForm.value.correo
+        correo: usersForm.value.correo,
+        numero_contacto: usersForm.value.numero_contacto,
       }
       if (usersForm.value.fecha_nacimiento !== "") {
         var myDate = new Date(usersForm.value.fecha_nacimiento + " ");
@@ -122,7 +119,7 @@ export class PerfilComponent implements OnInit {
         });
       }, error => {
         if (error.status == 404) {
-          this.toastr.showError("El usuario " + sesion.cedula + " no está registrado", 'Ups!');
+          this.toastr.showError("El usuario " + sesion.numero_contacto + " no está registrado", 'Ups!');
         } else {
           this.toastr.showError(error.message, 'Ups2!usuario');
         }

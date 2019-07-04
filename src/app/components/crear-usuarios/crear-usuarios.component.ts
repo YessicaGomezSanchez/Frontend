@@ -23,8 +23,7 @@ export class CrearUsuariosComponent implements OnInit {
   cedula: String;
   fecha_nacimiento: String;
   direccion: String;
-  numero_fijo: String;
-  numero_celular: String;
+  numero_contacto: String;
   rol: String;
   habilitado: Boolean;
   nombre_usuario: String;
@@ -53,7 +52,6 @@ export class CrearUsuariosComponent implements OnInit {
       tipoDocumento: ['', [Validators.required]],
       numeroDocumento: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       direccion: ['', [Validators.required]],
-      numeroFijo: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(7), Validators.minLength(7)]],
       numeroCelular: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(10), Validators.minLength(7)]],
       rolUsuario: ['', [Validators.required]],
       contrasena: ['', [Validators.required, Validators.minLength(6)]],
@@ -119,8 +117,7 @@ export class CrearUsuariosComponent implements OnInit {
           cedula: usersForm.value.numeroDocumento,
           fecha_nacimiento: usersForm.value.fecha_nacimiento,
           direccion: usersForm.value.direccion,
-          numero_fijo: usersForm.value.numeroFijo,
-          numero_celular: usersForm.value.numeroCelular,
+          numero_contacto: usersForm.value.numero_contacto,
           rol: usersForm.value.rolUsuario,
           habilitado: true,
           pvx: this.pvx,
@@ -221,8 +218,7 @@ export class CrearUsuariosComponent implements OnInit {
           cedula: usersForm.value.numeroDocumento,
           fecha_nacimiento: usersForm.value.fecha_nacimiento,
           direccion: usersForm.value.direccion,
-          numero_fijo: usersForm.value.numeroFijo,
-          numero_celular: usersForm.value.numeroCelular,
+          numero_contacto: usersForm.value.numeroCelular,
           rol: usersForm.value.rolUsuario,
           habilitado: true,
           pvx: this.pvx,
@@ -281,21 +277,20 @@ export class CrearUsuariosComponent implements OnInit {
   }
 
   buscarUsuario(usersForm: any): void {
-    const cedula = usersForm.value.NumCedula;
+    const numero_contacto = usersForm.value.numero_contacto;
 
-    if (cedula === "" || cedula === " ") {
-      this.toastr.showWarning('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
+    if (numero_contacto === "" || numero_contacto === " ") {
+      this.toastr.showWarning('Debe ingresar un número identificador para realizar la búsqueda', 'Ups!');
     } else {
       
-      this.userService.getUsuario(cedula).subscribe(data => {
+      this.userService.getUsuario(numero_contacto).subscribe(data => {
         this.nombres = data.nombres;
         this.apellidos = data.apellidos;
         this.tipo_documento = data.tipo_documento;
         this.cedula = data.cedula;
         this.fecha_nacimiento = data.fecha_nacimiento;
         this.direccion = data.direccion;
-        this.numero_fijo = data.numero_fijo;
-        this.numero_celular = data.numero_fijo;
+        this.numero_contacto = data.numero_contacto;
         this.rol = data.rol;
         this.nombre_usuario = data.nombre_usuario;
         this.correo = data.correo;

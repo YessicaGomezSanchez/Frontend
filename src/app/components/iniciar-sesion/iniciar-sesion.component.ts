@@ -48,7 +48,7 @@ export class IniciarSesionComponent implements OnInit {
                 if (data.correo === sesion.correo && data.contrasena === sesion.contrasena && (data.rol ==='Operador' || data.rol ==='Administrador')) {
                     this.router.navigate([`/dashboard`]);
                     this.toastr.showSuccess('Bienvenido', 'Ingreso exitoso!');
-                    localStorage.setItem('idUsuario', data.cedula);
+                    localStorage.setItem('idUsuario', data.numero_contacto);
                 } else {
                     return this.toastr.showInfo('La información ingresada es incorrecta, de lo contrario por favor comunicarse con el administrador del acopio', 'Ups!');
                 }
