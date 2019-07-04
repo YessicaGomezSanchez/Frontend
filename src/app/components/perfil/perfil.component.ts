@@ -84,10 +84,10 @@ export class PerfilComponent implements OnInit {
         nombres: usersForm.value.nombres,
         apellidos: usersForm.value.apellidos,
         tipo_documento: usersForm.value.tipo_documento,
-        numero_documento: this.numero_documento,
+        numero_documento: usersForm.value.numero_documento,
         fecha_nacimiento: usersForm.value.fecha_nacimiento,
         direccion: usersForm.value.direccion,
-        numero_contacto: usersForm.value.numero_contacto,
+        numero_contacto: this.numero_contacto,
         nombre_usuario: usersForm.value.nombre_usuario,
         correo: usersForm.value.correo
       }
@@ -119,6 +119,8 @@ export class PerfilComponent implements OnInit {
         });
       }, error => {
         if (error.status == 404) {
+          console.log(sesion);
+          console.log(dataUsuario);
           this.toastr.showError("El usuario " + sesion.numero_contacto + " no está registrado", 'Ups!');
         } else {
           this.toastr.showError(error.message, 'Ups2!usuario');
