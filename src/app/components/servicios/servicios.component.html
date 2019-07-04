@@ -7,10 +7,10 @@
 
   <form [formGroup]="formServicio">
     <div class="usuario">
-      <label>Usuario</label>
+      <h4>Usuario</h4>
       <div class="row">
         <div class="col">
-          <input type="number" class="form-control" placeholder="Número de documento"
+             <input type="number" class="form-control" placeholder="Número Identificador"
             id="7155fc3c-e775-4dd7-9e24-d49d6160e734" formControlName="nomBusqueda" min="1">
         </div>
         <div class="col">
@@ -23,11 +23,13 @@
       </div>
       <div class="row">
         <div class="col">
+            <h6>Nombres</h6>
           <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre"
             id="82863fa2-5a0f-44e7-823f-63a9a6639d62" [ngClass]="{ 'is-invalid': submitted && validador.nombre.errors}"
             [(ngModel)]="nombre">
         </div>
         <div class="col">
+            <h6>Apellidos</h6>
           <input type="text" class="form-control" placeholder="Apellidos" formControlName="apellidos"
             id="a22e6f63-2e01-40b9-bca2-bf2fb7191cc1"
             [ngClass]="{ 'is-invalid': submitted && validador.apellidos.errors}" [(ngModel)]="apellidos">
@@ -35,11 +37,13 @@
       </div>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Número celular" formControlName="numeroCelular"
+            <h6>Número de contacto</h6>
+          <input type="text" class="form-control" placeholder="Número de contacto" formControlName="numero_contacto"
             id="f38ac245-b271-45a9-b131-49e0eb1f5d77"
-            [ngClass]="{ 'is-invalid': submitted && validador.numeroCelular.errors}" [(ngModel)]="numeroCelular">
+            [ngClass]="{ 'is-invalid': submitted && validador.numero_contacto.errors}" [(ngModel)]="numero_contacto">
         </div>
         <div class="col">
+            <h6>Dirección</h6>
           <input type="text" class="form-control" placeholder="Dirección" formControlName="direccion"
             id="923f4a2d-57b9-4418-aece-8e6bb9826ee8"
             [ngClass]="{ 'is-invalid': submitted && validador.direccion.errors}" [(ngModel)]="direccion">
@@ -47,11 +51,12 @@
       </div>
     </div>
     <div class="taxi">
-      <label>Taxi</label>
+      <h4>Taxi</h4>
       <div class="row">
         <div class="col">
           <div class="row">
             <div class="col">
+                <h6>Taxis disponibles</h6>
               <mat-select [(value)]="selected" formControlName="codTaxi" placeholder="Taxis disponibles"
                 class="form-control" [ngClass]="{ 'is-invalid': submitted && validador.codTaxi.errors}">
                 <mat-option *ngFor="let taxi of taxisListD" [value]="taxi.placa">
@@ -68,6 +73,7 @@
           </div>
         </div>
         <div class="col">
+            <h6>Observaciones</h6>
           <input type="text" class="form-control" placeholder="Observaciones" formControlName="observaciones"
             id="3bde7444-b0d0-44d5-a98a-a63f6e6d4c16">
         </div>
@@ -92,7 +98,7 @@
         </div>
         <div class="modal-body">
           <mat-selection-list #taxis [(ngModel)]="selectedOptions" name="taxis">
-            <label>Placas</label>
+            <h4>Placas</h4>
             <mat-list-option *ngFor="let taxi of taxisList" [selected]="taxi.asignado" [value]="taxi.placa">
               {{taxi.placa}}
             </mat-list-option>

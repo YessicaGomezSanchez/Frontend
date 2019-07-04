@@ -16,11 +16,11 @@ export class CrearUsuariosComponent implements OnInit {
   submitted = false;
   nameGuardar: String;
 
- pvx: boolean;
+  pvx: boolean;
   nombres: String;
   apellidos: String;
   tipo_documento: String;
-  cedula: String;
+  numero_documento: String;
   fecha_nacimiento: String;
   direccion: String;
   numero_contacto: String;
@@ -50,9 +50,9 @@ export class CrearUsuariosComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       apellidos: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       tipoDocumento: ['', [Validators.required]],
-      numeroDocumento: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      numero_documento: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       direccion: ['', [Validators.required]],
-      numeroCelular: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(10), Validators.minLength(7)]],
+      numero_contacto: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(10), Validators.minLength(7)]],
       rolUsuario: ['', [Validators.required]],
       contrasena: ['', [Validators.required, Validators.minLength(6)]],
       confContrasena: ['', [Validators.required, Validators.minLength(6)]],
@@ -61,7 +61,7 @@ export class CrearUsuariosComponent implements OnInit {
       categoria: [''],
       fecha_venc_licencia: [''],
       nombreUsuario: [''],
-      NumCedula: [''],
+      idBusqueda: [''],
     });
   }
   get validador() {
@@ -98,7 +98,7 @@ export class CrearUsuariosComponent implements OnInit {
           return this.toastr.showError('La fecha de vencimiento de licencia debe ser mayor a la actual', 'Ups!');
         }
       }
-     
+
       if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.categoria === undefined || usersForm.value.categoria === " ")) {
         return this.toastr.showError('Complete la categoría  de la licencia de conducción', 'Campos obligatorios del conductor');
       } else if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.fecha_venc_licencia === undefined || usersForm.value.fecha_venc_licencia === " ")) {
@@ -114,7 +114,7 @@ export class CrearUsuariosComponent implements OnInit {
           nombres: usersForm.value.nombre,
           apellidos: usersForm.value.apellidos,
           tipo_documento: usersForm.value.tipoDocumento,
-          cedula: usersForm.value.numeroDocumento,
+          numero_documento: usersForm.value.numero_documento,
           fecha_nacimiento: usersForm.value.fecha_nacimiento,
           direccion: usersForm.value.direccion,
           numero_contacto: usersForm.value.numero_contacto,
@@ -124,19 +124,20 @@ export class CrearUsuariosComponent implements OnInit {
           nombre_usuario: usersForm.value.nombreUsuario,
           correo: usersForm.value.email,
           contrasena: usersForm.value.contrasena,
-          num_licencia: usersForm.value.numeroDocumento,
+          num_licencia: usersForm.value.numero_documento,
           categoria: usersForm.value.categoria,
           fecha_venc_licencia: usersForm.value.fecha_venc_licencia,
           img_licencia: ''
 
         }
         const sesion = {
-          cedula: usersForm.value.numeroDocumento,
+          numero_documento: usersForm.value.numero_documento,
           rol: usersForm.value.rolUsuario,
           habilitado: true,
           nombre_usuario: usersForm.value.nombreUsuario,
           correo: usersForm.value.email,
           contrasena: usersForm.value.contrasena,
+          numero_contacto: usersForm.value.numero_contacto
         }
 
 
@@ -199,7 +200,7 @@ export class CrearUsuariosComponent implements OnInit {
           return this.toastr.showError('La fecha de vencimiento de licencia debe ser mayor a la actual', 'Ups!');
         }
       }
-      
+
       if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.categoria === undefined || usersForm.value.categoria === " ")) {
         return this.toastr.showError('Complete la categoría  de la licencia de conducción', 'Campos obligatorios del conductor');
       } else if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.fecha_venc_licencia === undefined || usersForm.value.fecha_venc_licencia === " ")) {
@@ -215,34 +216,33 @@ export class CrearUsuariosComponent implements OnInit {
           nombres: usersForm.value.nombre,
           apellidos: usersForm.value.apellidos,
           tipo_documento: usersForm.value.tipoDocumento,
-          cedula: usersForm.value.numeroDocumento,
+          numero_documento: usersForm.value.numero_documento,
           fecha_nacimiento: usersForm.value.fecha_nacimiento,
           direccion: usersForm.value.direccion,
-          numero_contacto: usersForm.value.numeroCelular,
+          numero_contacto: usersForm.value.numero_contacto,
           rol: usersForm.value.rolUsuario,
           habilitado: true,
           pvx: this.pvx,
           nombre_usuario: usersForm.value.nombreUsuario,
           correo: usersForm.value.email,
           contrasena: usersForm.value.contrasena,
-          num_licencia: usersForm.value.numeroDocumento,
+          num_licencia: usersForm.value.numero_documento,
           categoria: usersForm.value.categoria,
           fecha_venc_licencia: usersForm.value.fecha_venc_licencia,
           img_licencia: ''
 
         }
         const sesion = {
-          cedula: usersForm.value.numeroDocumento,
+          numero_documento: usersForm.value.numero_documento,
           rol: usersForm.value.rolUsuario,
           habilitado: true,
           nombre_usuario: usersForm.value.nombreUsuario,
           correo: usersForm.value.email,
           contrasena: usersForm.value.contrasena,
+          numero_contacto: usersForm.value.numero_contacto
         }
 
-
         this.userService.putUsuario(dataUsuario).subscribe((data: any) => {
-          console.log('datos del usuario', data);
           this.sesionService.putSesion(sesion).subscribe(() => {
             this.toastr.showSuccess('La información del usuario fué actualizada!', 'Actualizado');
           }, error => {
@@ -277,17 +277,18 @@ export class CrearUsuariosComponent implements OnInit {
   }
 
   buscarUsuario(usersForm: any): void {
-    const numero_contacto = usersForm.value.numero_contacto;
+    const numero_contacto = usersForm.value.idBusqueda;
 
     if (numero_contacto === "" || numero_contacto === " ") {
       this.toastr.showWarning('Debe ingresar un número identificador para realizar la búsqueda', 'Ups!');
     } else {
-      
+
       this.userService.getUsuario(numero_contacto).subscribe(data => {
+        console.log(data);
         this.nombres = data.nombres;
         this.apellidos = data.apellidos;
         this.tipo_documento = data.tipo_documento;
-        this.cedula = data.cedula;
+        this.numero_documento = data.numero_documento;
         this.fecha_nacimiento = data.fecha_nacimiento;
         this.direccion = data.direccion;
         this.numero_contacto = data.numero_contacto;
@@ -310,9 +311,8 @@ export class CrearUsuariosComponent implements OnInit {
 
         }
       )
+   
     }
-  
+
   }
-
-
 }

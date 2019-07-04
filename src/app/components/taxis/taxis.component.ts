@@ -249,7 +249,7 @@ export class TaxisComponent implements OnInit {
       this.toastr.showWarning('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
     } else {
       this.usuarioServicio.getAllUsuario().subscribe((data: any) => {
-        this.conductores = data.filter(data => data.cedula == cedulaC);
+        this.conductores = data.filter(data => data.numero_contacto == cedulaC);
         this.conductores.map((conductor: any) => {
           conductor.disabled = false;
         })

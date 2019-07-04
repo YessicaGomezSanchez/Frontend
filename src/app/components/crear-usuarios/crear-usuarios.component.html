@@ -6,10 +6,10 @@
   </div>
   <form [formGroup]="usersForm">
     <div class="usuario">
-      <label>Búsqueda</label>
+      <h4>Búsqueda</h4>
       <div class="row">
         <div class="col-4">
-          <input type="number" class="form-control" placeholder="Número identificador" formControlName="id"
+          <input type="number" class="form-control" placeholder="Número identificador" formControlName="idBusqueda"
             id="252c31d2-bda5-43f8-a5db-7d80efca831f">
         </div>
         <div class="col-2">
@@ -20,17 +20,15 @@
         <div class="col-6">
         </div>
       </div>
-      <label>Datos personales</label>
-
-
-
+      <h4>Datos personales</h4>
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre" [(ngModel)]="nombres"
+          <h6>Nombres</h6>
+          <input type="text" class="form-control" placeholder="Nombres" formControlName="nombre" [(ngModel)]="nombres"
             id="1f89afe9-7acb-4061-a88a-9ffe8f02373c" [ngClass]="{ 'is-invalid': submitted && validador.nombre.errors}">
         </div>
-
         <div class="col">
+          <h6>Apellidos</h6>
           <input type="text" class="form-control" placeholder="Apellidos" formControlName="apellidos"
             [(ngModel)]="apellidos" id="02584f59-ce80-49fd-b67b-a2f7d693f566"
             [ngClass]="{ 'is-invalid': submitted && validador.apellidos.errors}">
@@ -39,6 +37,7 @@
 
       <div class="row">
         <div class="col">
+          <h6>Tipo de documento</h6>
           <input list="tipoDocumento" type="text" class="form-control" formControlName="tipoDocumento"
             [(ngModel)]="tipo_documento" id="2c4221a7-a046-473b-bc3d-3beea120522e" placeholder="Tipo de Documento"
             [ngClass]="{ 'is-invalid': submitted && validador.tipoDocumento.errors}">
@@ -50,18 +49,17 @@
           </datalist>
         </div>
         <div class="col">
-          <input type="number" class="form-control" placeholder="Número de documento" formControlName="numeroDocumento"
-            [(ngModel)]="cedula" id="1bdfc5b0-cf64-4be7-a852-30f61399d956"
-            [ngClass]="{ 'is-invalid': submitted && validador.numeroDocumento.errors}">
+          <h6>Número de documento</h6>
+          <input type="number" class="form-control" placeholder="Número de documento" formControlName="numero_documento"
+            [(ngModel)]="numero_documento" id="1bdfc5b0-cf64-4be7-a852-30f61399d956"
+            [ngClass]="{ 'is-invalid': submitted && validador.numero_documento.errors}">
         </div>
       </div>
       <div class="row">
         <div class="col">
           <div class="row">
             <div class="col">
-              <span>Fecha de Nacimiento</span>
-            </div>
-            <div class="col">
+              <h6>Fecha de nacimiento</h6>
               <input type="date" class="form-control" placeholder="Fecha de nacimiento"
                 formControlName="fecha_nacimiento" id="8e0f1c59-5e45-45ba-8564-9e374ed289f9"
                 [(ngModel)]="fecha_nacimiento" value="{{fecha_nacimiento | date:'yyyy-MM-dd'}}">
@@ -69,6 +67,7 @@
           </div>
         </div>
         <div class="col">
+          <h6>Dirección</h6>
           <input type="text" class="form-control" placeholder="Dirección" formControlName="direccion"
             [(ngModel)]="direccion" id="32b27c7b-af29-4891-9577-f3e51cf06bba"
             [ngClass]="{ 'is-invalid': submitted && validador.direccion.errors}">
@@ -76,11 +75,12 @@
       </div>
       <div class="row">
         <div class="col">
+          <h6>Número de contacto</h6>
           <input type="number" class="form-control" placeholder="Número de contacto" formControlName="numero_contacto"
-            [(ngModel)]="numero_celular" id="1ceb9319-1610-4f99-8942-8bd8887c3036"
+            [(ngModel)]="numero_contacto" id="1ceb9319-1610-4f99-8942-8bd8887c3036"
             [ngClass]="{ 'is-invalid': submitted && validador.numero_contacto.errors}">
         </div>
-                <div class="col">
+        <div class="col">
           <!-- <input type="number" class="form-control" placeholder="Número fijo" formControlName="numeroFijo"
             [(ngModel)]="numero_fijo" id="53340338-d77a-412c-8210-a527c8462bf7"
             [ngClass]="{ 'is-invalid': submitted && validador.numeroFijo.errors}"> -->
@@ -88,9 +88,10 @@
       </div>
     </div>
     <div class="taxi">
-      <label>Datos de inicio de sesión</label>
+      <h4>Datos de inicio de sesión</h4>
       <div class="row">
         <div class="col">
+          <h6>Rol de usuario</h6>
           <input list="rolUsuarios" type="text" class="form-control" formControlName="rolUsuario" [(ngModel)]="rol"
             id="d46a4159-69db-42ef-8dcc-4b3aad818781" placeholder="Rol de usuario"
             [ngClass]="{ 'is-invalid': submitted && validador.rolUsuario.errors}">
@@ -103,6 +104,7 @@
           </datalist>
         </div>
         <div class="col">
+          <h6>Correo electrónico</h6>
           <input type="email" class="form-control" placeholder="Correo electrónico" formControlName="email"
             [(ngModel)]="correo" id="3fbcc973-51a0-4b88-b6c9-c13b5ff81d3f"
             [ngClass]="{ 'is-invalid': submitted && validador.email.errors}">
@@ -110,10 +112,12 @@
       </div>
       <div class="row">
         <div class="col">
+          <h6>Nombre de usuario</h6>
           <input type="text" class="form-control" placeholder="Nombre de usuario" formControlName="nombreUsuario"
             [(ngModel)]="nombre_usuario" id="90723941-be03-4ecb-827a-39c58e8d385b">
         </div>
         <div class="col">
+          <h6>Contraseña</h6>
           <input type="password" class="form-control" placeholder="Contraseña" formControlName="contrasena"
             [(ngModel)]="contrasena" id="573b12a4-a589-4e6b-a794-3347f4a1507f"
             [ngClass]="{ 'is-invalid': submitted && validador.contrasena.errors}">
@@ -121,9 +125,9 @@
       </div>
       <div class="row">
         <div class="col">
-
         </div>
         <div class="col">
+          <h6>Confirmación de contraseña</h6>
           <input type="password" class="form-control" placeholder="Confirmación contraseña" [(ngModel)]="confContrasena"
             formControlName="confContrasena" id="9810b625-9dd6-4217-ac5b-045e12d4636b"
             [ngClass]="{ 'is-invalid': submitted && validador.confContrasena.errors}">
@@ -131,18 +135,17 @@
       </div>
     </div>
     <div class="conductor">
-      <label>Datos del conductor</label>
+      <h4>Datos del conductor</h4>
       <div class="row">
         <div class="col">
+          <h6>Categoría</h6>
           <input type="text" class="form-control" placeholder="Categoría" formControlName="categoria"
             [(ngModel)]="categoria" id="d1a2e136-a009-461d-a0b1-c7f4b8506ff3">
         </div>
         <div class="col">
           <div class="row">
             <div class="col">
-              <span>Fecha de vencimiento de licencia</span>
-            </div>
-            <div class="col">
+              <h6>Fecha de vencimiento de licencia</h6>
               <input type="date" class="form-control" placeholder="Fecha de licencia"
                 formControlName="fecha_venc_licencia" id="a818f623-af7b-4b0f-a6d6-e59aa5d8abb7"
                 [(ngModel)]="fecha_venc_licencia" value="{{fecha_venc_licencia | date:'yyyy-MM-dd'}}">

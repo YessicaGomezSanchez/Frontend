@@ -22,7 +22,7 @@ export class ServiciosComponent implements OnInit {
   nombre: string;
   apellidos: string;
   direccion: string;
-  numeroCelular: string;
+  numero_contacto: string;
   taxisListD: [];
   formServicio: FormGroup;
   submitted = false;
@@ -49,7 +49,7 @@ export class ServiciosComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       apellidos: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       direccion: ['', [Validators.required]],
-      numeroCelular: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(10), Validators.minLength(7)]],
+      numero_contacto: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(10), Validators.minLength(7)]],
       observaciones: ['', []],
       codTaxi: ['', [Validators.required]],
     });
@@ -69,7 +69,7 @@ export class ServiciosComponent implements OnInit {
         nombres: formServicio.value.nombre,
         apellidos: formServicio.value.apellidos,
         direccion: formServicio.value.direccion,
-        telefono: formServicio.value.numeroCelular,
+        telefono: formServicio.value.numero_contacto,
         cod_operador: this.id,
         observaciones: formServicio.value.observaciones,
         cod_taxi: this.selected,
@@ -123,7 +123,7 @@ export class ServiciosComponent implements OnInit {
         this.nombre = data.nombres;
         this.apellidos = data.apellidos,
           this.direccion = data.direccion,
-          this.numeroCelular = data.numero_celular,
+          this.numero_contacto = data.numero_contacto,
           this.toastr.showSuccess('El usuario fué encontrado', 'Encontrado!');
       },
         error => {
