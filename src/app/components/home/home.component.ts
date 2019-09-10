@@ -8,12 +8,13 @@ import { SesionService } from 'src/app/services/sesion.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private sesionService: SesionService) { }
-
-  ngOnInit() {
+  constructor(private sesionService: SesionService) {
     this.usuarioPrimeraVez();
   }
-  usuarioPrimeraVez(){
+
+  ngOnInit() { }
+
+  usuarioPrimeraVez() {
     this.sesionService.postPrimeraVez().subscribe((data: any) => {
     });
   }

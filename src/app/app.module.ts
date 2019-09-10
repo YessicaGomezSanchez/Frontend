@@ -27,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.component';
 import { ToastrComponent } from './components/shared/toastr/toastr.component';
 import { MomentModule } from 'ngx-moment';
+import { HeaderComponent } from './components/nabvar/header/header.component';
+import { FooterComponent } from './components/nabvar/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { MomentModule } from 'ngx-moment';
     DashboardComponent,
     CrearUsuariosComponent,
     ListarTaxisComponent,
-    ToastrComponent
+    ToastrComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
