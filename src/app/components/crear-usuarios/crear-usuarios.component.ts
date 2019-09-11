@@ -15,26 +15,25 @@ export class CrearUsuariosComponent implements OnInit {
   pvx: boolean;
   usersForm: FormGroup;
   submitted = false;
-  nameGuardar: String;
+  nameGuardar: string;
 
-  nombres: String;
-  apellidos: String;
-  tipo_documento: String;
-  cedula: String;
-  fecha_nacimiento: String;
-  direccion: String;
-  numero_fijo: String;
-  numero_celular: String;
-  rol: String;
-  habilitado: Boolean;
-  nombre_usuario: String;
-  correo: String;
-  contrasena: String;
-  num_licencia: String;
-  categoria: String;
-  fecha_venc_licencia: String;
-  confContrasena: String;
-
+  nombres: string;
+  apellidos: string;
+  tipo_documento: string;
+  cedula: string;
+  fecha_nacimiento: string;
+  direccion: string;
+  numero_fijo: string;
+  numero_celular: string;
+  rol: string;
+  habilitado: boolean;
+  nombre_usuario: string;
+  correo: string;
+  contrasena: string;
+  num_licencia: string;
+  categoria: string;
+  fecha_venc_licencia: string;
+  confContrasena: string;
 
   constructor(
     private userService: UsuariosService,
@@ -44,8 +43,9 @@ export class CrearUsuariosComponent implements OnInit {
 
   ngOnInit() {
     this.validarCampos();
-    this.nameGuardar = "Guardar";
+    this.nameGuardar = 'Guardar';
   }
+
   validarCampos() {
     this.usersForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
@@ -66,6 +66,7 @@ export class CrearUsuariosComponent implements OnInit {
       NumCedula: [''],
     });
   }
+
   get validador() {
     return this.usersForm.controls;
   }
@@ -77,33 +78,33 @@ export class CrearUsuariosComponent implements OnInit {
       return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
 
-      if (usersForm.value.rolUsuario != "Empresa") {
+      if (usersForm.value.rolUsuario !== 'Empresa') {
         this.pvx = true;
       } else {
         this.pvx = false;
 
       }
-      if (usersForm.value.fecha_nacimiento !== "") {
-        var myDate = new Date(usersForm.value.fecha_nacimiento + " ");
+      if (usersForm.value.fecha_nacimiento !== '') {
+        var myDate = new Date(usersForm.value.fecha_nacimiento + ' ');
         var today = new Date();
-        today.setHours(0, 0, 0, 0)
+        today.setHours(0, 0, 0, 0);
         if (myDate > today) {
           return this.toastr.showError('La fecha de nacimiento debe ser menor a la fecha actual', 'Ups!');
         }
       }
 
-      if (usersForm.value.fecha_venc_licencia !== "") {
-        var myDate = new Date(usersForm.value.fecha_venc_licencia + " ");
+      if (usersForm.value.fecha_venc_licencia !== '') {
+        var myDate = new Date(usersForm.value.fecha_venc_licencia + ' ');
         var today = new Date();
-        today.setHours(0, 0, 0, 0)
+        today.setHours(0, 0, 0, 0);
         if (myDate < today) {
           return this.toastr.showError('La fecha de vencimiento de licencia debe ser mayor a la actual', 'Ups!');
         }
       }
-     
-      if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.categoria === undefined || usersForm.value.categoria === " ")) {
+
+      if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.categoria === undefined || usersForm.value.categoria === ' ')) {
         return this.toastr.showError('Complete la categoría  de la licencia de conducción', 'Campos obligatorios del conductor');
-      } else if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.fecha_venc_licencia === undefined || usersForm.value.fecha_venc_licencia === " ")) {
+      } else if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.fecha_venc_licencia === undefined || usersForm.value.fecha_venc_licencia === ' ')) {
         return this.toastr.showError('Complete la fecha de vencimiento de la licencia de conducción', 'Campos obligatorios del conductor');
       }
 
@@ -111,8 +112,7 @@ export class CrearUsuariosComponent implements OnInit {
         return this.toastr.showError('La contraseña no coincide con la confirmación de la contraseña', 'Ups!');
       } else {
 
-        const dataUsuario =
-        {
+        const dataUsuario = {
           nombres: usersForm.value.nombre,
           apellidos: usersForm.value.apellidos,
           tipo_documento: usersForm.value.tipoDocumento,
@@ -131,8 +131,8 @@ export class CrearUsuariosComponent implements OnInit {
           categoria: usersForm.value.categoria,
           fecha_venc_licencia: usersForm.value.fecha_venc_licencia,
           img_licencia: ''
+        };
 
-        }
         const sesion = {
           cedula: usersForm.value.numeroDocumento,
           rol: usersForm.value.rolUsuario,
@@ -140,22 +140,21 @@ export class CrearUsuariosComponent implements OnInit {
           nombre_usuario: usersForm.value.nombreUsuario,
           correo: usersForm.value.email,
           contrasena: usersForm.value.contrasena,
-        }
-
+        };
 
         this.userService.saveUser(dataUsuario).subscribe((data: any) => {
           console.log('datos del usuario', data);
           this.sesionService.guardarSesion(sesion).subscribe(() => {
             this.toastr.showSuccess('La información del usuario se ha guardado!', 'Guardado');
           }, error => {
-            if (error.status == 404) {
+            if (error.status === 404) {
               this.toastr.showError(error.message, 'Ups!');
             } else {
               this.toastr.showError(error.message, 'Ups!');
             }
           });
         }, error => {
-          if (error.status == 404) {
+          if (error.status === 404) {
             this.toastr.showError(error.message, 'Ups!');
           } else {
             this.toastr.showError(error.message, 'Ups!');
@@ -169,7 +168,7 @@ export class CrearUsuariosComponent implements OnInit {
 
   cancelar() {
     this.usersForm.reset();
-    this.nameGuardar = "Guardar";
+    this.nameGuardar = 'Guardar';
   }
 
   actualizarUsuarios(usersForm: any) {
@@ -179,33 +178,33 @@ export class CrearUsuariosComponent implements OnInit {
       return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
 
-      if (usersForm.value.rolUsuario != "Empresa") {
+      if (usersForm.value.rolUsuario !== 'Empresa') {
         this.pvx = true;
       } else {
         this.pvx = false;
 
       }
-      if (usersForm.value.fecha_nacimiento !== "") {
-        var myDate = new Date(usersForm.value.fecha_nacimiento + " ");
+      if (usersForm.value.fecha_nacimiento !== '') {
+        var myDate = new Date(usersForm.value.fecha_nacimiento + ' ');
         var today = new Date();
-        today.setHours(0, 0, 0, 0)
+        today.setHours(0, 0, 0, 0);
         if (myDate > today) {
           return this.toastr.showError('La fecha de nacimiento debe ser menor a la fecha actual', 'Ups!');
         }
       }
 
-      if (usersForm.value.fecha_venc_licencia !== "") {
-        var myDate = new Date(usersForm.value.fecha_venc_licencia + " ");
+      if (usersForm.value.fecha_venc_licencia !== '') {
+        var myDate = new Date(usersForm.value.fecha_venc_licencia + ' ');
         var today = new Date();
-        today.setHours(0, 0, 0, 0)
+        today.setHours(0, 0, 0, 0);
         if (myDate < today) {
           return this.toastr.showError('La fecha de vencimiento de licencia debe ser mayor a la actual', 'Ups!');
         }
       }
-      
-      if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.categoria === undefined || usersForm.value.categoria === " ")) {
+
+      if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.categoria === undefined || usersForm.value.categoria === ' ')) {
         return this.toastr.showError('Complete la categoría  de la licencia de conducción', 'Campos obligatorios del conductor');
-      } else if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.fecha_venc_licencia === undefined || usersForm.value.fecha_venc_licencia === " ")) {
+      } else if (usersForm.value.rolUsuario === 'Conductor' && (usersForm.value.fecha_venc_licencia === undefined || usersForm.value.fecha_venc_licencia === ' ')) {
         return this.toastr.showError('Complete la fecha de vencimiento de la licencia de conducción', 'Campos obligatorios del conductor');
       }
 
@@ -213,8 +212,7 @@ export class CrearUsuariosComponent implements OnInit {
         return this.toastr.showError('La contraseña no coincide con la confirmación de la contraseña', 'Ups!');
       } else {
 
-        const dataUsuario =
-        {
+        const dataUsuario = {
           nombres: usersForm.value.nombre,
           apellidos: usersForm.value.apellidos,
           tipo_documento: usersForm.value.tipoDocumento,
@@ -233,8 +231,8 @@ export class CrearUsuariosComponent implements OnInit {
           categoria: usersForm.value.categoria,
           fecha_venc_licencia: usersForm.value.fecha_venc_licencia,
           img_licencia: ''
+        };
 
-        }
         const sesion = {
           cedula: usersForm.value.numeroDocumento,
           rol: usersForm.value.rolUsuario,
@@ -242,22 +240,21 @@ export class CrearUsuariosComponent implements OnInit {
           nombre_usuario: usersForm.value.nombreUsuario,
           correo: usersForm.value.email,
           contrasena: usersForm.value.contrasena,
-        }
-
+        };
 
         this.userService.putUsuario(dataUsuario).subscribe((data: any) => {
           console.log('datos del usuario', data);
           this.sesionService.putSesion(sesion).subscribe(() => {
             this.toastr.showSuccess('La información del usuario fué actualizada!', 'Actualizado');
           }, error => {
-            if (error.status == 404) {
+            if (error.status === 404) {
               this.toastr.showError(error.message, 'Ups1!');
             } else {
               this.toastr.showError(error.error.mns, 'Ups1.1!');
             }
           });
         }, error => {
-          if (error.status == 404) {
+          if (error.status === 404) {
             this.toastr.showError(error.message, 'Ups2!');
           } else {
             this.toastr.showError(error.message, 'Ups2.1!');
@@ -268,11 +265,11 @@ export class CrearUsuariosComponent implements OnInit {
 
     this.submitted = false;
     this.usersForm.reset();
-    this.nameGuardar = "Guardar";
-
+    this.nameGuardar = 'Guardar';
   }
+
   actionFormulario(usersForm: any) {
-    if (this.nameGuardar === "Guardar") {
+    if (this.nameGuardar === 'Guardar') {
       this.guardarUsuario(usersForm);
     } else {
       this.actualizarUsuarios(usersForm);
@@ -283,10 +280,9 @@ export class CrearUsuariosComponent implements OnInit {
   buscarUsuario(usersForm: any): void {
     const cedula = usersForm.value.NumCedula;
 
-    if (cedula === "" || cedula === " ") {
+    if (cedula === '' || cedula === '') {
       this.toastr.showWarning('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
     } else {
-      
       this.userService.getUsuario(cedula).subscribe(data => {
         this.nombres = data.nombres;
         this.apellidos = data.apellidos;
@@ -304,7 +300,7 @@ export class CrearUsuariosComponent implements OnInit {
         this.categoria = data.categoria;
         this.fecha_venc_licencia = data.fecha_venc_licencia;
         this.confContrasena = data.contrasena;
-        this.nameGuardar = "Actualizar";
+        this.nameGuardar = 'Actualizar';
       },
         error => {
           if (error.status === 404) {
@@ -312,12 +308,8 @@ export class CrearUsuariosComponent implements OnInit {
           } else {
             this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
           }
-
         }
-      )
+      );
     }
-  
   }
-
-
 }

@@ -11,21 +11,20 @@ enableProdMode();
   styleUrls: ['./listar-taxis.component.css']
 })
 export class ListarTaxisComponent implements OnInit {
-  taxisList:[];
-  modelo: String;
-  placa: String;
-  nombre_apellidos: String;
-  tipo_documento: String;
-  cedula: String;
-  correo: String;
+  taxisList: [];
+  modelo: string;
+  placa: string;
+  nombre_apellidos: string;
+  tipo_documento: string;
+  cedula: string;
+  correo: string;
   constructor(private taxisService: TaxisService) { }
   ngOnInit() {
     this.listarTaxis();
   }
- listarTaxis(){
+ listarTaxis() {
   this.taxisService.getAllTaxis().subscribe((data: any) => {
     this.taxisList = data;
   });
  }
-
 }

@@ -10,13 +10,8 @@
         <img src="../../../assets/imagenes/profile.png">
         <input type="email" class="form-control"id="d2019fed-ba63-4c6b-ab2f-b27690d00f04" formControlName="correo" placeholder="Correo electronico"
           [ngClass]="{ 'is-invalid': submitted && validador.correo.errors}">
-            <!-- <div *ngIf="submitted && f.correo.errors" class="invalid-feedback">
-            <div *ngIf="f.correo.errors.required">correo is required</div>
-            <div *ngIf="f.correo.errors.correo">correo must be a valid correo address</div>
-          </div>     -->
       </div>     
     </div>
-
 
     <div class="form-group">
       <label>Contraseña</label>
@@ -24,17 +19,8 @@
         <img src="../../../assets/imagenes/lock.png">
         <input type="password" class="form-control" id="59041aae-4a90-45b4-808a-01f1c3eec98f" formControlName="contrasena" placeholder="Contraseña"
           [ngClass]="{ 'is-invalid': submitted && validador.contrasena.errors}">
-        <!-- <div *ngIf="submitted && f.contrasena.errors" class="invalid-feedback">
-          <div *ngIf="f.contrasena.errors.required">Password is required</div>
-          <div *ngIf="f.contrasena.errors.minlength">Password must be at least 6 characters</div>
-        </div> -->
       </div>
     </div>
-
-    <!-- <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="">
-    <label class="form-check-label" for="exampleCheck1">Recordar usuario y contraseña</label>
-  </div> -->
 
     <div class="button">
       <button [disabled]="loading" type="button" class="btn btn-primary btn-lg" name="button"
@@ -44,7 +30,6 @@
 
     <a href="restablecer" class="" id="f1653288-043a-4154-a013-76b061f151aa">Recuperar contraseña</a>
     <br>
-    <!-- <a href="usuarios" class="">¿Desea registrarse en el sistema?</a> -->
 
   </form>
 </div>

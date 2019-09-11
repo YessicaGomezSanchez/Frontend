@@ -15,8 +15,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() { }
 
   usuarioPrimeraVez() {
-    this.sesionService.postPrimeraVez().subscribe((data: any) => {
-    });
+    this.sesionService.postPrimeraVez().subscribe((data: any) => { });
   }
-
 }

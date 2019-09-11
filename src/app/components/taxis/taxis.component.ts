@@ -30,20 +30,20 @@ export class TaxisComponent implements OnInit {
   fecha_venc_soat: Date;
   num_tecnomecanica: string;
   fecha_venc_tecnomecanica: Date;
-  num_seguro_contractual: String;
+  num_seguro_contractual: string;
   fecha_venc_seguro_contractual: Date;
-  maletero: Boolean;
-  parrilla: Boolean;
-  mascotas: Boolean;
-  habilitado: Boolean;
-  fecha_registro: String;
-  nombre_apellidos: String;
-  tipo_documento: String;
-  cedula: String;
-  correo: String;
+  maletero: boolean;
+  parrilla: boolean;
+  mascotas: boolean;
+  habilitado: boolean;
+  fecha_registro: string;
+  nombre_apellidos: string;
+  tipo_documento: string;
+  cedula: string;
+  correo: string;
   conductores: [];
   actived = true;
-  nameGuardar: String;
+  nameGuardar: string;
 
   public arrayconductores: Array<{
     nombres: string,
@@ -51,7 +51,7 @@ export class TaxisComponent implements OnInit {
     numero_celular: string,
     num_licencia: string,
     categoria: string,
-    fecha_venc_licencia: String,
+    fecha_venc_licencia: string,
   }> = [];
   taxiForm: FormGroup;
   submitted = false;
@@ -147,7 +147,7 @@ export class TaxisComponent implements OnInit {
           return this.toastr.showError('La fecha de vencimiento del seguro contractual debe ser mayor a la fecha actual', 'Ups!');
         }
       }
-      if (this.arrayconductores.length == 0) {
+      if (this.arrayconductores.length === 0) {
         return this.toastr.showError('Debe agregar al menos un conductor!', 'Ups!');
       }
 
@@ -156,9 +156,9 @@ export class TaxisComponent implements OnInit {
         this.toastr.showSuccess('La información del taxi se ha guardado!', 'Guardado');
       },
         error => {
-          if (error.status == 404) {
+          if (error.status === 404) {
             this.toastr.showError(error.message, 'Ups1!');
-          } else if (error.status == 500) {
+          } else if (error.status === 500) {
             this.toastr.showError('El taxi ya se encuentra registrado', 'Ups2!');
           }
         }
@@ -172,7 +172,7 @@ export class TaxisComponent implements OnInit {
 
 
   eliminar(index, conductor: any) {
-    if (this.arrayconductores.length == 0) {
+    if (this.arrayconductores.length === 0) {
       this.toastr.showWarning('No hay conductores por eliminar ', 'ups!!');
     } else {
       this.arrayconductores = this.arrayconductores.splice(index, 0);
@@ -197,7 +197,7 @@ export class TaxisComponent implements OnInit {
 
   buscarTaxi(taxiForm: any): void {
     const placa = taxiForm.value.placa;
-    if (placa === "" || placa === " " || placa === undefined) {
+    if (placa === '' || placa === ' ' || placa === undefined) {
       this.toastr.showWarning('Debe ingresar una placa para realizar la búsqueda', 'Ups!');
     } else {
 
@@ -221,49 +221,49 @@ export class TaxisComponent implements OnInit {
         this.conductores = data.conductores;
         this.arrayconductores = this.conductores;
         console.log('conductores del taxi', data.conductores);
-        this.nameGuardar = "Actualizar";
+        this.nameGuardar = 'Actualizar';
       },
-        error => {
-          if (error.status === 404) {
-            let message = error.error.message;
-            this.toastr.showError(message, 'Ups!');
-          } else {
-            this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
-          }
-        })
+      error => {
+        if (error.status === 404) {
+          const message = error.error.message;
+          this.toastr.showError(message, 'Ups!');
+        } else {
+          this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
+        }
+      });
     }
-
   }
 
   listarConductores() {
     this.usuarioServicio.getAllUsuario().subscribe((data: any) => {
-      this.conductores = data.filter(data => data.rol == "Conductor");
+      this.conductores = data.filter(data => data.rol === 'Conductor');
       this.conductores.map((conductor: any) => {
         conductor.disabled = false;
-      })
+      });
     });
   }
+
   buscarConductor(cedulaC: any): void {
 
-    if (cedulaC === "" || cedulaC === " " || cedulaC === undefined) {
+    if (cedulaC === '' || cedulaC === ' ' || cedulaC === undefined) {
       this.toastr.showWarning('Debe ingresar un número de documento para realizar la búsqueda', 'Ups!');
     } else {
       this.usuarioServicio.getAllUsuario().subscribe((data: any) => {
-        this.conductores = data.filter(data => data.cedula == cedulaC);
+        this.conductores = data.filter(data => data.cedula === cedulaC);
         this.conductores.map((conductor: any) => {
           conductor.disabled = false;
-        })
+        });
       },
         error => {
           if (error.status === 404) {
-            const mensaje = error.error.message;            
+            const mensaje = error.error.message;
             this.toastr.showError(mensaje, 'Ups!');
           } else {
             this.toastr.showError('Ocurrió un problema en la conexión del proveedor, intenta más tarde o informa al área técnica', 'Ups!');
           }
         });
     }
-  };
+  }
 
   editarTaxi(taxiForm: any) {
     this.submitted = true;
@@ -271,7 +271,7 @@ export class TaxisComponent implements OnInit {
     if (this.taxiForm.invalid) {
       return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
-      let now = new Date();
+      const now = new Date();
       const taxi = {
         modelo: taxiForm.value.modelo,
         placa: taxiForm.value.placa,
@@ -295,53 +295,51 @@ export class TaxisComponent implements OnInit {
         cedula: taxiForm.value.cedula,
         correo: taxiForm.value.correo,
         conductores: this.arrayconductores
-
       };
 
-      if (taxiForm.value.fecha_venc_soat !== "") {
-        var myDate = new Date(taxiForm.value.fecha_venc_soat + " ");
-        var today = new Date();
-        today.setHours(0, 0, 0, 0)
+      if (taxiForm.value.fecha_venc_soat !== '') {
+        const myDate = new Date(taxiForm.value.fecha_venc_soat + ' ');
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
         if (myDate < today) {
           return this.toastr.showError('La fecha de vencimiento del SOAT debe ser mayor a la fecha actual', 'Ups!');
         }
       }
 
-      if (taxiForm.value.fecha_venc_tecnomecanica !== "") {
-        var myDate = new Date(taxiForm.value.fecha_venc_tecnomecanica + " ");
-        var today = new Date();
-        today.setHours(0, 0, 0, 0)
+      if (taxiForm.value.fecha_venc_tecnomecanica !== '') {
+        const myDate = new Date(taxiForm.value.fecha_venc_tecnomecanica + ' ');
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
         if (myDate < today) {
           return this.toastr.showError('La fecha de vencimiento de la tecnomecánica debe ser mayor a la actual', 'Ups!');
         }
       }
 
-      if (taxiForm.value.fecha_venc_seguro_contractual !== "") {
-        var myDate = new Date(taxiForm.value.fecha_venc_seguro_contractual + " ");
-        var today = new Date();
-        today.setHours(0, 0, 0, 0)
+      if (taxiForm.value.fecha_venc_seguro_contractual !== '') {
+        const myDate = new Date(taxiForm.value.fecha_venc_seguro_contractual + ' ');
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
         if (myDate < today) {
           return this.toastr.showError('La fecha de vencimiento del seguro contractual debe ser mayor a la fecha actual', 'Ups!');
         }
       }
 
 
-      if (this.arrayconductores.length == 0) {
+      if (this.arrayconductores.length === 0) {
         return this.toastr.showError('Debe agregar al menos un conductor!', 'Ups!');
       }
-      if (this.arrayconductores.length == 0) {
+      if (this.arrayconductores.length === 0) {
         return this.toastr.showError('Debe agregar al menos un conductor!', 'Ups!');
       }
 
       this.taxisService.putTaxi(taxi).subscribe(data => {
-     
         this.toastr.showSuccess('La información del taxi se ha actualizado!', 'Editado');
       },
         error => {
-          if (error.status == 404) {
+          if (error.status === 404) {
             const message = error.message;
             this.toastr.showError(message, 'Ups!');
-          } else if (error.status == 500) {
+          } else if (error.status === 500) {
             this.toastr.showError('El taxi ya se encuentra registrado', 'Ups2!');
           }
         }
@@ -351,11 +349,11 @@ export class TaxisComponent implements OnInit {
     taxiForm.reset();
     this.listarConductores();
     this.submitted = false;
-    this.nameGuardar = "Guardar";
+    this.nameGuardar = 'Guardar';
   }
 
   actionFormulario(taxiForm: any) {
-    if (this.nameGuardar === "Guardar") {
+    if (this.nameGuardar === 'Guardar') {
       this.guardarTaxi(taxiForm);
     } else {
       this.editarTaxi(taxiForm);
@@ -364,7 +362,7 @@ export class TaxisComponent implements OnInit {
   }
 
   transform(value: string) {
-    var datePipe = new DatePipe('en-US');
+    const datePipe = new DatePipe('en-US');
     value = datePipe.transform(value, 'dd/MM/yyyy');
     return value;
 
@@ -372,7 +370,7 @@ export class TaxisComponent implements OnInit {
   cancelar() {
     this.taxiForm.reset();
     this.listarConductores();
-    this.nameGuardar = "Guardar";
+    this.nameGuardar = 'Guardar';
 
   }
 }

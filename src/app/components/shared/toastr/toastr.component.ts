@@ -10,9 +10,8 @@ export class ToastrComponent implements OnInit {
 
   constructor(public toastr: ToastrManager) { }
 
-  ngOnInit() {
-  }
-  
+  ngOnInit() { }
+
   showSuccess(message: string, title: string) {
     this.toastr.successToastr(message, title);
   }

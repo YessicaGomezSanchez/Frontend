@@ -8,27 +8,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ServiciosService {
-  URL = environment.URL + `servicios`
+  URL = environment.URL + `servicios`;
   headers = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(private http: HttpClient) { }
 
-  postServicio(form:any){
+  postServicio(form: any) {
     console.log(form);
-    return this.http.post(this.URL, form, {headers: this.headers}).pipe(map((res:any)=>{      
+    return this.http.post(this.URL, form, {headers: this.headers}).pipe(map((res: any) => {
       return res;
-    }))
+    }));
   }
 
-  getServicio(id: any) :Observable <any> {
-    return this.http.get(this.URL+`/${id}/`,{headers: this.headers}).pipe(map((res:any)=>{      
+  getServicio(id: any): Observable <any> {
+    return this.http.get(this.URL + `/${id}/`, {headers: this.headers}).pipe(map((res: any) => {
       return res;
-    }))
+    }));
   }
-  getAllServicio() :Observable <any> {
+
+  getAllServicio(): Observable <any> {
     return this.http.get(this.URL).pipe(map((res: any) => {
       return res;
-    }))
+    }));
   }
-
 }
 

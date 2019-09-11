@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SesionService {
-    URL = environment.URL + `sesion`
+  URL = environment.URL + `sesion`;
   headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient) {
   }
@@ -16,30 +16,30 @@ export class SesionService {
   guardarSesion(sesion) {
     return this.http.post(this.URL, sesion, { headers: this.headers }).pipe(map((res: any) => {
       return res;
-    }))
+    }));
   }
 
   getSesion(correo: any): Observable<any> {
     return this.http.get(this.URL + `/${correo}/`, { headers: this.headers }).pipe(map((res: any) => {
       return res;
-    }))
+    }));
   }
-  
+
   getAllSesion(): Observable<any> {
     return this.http.get(this.URL).pipe(map((res: any) => {
       return res;
-    }))
+    }));
   }
 
-  putSesion(form){
-    return this.http.put(this.URL+ `/${form.correo}/`, form, {headers: this.headers}).pipe(map((res: any) => {
+  putSesion(form) {
+    return this.http.put(this.URL + `/${form.correo}/`, form, {headers: this.headers}).pipe(map((res: any) => {
       return res;
-    }))
+    }));
   }
-  postPrimeraVez(){
+  postPrimeraVez() {
     return this.http.post(environment.URL, { headers: this.headers }).pipe(map((res: any) => {
       return res;
-    }))
+    }));
   }
 
 }

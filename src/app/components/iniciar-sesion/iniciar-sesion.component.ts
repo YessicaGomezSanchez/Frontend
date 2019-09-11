@@ -38,14 +38,13 @@ export class IniciarSesionComponent implements OnInit {
         if (this.registerForm.invalid) {
             return this.toastr.showError('Los campos presentan un error, por favor verificar la información', 'Campos incompletos');
         } else {
-            const sesion =
-            {
+            const sesion = {
                 correo: registerForm.value.correo,
-                contrasena: registerForm.value.contrasena,
-            }
+                contrasena: registerForm.value.contrasena
+            };
 
             this.sesionService.getSesion(sesion.correo).subscribe((data: any) => {
-                if (data.correo === sesion.correo && data.contrasena === sesion.contrasena && (data.rol ==='Operador' || data.rol ==='Administrador')) {
+                if (data.correo === sesion.correo && data.contrasena === sesion.contrasena && (data.rol === 'Operador' || data.rol === 'Administrador')) {
                     this.router.navigate([`/dashboard`]);
                     this.toastr.showSuccess('Bienvenido', 'Ingreso exitoso!');
                     localStorage.setItem('idUsuario', data.cedula);
@@ -55,7 +54,7 @@ export class IniciarSesionComponent implements OnInit {
             },
                 error => {
 
-                    if (error.status == 404) {
+                    if (error.status === 404) {
                         this.toastr.showInfo('El usuario no se encuentra registrado en nuestro sistema, por favor comunicarse con el administrador del acopio', 'Ups!');
                     } else {
 

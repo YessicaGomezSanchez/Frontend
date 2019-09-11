@@ -52,8 +52,7 @@ export class PerfilComponent implements OnInit {
       nombre_usuario: [''],
       correo: ['', [Validators.required, Validators.email]],
       fecha_nacimiento: [''],
-
-    })
+    });
   }
   get validador() {
     return this.usersForm.controls;
@@ -78,12 +77,11 @@ export class PerfilComponent implements OnInit {
   actualizarDatos(usersForm: any) {
 
     this.submitted = true;
-    
+
     if (this.usersForm.invalid) {
      return this.toastr.showError('Los campos resaltados son obligatorios', 'Campos obligatorios');
     } else {
-      const dataUsuario =
-      {
+      const dataUsuario = {
         nombres: usersForm.value.nombres,
         apellidos: usersForm.value.apellidos,
         tipo_documento: usersForm.value.tipo_documento,
@@ -94,17 +92,19 @@ export class PerfilComponent implements OnInit {
         numero_celular: usersForm.value.numero_celular,
         nombre_usuario: usersForm.value.nombre_usuario,
         correo: usersForm.value.correo
-      }
+      };
+
       const sesion = {
         cedula: usersForm.value.cedula,
         habilitado: true,
         nombre_usuario: usersForm.value.nombre_usuario,
         correo: usersForm.value.correo
-      }
-      if (usersForm.value.fecha_nacimiento !== "") {
-        var myDate = new Date(usersForm.value.fecha_nacimiento + " ");
-        var today = new Date();
-        today.setHours(0, 0, 0, 0)
+      };
+
+      if (usersForm.value.fecha_nacimiento !== '') {
+        let myDate = new Date(usersForm.value.fecha_nacimiento + ' ');
+        let today = new Date();
+        today.setHours(0, 0, 0, 0);
         if (myDate > today) {
           return this.toastr.showError('La fecha de nacimiento debe ser menor a la fecha actual', 'Ups!');
         }
@@ -114,15 +114,15 @@ export class PerfilComponent implements OnInit {
         this.sesionService.putSesion(sesion).subscribe(() => {
           this.toastr.showSuccess('Actualizado', 'La información del usuario se ha actualizado!');
         }, error => {
-          if (error.status == 404) {
-            this.toastr.showError("El correo " + sesion.correo + " no está registrado", 'Ups!');
+          if (error.status === 404) {
+            this.toastr.showError('El correo ' + sesion.correo + ' no está registrado', 'Ups!');
           } else {
             this.toastr.showError(error.message, 'Ups!');
           }
         });
       }, error => {
-        if (error.status == 404) {
-          this.toastr.showError("El usuario " + sesion.cedula + " no está registrado", 'Ups!');
+        if (error.status === 404) {
+          this.toastr.showError('El correo ' + sesion.cedula + ' no está registrado', 'Ups!');
         } else {
           this.toastr.showError(error.message, 'Ups2!usuario');
         }
@@ -134,8 +134,8 @@ export class PerfilComponent implements OnInit {
 
   transform(value: string) {
     var datePipe = new DatePipe('en-US');
-     value = datePipe.transform(value, 'dd/MM/yyyy');
-     return value;
+    value = datePipe.transform(value, 'dd/MM/yyyy');
+    return value;
 
  }
 

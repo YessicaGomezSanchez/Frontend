@@ -9,7 +9,8 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
-import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.component'
+import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.component';
+
 // Security
 import { LoginGuard } from './auth/login.guard';
 import { NoLoginGuard } from './auth/no-login.guard';

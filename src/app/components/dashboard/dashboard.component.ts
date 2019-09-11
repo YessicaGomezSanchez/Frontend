@@ -9,8 +9,8 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class DashboardComponent implements OnInit {
 
-  isCollapsed: boolean = true;
-  isCollapsed2: boolean = true;
+  isCollapsed = true;
+  isCollapsed2 = true;
 
   constructor(private route: ActivatedRoute, private usuariosService: UsuariosService) { }
 
@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
-  cerrarSesion(){
+  cerrarSesion() {
    localStorage.removeItem('idUsuario');
   }
 

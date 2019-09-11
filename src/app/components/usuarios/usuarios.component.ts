@@ -8,7 +8,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class UsuariosComponent implements OnInit {
 
-  nuevoUsuario:[];
+  nuevoUsuario: [];
 
   constructor( private usuariosService: UsuariosService ) {
     this.usuariosService.getAllUsuario()
@@ -18,6 +18,5 @@ export class UsuariosComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 }
