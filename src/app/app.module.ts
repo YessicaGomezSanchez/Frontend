@@ -8,9 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { MatCardModule, MatButtonModule, MatInputModule, 
+import { MatCardModule, MatButtonModule, MatInputModule,
   MatMenuModule, MatToolbarModule, MatIconModule, MatSelectModule,
-   MatFormFieldModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+  MatFormFieldModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -29,6 +29,10 @@ import { ToastrComponent } from './components/shared/toastr/toastr.component';
 import { MomentModule } from 'ngx-moment';
 import { HeaderComponent } from './components/nabvar/header/header.component';
 import { FooterComponent } from './components/nabvar/footer/footer.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { AcopioComponent } from './components/acopio-taxis/acopio-taxis.component';
+import { HistoriaComponent } from './components/historia/historia.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { FooterComponent } from './components/nabvar/footer/footer.component';
     ListarTaxisComponent,
     ToastrComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    UsuarioComponent,
+    AcopioComponent,
+    HistoriaComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
@@ -54,12 +62,12 @@ import { FooterComponent } from './components/nabvar/footer/footer.component';
     MatCardModule,
     MatFormFieldModule,
     MatDatepickerModule,
-     MatNativeDateModule,
+    MatNativeDateModule,
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
     MatMenuModule,
-    MomentModule,  
+    MomentModule,
     MatSlideToggleModule,
     MatToolbarModule,
     MatIconModule,
@@ -67,7 +75,7 @@ import { FooterComponent } from './components/nabvar/footer/footer.component';
     ReactiveFormsModule,
     MatCheckboxModule,
     HttpClientModule,
-    MatListModule,    
+    MatListModule,
     ToastrModule.forRoot()
     ],
   providers: [ToastrComponent],

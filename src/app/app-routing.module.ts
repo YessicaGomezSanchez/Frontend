@@ -10,6 +10,11 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
 import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { AcopioComponent } from './components/acopio-taxis/acopio-taxis.component';
+import { HistoriaComponent } from './components/historia/historia.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+
 
 // Security
 import { LoginGuard } from './auth/login.guard';
@@ -27,13 +32,16 @@ const routes: Routes = [
       { path: 'crear-usuarios', component: CrearUsuariosComponent},
       { path: 'listar-taxis', component: ListarTaxisComponent}
     ]
-
 },
-    { path: 'sesion', component: IniciarSesionComponent},
-    { path: 'restablecer', component: RestablecerContrasenaComponent },
-    { path: '**', component: HomeComponent },
-    { path: '', component: HomeComponent }
-  ];
+  { path: 'usuario', component: UsuarioComponent },
+  { path: 'taxis', component: AcopioComponent },
+  { path: 'historia', component: HistoriaComponent },
+  { path: 'contacto', component: ContactoComponent },
+  { path: 'sesion', component: IniciarSesionComponent},
+  { path: 'restablecer', component: RestablecerContrasenaComponent },
+  { path: '**', component: HomeComponent },
+  { path: '', component: HomeComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -27,7 +27,7 @@
 
         <ul class="list-unstyled" style="color: white">
           <li>
-            <a href="#!" style="color: #fff891">Usuario</a>
+            <a [routerLink]="[ '/usuario' ]" style="color: #fff891">Usuario</a>
           </li>
           <li>
             <a href="#!" style="color: #fff891">Principal</a>
@@ -51,10 +51,10 @@
 
         <ul class="list-unstyled">
           <li>
-            <a href="#!" style="color: #fff891">Historia</a>
+            <a [routerLink]="[ '/historia' ]" style="color: #fff891">Historia</a>
           </li>
           <li>
-            <a href="#!" style="color: #fff891">Contacto</a>
+            <a [routerLink]="[ '/contacto' ]" style="color: #fff891">Contacto</a>
           </li>
           <li>
             <a href="#!" style="color: #fff891">Soporte</a>
@@ -74,8 +74,8 @@
           <span id="basic-addon1">
             <input placeholder="Correo Electronico" />
           </span>
+          <button type="button" class="btn btn-outline-warning">Suscribirse</button>
         </div>
-        <button type="button" class="btn btn-outline-warning">Suscribirse</button>
       </div>
       <!-- Grid column -->
 

@@ -1,31 +1,30 @@
 <nav class="navbar navbar-expand-lg static-top">
   <div class="container">
     <a class="navbar-brand" href="#">Servitaxi Los Colores</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Inicio
+          <a class="nav-link" [routerLink]="[ '/' ]">Inicio
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="[ '/sesion' ]">Usuario</a>
+          <a class="nav-link" [routerLink]="[ '/usuario' ]">Usuario</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Taxis</a>
+          <a class="nav-link" [routerLink]="[ '/taxis' ]">Taxis</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Acopio</a>
+          <a class="nav-link" [routerLink]="[ '/sesion' ]">Acopio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Historia</a>
+          <a class="nav-link" [routerLink]="[ '/historia' ]">Historia</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contacto</a>
+          <a class="nav-link" [routerLink]="[ '/contacto' ]">Contacto</a>
         </li>
       </ul>
     </div>

@@ -1,35 +1,47 @@
-<div class="container">
-  <form [formGroup]="registerForm" class="style" autocomplete="off">
-    <div class="labels">
-      <label class="titles">Iniciar sesión</label>
+<app-header></app-header>
+
+<div class="container" style="padding: 10px">
+    <div class="container" style="padding: 10px">
+        <div class="row">
+            <div class="col">Imagen redonda</div>
+            <div class="col">Texo informactivo</div>
+            <div class="col">
+                <form [formGroup]="registerForm" class="style" autocomplete="off">
+                  <div class="labels">
+                    <label class="titles">Iniciar sesión</label>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <div class="icon-input">
+                      <img src="../../../assets/imagenes/profile.png">
+                        <input type="email" class="form-control"id="d2019fed-ba63-4c6b-ab2f-b27690d00f04" formControlName="correo" placeholder="Correo electronico" [ngClass]="{ 'is-invalid': submitted && validador.correo.errors}">
+                      </div>     
+                    </div>
+                
+                    <div class="form-group">
+                      <label>Contraseña</label>
+                      <div class="icon-input">
+                        <img src="../../../assets/imagenes/lock.png">
+                        <input type="password" class="form-control" id="59041aae-4a90-45b4-808a-01f1c3eec98f" formControlName="contrasena" placeholder="Contraseña" [ngClass]="{ 'is-invalid': submitted && validador.contrasena.errors}">
+                      </div>
+                    </div>
+                
+                    <div class="button">
+                      <button [disabled]="loading" type="button" class="btn btn-primary btn-lg" name="button" id="4187aa79-060e-47cc-8d06-7973e74620f2" (click)="consultarUsuario(registerForm)"> Iniciar Sesión</button>
+                    </div>
+                    <br>
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                      <label class="custom-control-label" for="customSwitch1">Recordarme</label>
+                    </div>
+                    <br>
+                    <a href="restablecer" class="" id="f1653288-043a-4154-a013-76b061f151aa">Recuperar contraseña</a>
+                    <br>
+                  </form>
+            </div>
+          </div>    
     </div>
-
-    <div class="form-group">
-      <label>Correo electrónico</label>
-      <div class="icon-input">
-        <img src="../../../assets/imagenes/profile.png">
-        <input type="email" class="form-control"id="d2019fed-ba63-4c6b-ab2f-b27690d00f04" formControlName="correo" placeholder="Correo electronico"
-          [ngClass]="{ 'is-invalid': submitted && validador.correo.errors}">
-      </div>     
-    </div>
-
-    <div class="form-group">
-      <label>Contraseña</label>
-      <div class="icon-input">
-        <img src="../../../assets/imagenes/lock.png">
-        <input type="password" class="form-control" id="59041aae-4a90-45b4-808a-01f1c3eec98f" formControlName="contrasena" placeholder="Contraseña"
-          [ngClass]="{ 'is-invalid': submitted && validador.contrasena.errors}">
-      </div>
-    </div>
-
-    <div class="button">
-      <button [disabled]="loading" type="button" class="btn btn-primary btn-lg" name="button"
-        id="4187aa79-060e-47cc-8d06-7973e74620f2" (click)="consultarUsuario(registerForm)"> Iniciar Sesión</button>
-    </div>
-    <br>
-
-    <a href="restablecer" class="" id="f1653288-043a-4154-a013-76b061f151aa">Recuperar contraseña</a>
-    <br>
-
-  </form>
 </div>
+
+<app-footer></app-footer>

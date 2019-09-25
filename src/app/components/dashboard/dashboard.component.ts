@@ -14,21 +14,14 @@ export class DashboardComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private usuariosService: UsuariosService) { }
 
-
-
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
-
   }
   toggleCollapse2() {
-
     this.isCollapsed2 = !this.isCollapsed2;
   }
 
-  ngOnInit() {
-  }
-  cerrarSesion() {
-   localStorage.removeItem('idUsuario');
-  }
+  ngOnInit() {  }
 
+  cerrarSesion() { localStorage.removeItem('idUsuario'); }
 }
