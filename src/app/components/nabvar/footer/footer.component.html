@@ -13,7 +13,8 @@
       <div class="col-md-2 mt-md-0 mt-2">
 
         <!-- Content -->
-        <h5 class="text-uppercase" style="color: white">Logo</h5>
+        <!-- <h5 class="text-uppercase" style="color: white">Logo</h5> -->
+        <img src="../../../../assets/imagenes/logo.png" width="100px" height="100px" style="display: block">
 
       </div>
       <!-- Grid column -->
@@ -30,10 +31,10 @@
             <a [routerLink]="[ '/usuario' ]" style="color: #fff891">Usuario</a>
           </li>
           <li>
-            <a href="#!" style="color: #fff891">Principal</a>
+            <a [routerLink]="[ '/' ]" style="color: #fff891">Principal</a>
           </li>
           <li>
-            <a href="#!" style="color: #fff891">Taxis</a>
+            <a [routerLink]="[ '/taxis' ]" style="color: #fff891">Taxis</a>
           </li>
           <!-- <li>
             <a href="#!">Link 4</a>
@@ -57,10 +58,10 @@
             <a [routerLink]="[ '/contacto' ]" style="color: #fff891">Contacto</a>
           </li>
           <li>
-            <a href="#!" style="color: #fff891">Soporte</a>
+            <a href="#soporteModal" style="color: #fff891; border: 0px;" data-toggle="modal" data-target="#soporteModal">Soporte</a>
           </li>
           <li>
-            <a href="#!" style="color: #fff891">Terminos y Condiciones</a>
+            <a href="#soporteModal" style="color: #fff891; border: 0px;" data-toggle="modal" data-target="#terminosCondicionesModal">Terminos y Condiciones</a>
           </li>
         </ul>
 
@@ -70,7 +71,7 @@
       <!-- Grid column -->
       <div class="col-md-5 mb-md-0 mb-5" style="color: white">
         <label>Recibir notificaciones de nuestras ofertas.</label>
-        <div class="input-group-prepend">
+        <div class="input-group-prepend" >
           <span id="basic-addon1">
             <input placeholder="Correo Electronico" />
           </span>
@@ -86,8 +87,48 @@
   <!-- Footer Links -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2019 Copyright</div>
+  <div class="footer-copyright text-center py-3" style="color: #fff891">© {{year}} Copyright</div>
   <!-- Copyright -->
 
 </footer>
 <!-- Footer -->
+
+<!-- Modal -->
+<div class="modal fade" id="terminosCondicionesModal" tabindex="-1" role="dialog" aria-labelledby="terminosCondicionesModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="terminosCondicionesModalLabel">Terminos y Condiciones</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade soporteModal" tabindex="-1" role="dialog" aria-labelledby="soporteModal" aria-hidden="true" id="soporteModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="soporteModal">Modal Soporte</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+</div>
+  

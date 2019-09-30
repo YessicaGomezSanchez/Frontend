@@ -33,6 +33,10 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { AcopioComponent } from './components/acopio-taxis/acopio-taxis.component';
 import { HistoriaComponent } from './components/historia/historia.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { ReporteUsuarioComponent } from './components/reporte-usuario/reporte-usuario.component';
+import { ReporteTaxisComponent } from './components/reporte-taxis/reporte-taxis.component';
+import { ReporteConductoresComponent } from './components/reporte-conductores/reporte-conductores.component';
+import { PopupUsuariosComponent } from './components/pop-up/popup-usuarios/popup-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,11 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     UsuarioComponent,
     AcopioComponent,
     HistoriaComponent,
-    ContactoComponent
+    ContactoComponent,
+    ReporteUsuarioComponent,
+    ReporteTaxisComponent,
+    ReporteConductoresComponent,
+    PopupUsuariosComponent
   ],
   imports: [
     BrowserModule,

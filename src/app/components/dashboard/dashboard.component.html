@@ -1,14 +1,11 @@
 <div class="container">
   <nav class="menu">
     <button class="btnmenu btn-lg">
-        
-      <img src="../../../assets/imagenes/silueta-del-icono-de-hogar.png"routerLink="dashboard" routerLinkActive="active" > Inicio
+      <img src="../../../assets/imagenes/silueta-del-icono-de-hogar.png" routerLink="dashboard" routerLinkActive="active" > Inicio
     </button>
-
     <button class="btnmenu btn-lg" routerLink="perfil"  routerLinkActive="active">
       <img src="../../../assets/imagenes/usuario-hombre.png">Perfil
     </button>
-
     <button class="btnmenu btn-lg" routerLink="servicios" routerLinkActive="active">
       <img src="../../../assets/imagenes/cliente.png"> Servicios
     </button>
@@ -26,11 +23,18 @@
       <button class="btnmenu btn-sm" routerLink="taxis" routerLinkActive="active">Registrar taxis</button>
       <button class="btnmenu btn-sm" routerLink="listar-taxis" routerLinkActive="active">Listar taxis</button>
     </div>
+    <button (click)="toggleCollapse1()" class="btnmenu btn-lg">
+      <img src="../../../assets/imagenes/Reporte.png"> Reportes
+    </button>
+    <div *ngIf="!isCollapsed1">
+      <button class="btnmenu btn-sm" routerLink="resporteUsuario" routerLinkActive="active">Usuarios</button>
+      <button class="btnmenu btn-sm" routerLink="reporteTaxis" routerLinkActive="active">Taxis</button>
+      <!-- <button class="btnmenu btn-sm" routerLink="reporteConductores" routerLinkActive="active">Conductores</button> -->
+    </div>
     <button class="btnmenu btn-sm" routerLink="home" routerLinkActive="active" (click)="cerrarSesion()">
-        <img src="../../../assets/imagenes/finalizar-la-sesion.png"> Cerrar Sesión
-      </button>
+      <img src="../../../assets/imagenes/finalizar-la-sesion.png"> Cerrar Sesión
+    </button>
   </nav>
-
   <div class="main-content">
     <router-outlet></router-outlet>
   </div>

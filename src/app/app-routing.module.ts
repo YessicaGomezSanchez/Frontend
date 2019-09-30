@@ -14,6 +14,9 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { AcopioComponent } from './components/acopio-taxis/acopio-taxis.component';
 import { HistoriaComponent } from './components/historia/historia.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { ReporteTaxisComponent } from './components/reporte-taxis/reporte-taxis.component';
+import { ReporteConductoresComponent } from './components/reporte-conductores/reporte-conductores.component';
+import { ReporteUsuarioComponent } from './components/reporte-usuario/reporte-usuario.component';
 
 
 // Security
@@ -30,7 +33,10 @@ const routes: Routes = [
       { path: 'taxis', component: TaxisComponent},
       { path: 'usuarios', component: UsuariosComponent},
       { path: 'crear-usuarios', component: CrearUsuariosComponent},
-      { path: 'listar-taxis', component: ListarTaxisComponent}
+      { path: 'listar-taxis', component: ListarTaxisComponent},
+      { path: 'resporteUsuario', component: ReporteUsuarioComponent},
+      { path: 'reporteTaxis', component: ReporteTaxisComponent},
+      { path: 'reporteConductores', component: ReporteConductoresComponent}
     ]
 },
   { path: 'usuario', component: UsuarioComponent },

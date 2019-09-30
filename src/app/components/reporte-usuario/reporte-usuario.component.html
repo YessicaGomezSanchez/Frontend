@@ -1,0 +1,32 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4" style="text-align: center">Reporte Usuarios</h1>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tipo Documento</th>
+      <th scope="col">Numero Documento</th>
+      <th scope="col">Nombres</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Rol</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of listaUsuarios">
+      <td>{{item.tipo_documento}}</td>
+      <td>{{item.cedula}}</td>
+      <td>{{item.nombres}}</td>
+      <td>{{item.apellidos}}</td>
+      <td>{{item.rol}}</td>
+      <td>
+        <button type="button" class="btn btn-default btn-lg" (click)="verMas()">
+            <img src="../../../assets/imagenes/lupa.png" width="15px">
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
