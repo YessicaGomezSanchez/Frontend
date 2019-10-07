@@ -17,14 +17,12 @@ import { AppComponent } from './app.component';
 import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesion.component';
 import { RestablecerContrasenaComponent } from './components/restablecer-contrasena/restablecer-contrasena.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { TaxisComponent } from './components/taxis/taxis.component';
 import { ServiciosComponent } from './components/servicios/servicios.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.component';
 import { ToastrComponent } from './components/shared/toastr/toastr.component';
 import { MomentModule } from 'ngx-moment';
 import { HeaderComponent } from './components/nabvar/header/header.component';
@@ -44,13 +42,11 @@ import { PopupUsuariosComponent } from './components/pop-up/popup-usuarios/popup
     IniciarSesionComponent,
     RestablecerContrasenaComponent,
     PerfilComponent,
-    UsuariosComponent,
     TaxisComponent,
     ServiciosComponent,
     HomeComponent,
     DashboardComponent,
     CrearUsuariosComponent,
-    ListarTaxisComponent,
     ToastrComponent,
     HeaderComponent,
     FooterComponent,

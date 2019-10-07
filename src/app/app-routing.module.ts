@@ -5,11 +5,9 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { RestablecerContrasenaComponent } from './components/restablecer-contrasena/restablecer-contrasena.component';
 import { ServiciosComponent } from './components/servicios/servicios.component';
 import { TaxisComponent } from './components/taxis/taxis.component';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CrearUsuariosComponent } from './components/crear-usuarios/crear-usuarios.component';
-import { ListarTaxisComponent } from './components/listar-taxis/listar-taxis.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { AcopioComponent } from './components/acopio-taxis/acopio-taxis.component';
 import { HistoriaComponent } from './components/historia/historia.component';
@@ -31,9 +29,7 @@ const routes: Routes = [
       { path: 'perfil', component: PerfilComponent},
       { path: 'servicios', component: ServiciosComponent},
       { path: 'taxis', component: TaxisComponent},
-      { path: 'usuarios', component: UsuariosComponent},
       { path: 'crear-usuarios', component: CrearUsuariosComponent},
-      { path: 'listar-taxis', component: ListarTaxisComponent},
       { path: 'resporteUsuario', component: ReporteUsuarioComponent},
       { path: 'reporteTaxis', component: ReporteTaxisComponent},
       { path: 'reporteConductores', component: ReporteConductoresComponent}

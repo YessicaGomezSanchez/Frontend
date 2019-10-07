@@ -9,20 +9,14 @@
     <button class="btnmenu btn-lg" routerLink="servicios" routerLinkActive="active">
       <img src="../../../assets/imagenes/cliente.png"> Servicios
     </button>
-    <button (click)="toggleCollapse()" class="btnmenu btn-lg">
+    <button routerLink="crear-usuarios" routerLinkActive="active" class="btnmenu btn-lg">
       <img src="../../../assets/imagenes/usuarios-multiples-en-silueta.png"> Usuarios
     </button>
-    <div *ngIf="!isCollapsed">
-      <button class="btnmenu btn-sm" routerLink="crear-usuarios" routerLinkActive="active">Crear Usuarios</button>
-      <button class="btnmenu btn-sm" routerLink="usuarios" routerLinkActive="active">Listar usuarios</button>
-    </div>
-    <button (click)="toggleCollapse2()" class="btnmenu btn-lg">
+    
+    <button routerLink="taxis" routerLinkActive="active" class="btnmenu btn-lg">
       <img src="../../../assets/imagenes/taxi-frontal.png"> Taxis
     </button>
-    <div *ngIf="!isCollapsed2">
-      <button class="btnmenu btn-sm" routerLink="taxis" routerLinkActive="active">Registrar taxis</button>
-      <button class="btnmenu btn-sm" routerLink="listar-taxis" routerLinkActive="active">Listar taxis</button>
-    </div>
+  
     <button (click)="toggleCollapse1()" class="btnmenu btn-lg">
       <img src="../../../assets/imagenes/Reporte.png"> Reportes
     </button>
