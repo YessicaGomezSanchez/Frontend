@@ -1,41 +1,17 @@
-<app-header></app-header>
-
-<div class="container" style="padding: 10px">
-  <div class="row">
-    <div class="col">
-      <div class="card mb-4 border-0" style="width: 20rem;">
-        <img class="card-img-top" src="../../../assets/imagenes/user.png" alt="Usuarios">
-        <div class="card-body" style="background-color: #fffb72">
-          <h5 class="card-title" style="text-align: center">Usuarios</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </p>
+<div class="grid">
+  <div class="span-col-2">
+    <app-header></app-header>
+  </div>
+  <div class="content">
+        <div class="card"  *ngFor="let items of Texts;let i = index">
+          <img class="" src="{{items.image}}" alt="Card image cap">
+          <div class="">
+            <h5 class="">{{items.name}}</h5>
+            <p class="">{{items.description}}</p>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card mb-4 border-0" style="width: 20rem;">
-        <img class="card-img-top" src="../../../assets/imagenes/acopio.png" alt="Acopio">
-        <div class="card-body" style="background-color: #fffb72">
-          <h5 class="card-title" style="text-align: center">Acopio</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card mb-4 border-0" style="width: 20rem;">
-        <img class="card-img-top" src="../../../assets/imagenes/taxi.png" alt="Acopio">
-        <div class="card-body" style="background-color: #fffb72">
-          <h5 class="card-title" style="text-align: center">Taxis</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </p>
-        </div>
-      </div>
-    </div>
+  </div>
+  <div class="span-col-2">
+    <app-footer></app-footer>
   </div>
 </div>
-
-<app-footer></app-footer>

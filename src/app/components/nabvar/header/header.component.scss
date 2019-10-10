@@ -1,0 +1,27 @@
+
+/***
+ Hedaer section
+**/
+.header {
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    height: 70px;
+    justify-content: space-between;
+    max-height: 70px;
+    padding: 20px;
+  
+    &-title {
+      color:#fffb72;
+      font-family: sans-serif;
+      font-size: 25px;
+      font-weight: 400;
+    }
+  }
+  .menu {
+    display: flex;
+  }
+  a {
+    background-color: transparent;
+    color:#fffb72;
+    text-decoration: none;
+}

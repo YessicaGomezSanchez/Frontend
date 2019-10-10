@@ -1,35 +1,13 @@
-<nav class="navbar navbar-expand-lg static-top navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand" style="color: #fff891" [routerLink]="[ '/' ]" id="4a3aa7b8-00d1-4456-a82b-97727862088c">
-        <!-- <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
-        Servitaxi Los Colores
+<div class="header">
+    <a class="header-title" [routerLink]="[ '/' ]" id="4a3aa7b8-00d1-4456-a82b-97727862088c">
+      Servitaxi Los Colores
     </a>
-    <button class="navbar-toggler" style="color: #fff891" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" id="75058268-e1a1-4fc5-817e-72137aa35ee8">
-      <span class="navbar-toggler-icon" ></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" style="color: #fff891" [routerLink]="[ '/' ]" id="12b5884b-a97b-4494-9246-eefa5099cc4f">Inicio
-            <!-- <span class="sr-only">(current)</span> -->
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color: #fff891" [routerLink]="[ '/usuario' ]" id="568bdb8e-a279-4c32-a556-1a0f3783eb0a">Usuario</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color: #fff891" [routerLink]="[ '/taxis' ]" id="29b55d88-8b19-471a-b9a8-71df40a5db8d">Taxis</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color: #fff891" [routerLink]="[ '/sesion' ]" id="c91e3067-fef5-4ef0-8a54-41b7626eb5fa">Acopio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color: #fff891" [routerLink]="[ '/historia' ]" id="b826c790-075b-45b1-9cac-470770437911">Historia</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color: #fff891" [routerLink]="[ '/contacto' ]" id="e526d28a-a450-4266-b9a6-63ac7ce6bef5">Contacto</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <ul class="menu">
+      <li  class="nav-link waves-light" *ngFor="let item of menu">
+        <a [ngClass]="{'active': menu.length > 4 }" [routerLink]="[item.link]"
+          id="568bdb8e-a279-4c32-a556-1a0f3783eb0a/{{item.name}}">
+          {{item.name}}
+        </a>
+      </li>
+    </ul>    
+</div>
