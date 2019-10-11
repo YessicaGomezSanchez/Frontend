@@ -1,12 +1,13 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   grid-gap: 10px;
+  height: 100vh;
 }
 .content{
   grid-row: span 1 / auto;
   display:flex;
 }
 .span-col-2{
-  grid-column: span 2 / auto;
+  grid-row-end:span;
 }

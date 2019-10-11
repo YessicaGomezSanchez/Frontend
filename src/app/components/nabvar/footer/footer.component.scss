@@ -1,15 +1,29 @@
 footer {
-  grid-column: span 3 / auto;
   background-color: rgb(0, 0, 0);
 }
 
-label{
-    color:"#fff891"
+.container{
+    display: flex;
+    justify-content: space-between;
+    max-height: 63px;
+    padding: 20px;
 }
-.notificacion{
-    display: grid;
-    justify-content: center;
+label {
+  color: #ffc107;
 }
-a{
-    color: yellow;
+
+.notificacion {
+  grid-column: span 3 / auto;
+  display: grid;
+  justify-content: end;
+  margin-right: 38px;
+}
+
+a {
+  color: #ffc107;
+
+}
+
+.btn {
+  margin-left: 11px;
 }
