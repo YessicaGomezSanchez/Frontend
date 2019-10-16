@@ -13,20 +13,36 @@ export class ToastrComponent implements OnInit {
   ngOnInit() { }
 
   showSuccess(message: string, title: string) {
-    this.toastr.successToastr(message, title);
+    this.toastr.successToastr(message, title,
+    {
+      maxShown:(1),
+      toastTimeout:(50000)
+    });
   }
 
   showError(message: string, title: string) {
 
-    this.toastr.errorToastr(message, title);
+    this.toastr.errorToastr(message, title,
+      {
+        maxShown:(1),
+        toastTimeout:(50000)
+      });
   }
 
   showWarning(message: string, title: string) {
-    this.toastr.warningToastr(message, title);
+    this.toastr.warningToastr(message, title,
+      {
+        maxShown:(1),
+        toastTimeout:(50000)
+      });
   }
 
   showInfo(message: string, title: string) {
-    this.toastr.infoToastr(message, title);
+    this.toastr.infoToastr(message, title,
+      {
+        maxShown:(1),
+        toastTimeout:(50000)
+      });
   }
 
   // showCustom() {
