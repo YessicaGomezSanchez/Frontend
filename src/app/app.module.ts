@@ -38,6 +38,8 @@ import { ReporteTaxisComponent } from './components/reporte-taxis/reporte-taxis.
 import { ReporteConductoresComponent } from './components/reporte-conductores/reporte-conductores.component';
 import { PopupUsuariosComponent } from './components/pop-up/popup-usuarios/popup-usuarios.component';
 
+import { ExcelService } from './services/excel.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +88,7 @@ import { PopupUsuariosComponent } from './components/pop-up/popup-usuarios/popup
     MatListModule,
     ToastrModule.forRoot()
     ],
-  providers: [ToastrComponent],
+  providers: [ToastrComponent, ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

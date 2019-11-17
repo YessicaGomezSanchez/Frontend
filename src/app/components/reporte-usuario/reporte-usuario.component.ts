@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-reporte-usuario',
@@ -8,9 +9,11 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class ReporteUsuarioComponent implements OnInit {
   listaUsuarios = [];
+  listaUsuariosExport = [];
   dialog: any;
+  list: any;
 
-  constructor(private usuariosService: UsuariosService) { }
+  constructor(private usuariosService: UsuariosService, private excelService: ExcelService) { }
 
   ngOnInit() {
     this.usuariosService.getAllUsuario().subscribe((data: any) => {
@@ -19,4 +22,10 @@ export class ReporteUsuarioComponent implements OnInit {
   }
 
   verMas() {  }
+
+  exportar() {
+    this.usuariosService.getAllUsuario().subscribe((data: any) => {
+      this.excelService.exportAsExcelFile(data, 'ReporteUsuarios');
+  });
+  }
 }
