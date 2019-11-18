@@ -13,6 +13,7 @@ export class ReporteUsuarioComponent implements OnInit {
   dialog: any;
   list: any;
 
+
   constructor(private usuariosService: UsuariosService, private excelService: ExcelService) { }
 
   ngOnInit() {
@@ -25,6 +26,7 @@ export class ReporteUsuarioComponent implements OnInit {
 
   exportar() {
     this.usuariosService.getAllUsuario().subscribe((data: any) => {
+
       this.excelService.exportAsExcelFile(data, 'ReporteUsuarios');
   });
   }
