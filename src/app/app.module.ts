@@ -37,7 +37,6 @@ import { ReporteUsuarioComponent } from './components/reporte-usuario/reporte-us
 import { ReporteTaxisComponent } from './components/reporte-taxis/reporte-taxis.component';
 import { ReporteConductoresComponent } from './components/reporte-conductores/reporte-conductores.component';
 import { PopupUsuariosComponent } from './components/pop-up/popup-usuarios/popup-usuarios.component';
-
 import { ExcelService } from './services/excel.service';
 
 @NgModule({

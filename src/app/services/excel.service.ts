@@ -17,6 +17,6 @@ export class ExcelService {
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
     /* save to file */
-    XLSX.writeFile(wb, 'ReporteUsuarios.xlsx');
+    XLSX.writeFile(wb, excelFileName + EXCEL_EXTENSION);
   }
 }

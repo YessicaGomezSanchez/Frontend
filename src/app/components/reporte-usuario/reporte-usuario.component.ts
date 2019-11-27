@@ -15,7 +15,6 @@ const EXCEL_EXTENSION = '.xlsx';
 })
 export class ReporteUsuarioComponent implements OnInit {
   listaUsuarios = [];
-  listaUsuariosExport = [];
   dialog: any;
   list: any;
 

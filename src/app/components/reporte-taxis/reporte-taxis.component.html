@@ -4,26 +4,42 @@
   </div>
 </div>
 
+<div class="form-group has-search">
+  <!-- <span class="fa fa-search form-control-feedback"></span>
+  <input id="filtrar" type="text" class="form-control" placeholder="Ingrese el dato a buscar..."> -->
+  <button type="button" class="btn btn-warning" (click)="exportar()" >Exportar</button>
+</div>
+
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">Tipo Documento</th>
-        <th scope="col">Numero Documento</th>
-        <th scope="col">Nombres</th>
-        <th scope="col">Apellidos</th>
-        <th scope="col"></th>
+          <th scope="col">Placa</th>
+          <th scope="col">Modelo</th>
+          <th scope="col">Fecha Soat</th>
+          <th scope="col">Fecha Tecnico-Mecanica</th>
+          <th scope="col">Fecha Seguro Contractual</th>
+          <th scope="col">Tipo Documento</th>
+          <th scope="col">Numero Documento</th>
+          <th scope="col">Nombres y Apellidos</th>
+          <th scope="col">Correo</th>
+          <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of listaUsuarios">
+      <tr *ngFor="let item of listaTaxis">
+        <td>{{item.placa}}</td>
+        <td>{{item.modelo}}</td>
+        <td>{{item.fecha_venc_soat}}</td>
+        <td>{{item.fecha_venc_tecnomecanica}}</td>
+        <td>{{item.fecha_venc_seguro_contractual}}</td>
         <td>{{item.tipo_documento}}</td>
         <td>{{item.cedula}}</td>
-        <td>{{item.nombres}}</td>
-        <td>{{item.apellidos}}</td>
+        <td>{{item.nombre_apellidos}}</td>
+        <td>{{item.correo}}</td>
         <td>
-          <button type="button" class="btn btn-default btn-lg">
+          <!-- <button type="button" class="btn btn-default btn-lg">
             ver más
-          </button>
+          </button> -->
         </td>
       </tr>
     </tbody>
